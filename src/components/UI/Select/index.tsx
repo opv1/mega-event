@@ -25,13 +25,27 @@ const Select: React.FC<SelectProps> = (props) => {
         {selectedDate.data || 'День мероприятия'}
       </span>
       <img
-        className={displayDates ? `${Styles.arrow} ${Styles.arrow_rotate}` : `${Styles.arrow}`}
+        className={
+          displayDates
+            ? `${Styles.arrow} ${Styles.arrow_rotate}`
+            : `${Styles.arrow}`
+        }
         src={arrowIcon}
         alt='Иконка'
       />
-      <div className={displayDates ? `${Styles.options} ${Styles.options_display}` : `${Styles.options}`}>
+      <div
+        className={
+          displayDates
+            ? `${Styles.options} ${Styles.options_display}`
+            : `${Styles.options}`
+        }
+      >
         {data.map((date) => (
-          <span key={date.id} className={Styles.option} onClick={() => selectingDate(date)}>
+          <span
+            key={date.id}
+            className={Styles.option}
+            onClick={() => selectingDate(date)}
+          >
             {date.data}
           </span>
         ))}

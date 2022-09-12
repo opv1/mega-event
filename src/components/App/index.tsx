@@ -10,8 +10,8 @@ const App: React.FC = () => {
     <div className={Styles.app}>
       <h1 className={Styles.caption}>Coding Mega Event</h1>
       <Routes>
-        {/* <Route path='/' element={<Login />} /> */}
-        <Route path='/' element={<Questionnaire />} />
+        <Route path='/' element={<Login />} />
+        {/* <Route path='/' element={<Questionnaire />} /> */}
         {/* <Route path='/' element={<Success />} /> */}
       </Routes>
     </div>

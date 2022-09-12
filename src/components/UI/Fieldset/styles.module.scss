@@ -1,9 +1,9 @@
 .fieldset {
   display: flex;
   flex-direction: column;
-  padding: 0;
   margin: 0;
   border: none;
+  padding: 0;
 }
 
 .label {
@@ -11,8 +11,8 @@
   display: flex;
 
   &:focus-within > .placeholder {
-    transform: translate(-3px, -100%) scale(0.8);
     color: #ab81f1;
+    transform: translate(-3px, -100%) scale(0.8);
   }
 }
 
@@ -20,28 +20,28 @@
   position: absolute;
   left: 10px;
   top: 50%;
-  transform: translate(0, -50%);
-  transition: all 0.2s ease-out;
-  font-style: normal;
   font-weight: 500;
+  font-style: normal;
   font-size: 14px;
   line-height: 18px;
   color: #676c7a;
+  transform: translate(0, -50%);
+  transition: all 0.2s ease-out;
 }
 
 .placeholder_active {
-  transform: translate(-3px, -100%) scale(0.8);
   color: #ab81f1;
+  transform: translate(-3px, -100%) scale(0.8);
 }
 
 .error {
-  opacity: 0;
   margin-top: 10px;
-  font-style: normal;
   font-weight: 500;
+  font-style: normal;
   font-size: 12px;
   line-height: 110%;
   color: #f7483d;
+  opacity: 0;
 }
 
 .error_active {

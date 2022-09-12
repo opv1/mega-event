@@ -19,20 +19,30 @@ const Questionnaire: React.FC = () => {
     <Page title='Заполните анкету участника'>
       <div className={Styles.tabs}>
         <button
-          className={individualFrom ? `${Styles.tab} ${Styles.tab_active}` : `${Styles.tab}`}
+          className={
+            individualFrom
+              ? `${Styles.tab} ${Styles.tab_active}`
+              : `${Styles.tab}`
+          }
           onClick={toggleForm}
         >
           Физ. лицо
         </button>
         <button
-          className={!individualFrom ? `${Styles.tab} ${Styles.tab_active}` : `${Styles.tab}`}
+          className={
+            !individualFrom
+              ? `${Styles.tab} ${Styles.tab_active}`
+              : `${Styles.tab}`
+          }
           onClick={toggleForm}
         >
           Юр. лицо
         </button>
       </div>
       <Form>
-        <div className={Styles.container}>{individualFrom ? <FormIndividual /> : <FormEntity />}</div>
+        <div className={Styles.container}>
+          {individualFrom ? <FormIndividual /> : <FormEntity />}
+        </div>
         <div className={Styles.wrapper}>
           <Button title='Отправить заявку' onClick={onSubmit} />
         </div>

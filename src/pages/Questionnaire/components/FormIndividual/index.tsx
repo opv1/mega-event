@@ -22,7 +22,9 @@ const FormIndividual: React.FC = () => {
     setData({ ...data, [name]: value })
   }
 
-  const handlerChangeCheckbox = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handlerChangeCheckbox = (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
     const { name, checked } = event.target
     setData({ ...data, [name]: checked })
   }
@@ -33,13 +35,28 @@ const FormIndividual: React.FC = () => {
         <h2 className={Styles.title}>Личные данные</h2>
         <div className={Styles.fieldsets}>
           <Fieldset placeholder='ФИО' value={data.name}>
-            <Input onChange={handlerChange} type='text' name='name' value={data.name} />
+            <Input
+              onChange={handlerChange}
+              type='text'
+              name='name'
+              value={data.name}
+            />
           </Fieldset>
           <Fieldset placeholder='Дата рождения' value={data.birthday}>
-            <Input onChange={handlerChange} type='text' name='birthday' value={data.birthday} />
+            <Input
+              onChange={handlerChange}
+              type='text'
+              name='birthday'
+              value={data.birthday}
+            />
           </Fieldset>
           <Fieldset placeholder='Номер телефона' value={data.phone}>
-            <Input onChange={handlerChange} type='phone' name='phone' value={data.phone} />
+            <Input
+              onChange={handlerChange}
+              type='phone'
+              name='phone'
+              value={data.phone}
+            />
           </Fieldset>
         </div>
       </div>
@@ -48,7 +65,12 @@ const FormIndividual: React.FC = () => {
         <div className={Styles.fieldsets}>
           <Select data={dates} />
           <div className={Styles.checkboxes}>
-            <Checkbox label='Нужна парковка' onChange={handlerChangeCheckbox} name='parking' checked={data.parking} />
+            <Checkbox
+              label='Нужна парковка'
+              onChange={handlerChangeCheckbox}
+              name='parking'
+              checked={data.parking}
+            />
             <Checkbox
               label='Хочу получить раздаточный материал'
               onChange={handlerChangeCheckbox}

@@ -1,5 +1,4 @@
-@import './vendor/normalize.css';
-@import './vendor/fonts/fonts.scss';
+@import "./normalize.css";
 
 * {
   box-sizing: border-box;
@@ -7,7 +6,7 @@
 
 body {
   margin: 0;
-  font-family: 'Halvar Breitschrift', Arial, Helvetica, sans-serif;
+  font-family: "Roboto Mono", "Arial", "Helvetica", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: #06091f;

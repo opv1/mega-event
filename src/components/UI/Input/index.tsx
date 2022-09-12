@@ -25,10 +25,20 @@ const Input: React.FC<InputProps> = (props) => {
 
   return (
     <>
-      <input className={Styles.input} onChange={onChange} type={currentType} name={name} value={value} />
+      <input
+        className={Styles.input}
+        onChange={onChange}
+        type={currentType}
+        name={name}
+        value={value}
+      />
       {type === 'password' && (
         <button
-          className={currentType === 'password' ? `${Styles.toggle}` : `${Styles.toggle} ${Styles.toggle_hide}`}
+          className={
+            currentType === 'password'
+              ? `${Styles.toggle}`
+              : `${Styles.toggle} ${Styles.toggle_hide}`
+          }
           onClick={toggleEye}
         />
       )}

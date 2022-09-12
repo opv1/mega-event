@@ -1,9 +1,9 @@
 .complete {
   display: flex;
   flex-direction: column;
-  background: #101328;
   border-radius: 14px;
   padding: 28px 24px;
+  background: #101328;
 }
 
 .field {
@@ -16,17 +16,17 @@
 }
 
 .title {
-  font-style: normal;
   font-weight: 500;
+  font-style: normal;
   font-size: 14px;
   line-height: 18px;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgb(255 255 255 / 50%);
 }
 
 .subtitle {
-  font-style: normal;
   font-weight: 500;
+  font-style: normal;
   font-size: 14px;
   line-height: 18px;
-  color: #ffffff;
+  color: #fff;
 }

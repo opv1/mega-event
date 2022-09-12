@@ -15,11 +15,23 @@ const Fieldset: React.FC<FieldsetProps> = (props) => {
     <fieldset className={Styles.fieldset}>
       <label className={Styles.label}>
         {children}
-        <span className={value ? `${Styles.placeholder} ${Styles.placeholder_active}` : `${Styles.placeholder}`}>
+        <span
+          className={
+            value
+              ? `${Styles.placeholder} ${Styles.placeholder_active}`
+              : `${Styles.placeholder}`
+          }
+        >
           {placeholder}
         </span>
       </label>
-      <span className={error ? `${Styles.error} ${Styles.error_active}` : `${Styles.error}`}>{error}</span>
+      <span
+        className={
+          error ? `${Styles.error} ${Styles.error_active}` : `${Styles.error}`
+        }
+      >
+        {error}
+      </span>
     </fieldset>
   )
 }

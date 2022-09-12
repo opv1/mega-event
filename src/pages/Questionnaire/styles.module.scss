@@ -1,22 +1,22 @@
 .tabs {
   display: flex;
   align-items: center;
-  max-width: 288px;
-  width: 100%;
-  background: #1f2235;
   border-radius: 14px;
   padding: 4px 5px;
+  width: 100%;
+  max-width: 288px;
+  background: #1f2235;
 }
 
 .tab {
-  font-style: normal;
+  border: none;
+  padding: 7px 24px;
   font-weight: 500;
+  font-style: normal;
   font-size: 18px;
   line-height: 133%;
   color: #676c7a;
-  border: none;
   background-color: transparent;
-  padding: 7px 24px;
   cursor: pointer;
 
   &:not(:last-child) {
@@ -25,9 +25,9 @@
 }
 
 .tab_active {
-  background: #ab81f1;
   border-radius: 14px;
-  color: #ffffff;
+  color: #fff;
+  background: #ab81f1;
 }
 
 .container {

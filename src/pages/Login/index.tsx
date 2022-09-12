@@ -23,14 +23,28 @@ const Login: React.FC = () => {
       <Form>
         <div className={Styles.fieldsets}>
           <Fieldset placeholder='E-mail' value={data.email}>
-            <Input onChange={handlerChange} type='email' name='email' value={data.email} />
+            <Input
+              onChange={handlerChange}
+              type='email'
+              name='email'
+              value={data.email}
+            />
           </Fieldset>
           <Fieldset placeholder='Пароль' value={data.password}>
-            <Input onChange={handlerChange} type='password' name='password' value={data.password} />
+            <Input
+              onChange={handlerChange}
+              type='password'
+              name='password'
+              value={data.password}
+            />
           </Fieldset>
         </div>
         <div className={Styles.wrapper}>
-          <Button title='Войти' onClick={onLogin} disabled={!data.email || !data.password} />
+          <Button
+            title='Войти'
+            onClick={onLogin}
+            disabled={!data.email || !data.password}
+          />
         </div>
       </Form>
     </Page>

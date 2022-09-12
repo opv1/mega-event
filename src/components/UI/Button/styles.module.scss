@@ -1,13 +1,13 @@
 .button {
-  background: #ab81f1;
-  border-radius: 14px;
   border: none;
+  border-radius: 14px;
   padding: 8px 24px;
-  font-style: normal;
   font-weight: 500;
+  font-style: normal;
   font-size: 18px;
   line-height: 133%;
-  color: #ffffff;
+  color: #fff;
+  background: #ab81f1;
   cursor: pointer;
 
   &:active {
@@ -15,7 +15,7 @@
   }
 
   &:disabled {
-    background: rgba(255, 255, 255, 0.2);
     color: #676c7a;
+    background: rgb(255 255 255 / 20%);
   }
 }

@@ -1,21 +1,27 @@
 .button {
   border: none;
   border-radius: 14px;
-  padding: 8px 24px;
+  padding: 10px 24px;
   font-weight: 500;
   font-style: normal;
   font-size: 18px;
   line-height: 133%;
   color: #fff;
-  background: #ab81f1;
+  background-color: #ab81f1;
   cursor: pointer;
 
+  transition: background-color 0.3s ease-in;
+
+  &:hover {
+    background-color: #8852e1;
+  }
+
   &:active {
-    background: #8852e1;
+    background-color: #8852e1;
   }
 
   &:disabled {
     color: #676c7a;
-    background: rgb(255 255 255 / 20%);
+    background-color: rgb(255 255 255 / 20%);
   }
 }

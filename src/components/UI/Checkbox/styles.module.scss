@@ -1,28 +1,17 @@
-.label {
-  display: flex;
-  align-items: center;
-  font-weight: 500;
-  font-style: normal;
-  font-size: 16px;
-  line-height: 20px;
-  color: #fff;
-  cursor: pointer;
-}
-
 .input {
   appearance: none;
   position: absolute;
   opacity: 0;
 
   &:checked + .checkbox {
-    background-image: url("../../../assets/checkbox-check.svg");
+    background-image: url('../../../assets/checkbox-check.svg');
   }
 }
 
 .checkbox {
   width: 24px;
   height: 24px;
-  background-image: url("../../../assets/checkbox.svg");
+  background-image: url('../../../assets/checkbox.svg');
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;

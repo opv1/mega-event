@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import arrowIcon from '../../../assets/arrow-down.svg'
-import Styles from './styles.module.scss'
+import styles from './styles.module.scss'
 
 interface SelectProps {
   data: any[]
@@ -20,15 +20,15 @@ const Select: React.FC<SelectProps> = (props) => {
   }
 
   return (
-    <div className={Styles.select}>
-      <span className={Styles.selected} onClick={toggleDates}>
+    <div className={styles.select}>
+      <span className={styles.selected} onClick={toggleDates}>
         {selectedDate.data || 'День мероприятия'}
       </span>
       <img
         className={
           displayDates
-            ? `${Styles.arrow} ${Styles.arrow_rotate}`
-            : `${Styles.arrow}`
+            ? `${styles.arrow} ${styles.arrow_rotate}`
+            : `${styles.arrow}`
         }
         src={arrowIcon}
         alt='Иконка'
@@ -36,14 +36,14 @@ const Select: React.FC<SelectProps> = (props) => {
       <div
         className={
           displayDates
-            ? `${Styles.options} ${Styles.options_display}`
-            : `${Styles.options}`
+            ? `${styles.options} ${styles.options_display}`
+            : `${styles.options}`
         }
       >
         {data.map((date) => (
           <span
             key={date.id}
-            className={Styles.option}
+            className={styles.option}
             onClick={() => selectingDate(date)}
           >
             {date.data}

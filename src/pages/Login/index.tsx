@@ -1,12 +1,15 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Page from '../../components/Pages'
-import Form from '../../components/UI/Form'
+import Form from '../../components/Form'
 import Fieldset from '../../components/UI/Fieldset'
 import Input from '../../components/UI/Input'
 import Button from '../../components/UI/Button'
 import Styles from './styles.module.scss'
 
 const Login: React.FC = () => {
+  const navigate = useNavigate()
+
   const [data, setData] = useState({ email: '', password: '' })
 
   const handlerChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -16,6 +19,7 @@ const Login: React.FC = () => {
 
   const onLogin = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
+    navigate('/questionnaire')
   }
 
   return (
@@ -40,11 +44,9 @@ const Login: React.FC = () => {
           </Fieldset>
         </div>
         <div className={Styles.wrapper}>
-          <Button
-            title='Войти'
-            onClick={onLogin}
-            disabled={!data.email || !data.password}
-          />
+          <Button onClick={onLogin} disabled={!data.email || !data.password}>
+            Войти
+          </Button>
         </div>
       </Form>
     </Page>

@@ -1,5 +1,5 @@
 import React from 'react'
-import Styles from './styles.module.scss'
+import styles from './styles.module.scss'
 
 interface FieldsetProps {
   placeholder: string
@@ -12,14 +12,14 @@ const Fieldset: React.FC<FieldsetProps> = (props) => {
   const { placeholder, value, error, children } = props
 
   return (
-    <fieldset className={Styles.fieldset}>
-      <label className={Styles.label}>
+    <fieldset className={styles.fieldset}>
+      <label className={styles.label}>
         {children}
         <span
           className={
             value
-              ? `${Styles.placeholder} ${Styles.placeholder_active}`
-              : `${Styles.placeholder}`
+              ? `${styles.placeholder} ${styles.placeholder_active}`
+              : `${styles.placeholder}`
           }
         >
           {placeholder}
@@ -27,7 +27,7 @@ const Fieldset: React.FC<FieldsetProps> = (props) => {
       </label>
       <span
         className={
-          error ? `${Styles.error} ${Styles.error_active}` : `${Styles.error}`
+          error ? `${styles.error} ${styles.error_active}` : `${styles.error}`
         }
       >
         {error}

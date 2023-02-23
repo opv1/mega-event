@@ -1,10 +1,7 @@
 .block {
   display: flex;
   flex-direction: column;
-
-  &:first-child {
-    border-right: 1px solid rgb(255 255 255 / 10%);
-  }
+  gap: 16px;
 }
 
 .title {
@@ -16,12 +13,9 @@
   color: #fff;
 }
 
-.fieldsets {
-  display: flex;
-  flex-direction: column;
-}
-
 .checkboxes {
   display: flex;
   flex-direction: column;
+  gap: 16px;
+  margin-top: 14px;
 }

@@ -1,37 +1,7 @@
-.tabs {
-  display: flex;
-  align-items: center;
-  border-radius: 14px;
-  padding: 4px 5px;
-  width: 100%;
-  max-width: 288px;
-  background: #1f2235;
-}
-
-.tab {
-  border: none;
-  padding: 7px 24px;
-  font-weight: 500;
-  font-style: normal;
-  font-size: 18px;
-  line-height: 133%;
-  color: #676c7a;
-  background-color: transparent;
-  cursor: pointer;
-
-  &:not(:last-child) {
-    margin-right: 20px;
-  }
-}
-
-.tab_active {
-  border-radius: 14px;
-  color: #fff;
-  background: #ab81f1;
-}
-
 .container {
   display: flex;
+  gap: 36px;
+  margin-top: 60px;
 }
 
 .wrapper {

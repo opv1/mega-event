@@ -1,5 +1,5 @@
 import React from 'react'
-import Styles from './styles.module.scss'
+import styles from './styles.module.scss'
 
 interface PageProps {
   title: string
@@ -10,9 +10,9 @@ const Page: React.FC<PageProps> = (props) => {
   const { title, children } = props
 
   return (
-    <div className={Styles.page}>
-      <h2 className={Styles.title}>{title}</h2>
-      <div className={Styles.content}>{children}</div>
+    <div className={styles.page}>
+      <h2 className={styles.title}>{title}</h2>
+      <div className={styles.content}>{children}</div>
     </div>
   )
 }

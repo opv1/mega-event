@@ -1,13 +1,11 @@
-@import "./normalize.css";
-
 * {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  font-family: "Roboto Mono", "Arial", "Helvetica", sans-serif;
+  font-family: 'Roboto Mono', 'Arial', 'Helvetica', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #06091f;
+  background-color: #06091f;
 }

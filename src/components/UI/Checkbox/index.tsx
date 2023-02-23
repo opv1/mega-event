@@ -1,28 +1,14 @@
 import React from 'react'
-import Styles from './styles.module.scss'
+import styles from './styles.module.scss'
 
-interface CheckboxProps {
-  label: string
-  onChange: any
-  name: string
-  checked: boolean
-}
+interface IComponent extends React.InputHTMLAttributes<HTMLInputElement> {}
 
-const Checkbox: React.FC<CheckboxProps> = (props) => {
-  const { label, onChange, name, checked } = props
-
+const Checkbox: React.FC<IComponent> = (props) => {
   return (
-    <label className={Styles.label}>
-      <input
-        className={Styles.input}
-        onChange={onChange}
-        type='checkbox'
-        name={name}
-        checked={checked}
-      />
-      <span className={Styles.checkbox}></span>
-      {label}
-    </label>
+    <>
+      <input {...props} className={styles.input} type='checkbox' />
+      <div className={styles.checkbox}></div>
+    </>
   )
 }
 

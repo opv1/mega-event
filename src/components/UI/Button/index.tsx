@@ -1,20 +1,18 @@
-import React from 'react'
-import Styles from './styles.module.scss'
+import React, { memo } from 'react'
+import styles from './styles.module.scss'
 
-interface ButtonProps {
-  title: string
-  onClick: any
-  disabled?: boolean
+interface IComponent extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  children: React.ReactNode
 }
 
-const Button: React.FC<ButtonProps> = (props) => {
-  const { title, onClick, disabled } = props
+const Button: React.FC<IComponent> = (props) => {
+  const { children } = props
 
   return (
-    <button className={Styles.button} onClick={onClick} disabled={disabled}>
-      {title}
+    <button {...props} className={styles.button}>
+      {children}
     </button>
   )
 }
 
-export default Button
+export default memo(Button)

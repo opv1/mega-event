@@ -1,0 +1,27 @@
+.tabs {
+  display: flex;
+  align-items: center;
+  gap: 21px;
+  border-radius: 14px;
+  padding: 4px 5px;
+  background: #1f2235;
+}
+
+.tab {
+  border: none;
+  padding: 10px 24px;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 18px;
+  line-height: 133%;
+  color: #676c7a;
+  background-color: transparent;
+  cursor: pointer;
+  border-radius: 14px;
+  white-space: nowrap;
+
+  &_active {
+    color: #fff;
+    background: #ab81f1;
+  }
+}

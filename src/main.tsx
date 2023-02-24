@@ -15,3 +15,14 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     </BrowserRouter>
   </React.StrictMode>,
 )
+
+// TODO styles
+// TODO mixins typography and animations
+// TODO font family
+// TODO date fns
+// TODO useMemo
+// TODO click outside select
+// TODO auth and protected routes
+// TODO without any
+// TODO eslint
+// TODO phone mask

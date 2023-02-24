@@ -4,7 +4,12 @@ import { inputValidate } from '../../../helpers/inputValidate'
 import arrowIcon from '../../../assets/arrow-down.svg'
 import styles from './styles.module.scss'
 
-// TODO click outside
+const dates = [
+  { id: 1, data: '24-04-2021' },
+  { id: 2, data: '07-05-2021' },
+  { id: 3, data: '28-11-2021' },
+  { id: 4, data: '29-02-2022' },
+]
 
 type Props = {
   onClick: any
@@ -14,13 +19,6 @@ type Props = {
   validationRules: string
   ref: any
 }
-
-const dates = [
-  { id: 1, data: '24-04-2021' },
-  { id: 2, data: '07-05-2021' },
-  { id: 3, data: '28-11-2021' },
-  { id: 4, data: '29-02-2022' },
-]
 
 const Select: React.FC<Props> = forwardRef((props, ref) => {
   const { onClick, onFocus, name, value, validationRules } = props

@@ -5,7 +5,7 @@ import styles from './styles.module.scss'
 export const Complete: React.FC = () => {
   const { data } = useAppSelector((state) => state.app)
 
-  console.log(data)
+  const participantType = data.type === 'individual' ? 'Физ. лицо' : 'Юр. лицо'
 
   return (
     <div className={styles.complete}>
@@ -15,23 +15,52 @@ export const Complete: React.FC = () => {
       </div>
       <div className={styles.field}>
         <span className={styles.title}>Тип участника</span>
-        <span className={styles.subtitle}>{data.type}</span>
+        <span className={styles.subtitle}>{participantType}</span>
       </div>
       <div className={styles.field}>
         <span className={styles.title}>Номер телфона</span>
         <span className={styles.subtitle}>{data.phone}</span>
       </div>
-      <div className={styles.field}>
-        <span className={styles.title}>Дата рождения</span>
-        <span className={styles.subtitle}>{data.birthday}</span>
-      </div>
-      <div className={styles.field}>
-        <span className={styles.title}>Опции</span>
-        <span className={styles.subtitle}>
-          Нужна парковка Хочу получить раздаточный материал Нужна помощь
-          сопровождающего
-        </span>
-      </div>
+      {data.birthday && (
+        <div className={styles.field}>
+          <span className={styles.title}>Дата рождения</span>
+          <span className={styles.subtitle}>{data.birthday}</span>
+        </div>
+      )}
+      {data.position && (
+        <div className={styles.field}>
+          <span className={styles.title}>Должность</span>
+          <span className={styles.subtitle}>{data.position}</span>
+        </div>
+      )}
+      {Object.entries(data.options).length !== 0 && (
+        <div className={styles.field}>
+          <span className={styles.title}>Опции</span>
+          {Object.entries(data.options).map(([key, value]) => {
+            if (value && key === 'parking') {
+              return (
+                <span key={key} className={styles.subtitle}>
+                  Нужна парковка
+                </span>
+              )
+            } else if (value && key === 'handout') {
+              return (
+                <span key={key} className={styles.subtitle}>
+                  Хочу получить раздаточный материал
+                </span>
+              )
+            } else if (value && key === 'help') {
+              return (
+                <span key={key} className={styles.subtitle}>
+                  Нужна помощь сопровождающего
+                </span>
+              )
+            } else {
+              return null
+            }
+          })}
+        </div>
+      )}
     </div>
   )
 }

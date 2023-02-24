@@ -9,7 +9,7 @@ import Input from '../../../../components/UI/Input'
 import Button from '../../../../components/UI/Button'
 import Select from '../../../../components/UI/Select'
 import Checkbox from '../../../../components/UI/Checkbox'
-import { IErrors } from '../../../../types'
+import { IEntityValues, IErrors } from '../../../../types'
 import styles from './styles.module.scss'
 
 const FormEntity: React.FC = () => {
@@ -24,22 +24,24 @@ const FormEntity: React.FC = () => {
     createRef(),
   ])
 
-  const [values, setValues] = useState({
-    name_company: '',
+  const [values, setValues] = useState<IEntityValues>({
+    type: 'entity',
+    name: '',
     position: '',
     phone: '',
-    event_date: '',
-    parking: false,
-    handout: false,
-    need_help: false,
-    type: 'entity',
+    date: '',
+    options: {
+      parking: false,
+      handout: false,
+      help: false,
+    },
   })
 
   const [errors, setErrors] = useState<IErrors>({
-    name_company: '',
+    name: '',
     position: '',
     phone: '',
-    event_date: '',
+    date: '',
   })
 
   const handlerChange = useCallback(
@@ -53,7 +55,10 @@ const FormEntity: React.FC = () => {
   const handlerChangeCheckbox = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
       const { name, checked } = event.target
-      setValues((prev) => ({ ...prev, [name]: checked }))
+      setValues((prev) => ({
+        ...prev,
+        options: { ...prev.options, [name]: checked },
+      }))
     },
     [],
   )
@@ -70,7 +75,7 @@ const FormEntity: React.FC = () => {
   )
 
   const handlerChangeValueSelect = useCallback((date: string) => {
-    setValues((prev) => ({ ...prev, event_date: date }))
+    setValues((prev) => ({ ...prev, date: date }))
   }, [])
 
   const handlerChangeErrorSelect = useCallback(
@@ -114,13 +119,13 @@ const FormEntity: React.FC = () => {
       <div className={styles.blocks}>
         <div className={styles.block}>
           <h2 className={styles.title}>Личные данные</h2>
-          <Fieldset error={errors.name_company}>
+          <Fieldset error={errors.name}>
             <Input
               onChange={handlerChange}
               onFocus={handlerFocus}
               type='text'
-              name='name_company'
-              value={values.name_company}
+              name='name'
+              value={values.name}
               placeholder='Название компании'
               validationRules='required|min:2|max:50'
               ref={inputsRefs.current[0]}
@@ -153,41 +158,41 @@ const FormEntity: React.FC = () => {
         </div>
         <div className={styles.block}>
           <h2 className={styles.title}>Выберите дату мероприятия</h2>
-          <Fieldset error={errors.event_date}>
+          <Fieldset error={errors.date}>
             <Select
               onClick={handlerChangeValueSelect}
               onFocus={handlerChangeErrorSelect}
-              name='event_date'
-              value={values.event_date}
+              name='date'
+              value={values.date}
               validationRules='required'
               ref={inputsRefs.current[3]}
             />
           </Fieldset>
           <div className={styles.checkboxes}>
-            <Label htmlFor='parking'>
+            <Label htmlFor='parking' direction='row'>
               <Checkbox
                 id='parking'
                 onChange={handlerChangeCheckbox}
                 name='parking'
-                checked={values.parking}
+                checked={values.options.parking}
               />
               Нужна парковка
             </Label>
-            <Label htmlFor='handout'>
+            <Label htmlFor='handout' direction='row'>
               <Checkbox
                 id='handout'
                 onChange={handlerChangeCheckbox}
                 name='handout'
-                checked={values.handout}
+                checked={values.options.handout}
               />
               Хочу получить раздаточный материал
             </Label>
-            <Label htmlFor='need_help'>
+            <Label htmlFor='help' direction='row'>
               <Checkbox
-                id='need_help'
+                id='help'
                 onChange={handlerChangeCheckbox}
-                name='need_help'
-                checked={values.need_help}
+                name='help'
+                checked={values.options.help}
               />
               Нужна помощь сопровождающего
             </Label>

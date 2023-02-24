@@ -9,7 +9,7 @@ import Input from '../../../../components/UI/Input'
 import Button from '../../../../components/UI/Button'
 import Select from '../../../../components/UI/Select'
 import Checkbox from '../../../../components/UI/Checkbox'
-import { IErrors } from '../../../../types'
+import { IIndividualValues, IErrors } from '../../../../types'
 import styles from './styles.module.scss'
 
 const FormIndividual: React.FC = () => {
@@ -24,22 +24,24 @@ const FormIndividual: React.FC = () => {
     createRef(),
   ])
 
-  const [values, setValues] = useState({
+  const [values, setValues] = useState<IIndividualValues>({
+    type: 'individual',
     name: '',
     birthday: '',
     phone: '',
-    event_date: '',
-    parking: false,
-    handout: false,
-    need_help: false,
-    type: 'individual',
+    date: '',
+    options: {
+      parking: false,
+      handout: false,
+      help: false,
+    },
   })
 
   const [errors, setErrors] = useState<IErrors>({
     name: '',
     birthday: '',
     phone: '',
-    event_date: '',
+    date: '',
   })
 
   const handlerChange = useCallback(
@@ -53,7 +55,10 @@ const FormIndividual: React.FC = () => {
   const handlerChangeCheckbox = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
       const { name, checked } = event.target
-      setValues((prev) => ({ ...prev, [name]: checked }))
+      setValues((prev) => ({
+        ...prev,
+        options: { ...prev.options, [name]: checked },
+      }))
     },
     [],
   )
@@ -70,7 +75,7 @@ const FormIndividual: React.FC = () => {
   )
 
   const handlerChangeValueSelect = useCallback((date: string) => {
-    setValues((prev) => ({ ...prev, event_date: date }))
+    setValues((prev) => ({ ...prev, date: date }))
   }, [])
 
   const handlerChangeErrorSelect = useCallback(
@@ -153,41 +158,41 @@ const FormIndividual: React.FC = () => {
         </div>
         <div className={styles.block}>
           <h2 className={styles.title}>Выберите дату мероприятия</h2>{' '}
-          <Fieldset error={errors.event_date}>
+          <Fieldset error={errors.date}>
             <Select
               onClick={handlerChangeValueSelect}
               onFocus={handlerChangeErrorSelect}
-              name='event_date'
-              value={values.event_date}
+              name='date'
+              value={values.date}
               validationRules='required'
               ref={inputsRefs.current[3]}
             />
           </Fieldset>
           <div className={styles.checkboxes}>
-            <Label htmlFor='parking'>
+            <Label htmlFor='parking' direction='row'>
               <Checkbox
                 id='parking'
                 onChange={handlerChangeCheckbox}
                 name='parking'
-                checked={values.parking}
+                checked={values.options.parking}
               />
               Нужна парковка
             </Label>
-            <Label htmlFor='handout'>
+            <Label htmlFor='handout' direction='row'>
               <Checkbox
                 id='handout'
                 onChange={handlerChangeCheckbox}
                 name='handout'
-                checked={values.handout}
+                checked={values.options.handout}
               />
               Хочу получить раздаточный материал
             </Label>
-            <Label htmlFor='need_help'>
+            <Label htmlFor='help' direction='row'>
               <Checkbox
-                id='need_help'
+                id='help'
                 onChange={handlerChangeCheckbox}
-                name='need_help'
-                checked={values.need_help}
+                name='help'
+                checked={values.options.help}
               />
               Нужна помощь сопровождающего
             </Label>

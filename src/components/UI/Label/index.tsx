@@ -1,15 +1,20 @@
 import React, { memo } from 'react'
+import classnames from 'classnames'
 import styles from './styles.module.scss'
 
-//TODO direction
-
-type Props = {} & React.LabelHTMLAttributes<HTMLLabelElement>
+type Props = {
+  direction: 'row' | 'column'
+} & React.LabelHTMLAttributes<HTMLLabelElement>
 
 const Label: React.FC<Props> = (props) => {
-  const { children } = props
+  const { direction, children } = props
+
+  const classNameLabel = classnames(styles.label, {
+    [styles.label_column]: direction === 'column',
+  })
 
   return (
-    <label {...props} className={styles.label}>
+    <label {...props} className={classNameLabel}>
       {children}
     </label>
   )

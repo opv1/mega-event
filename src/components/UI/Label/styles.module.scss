@@ -8,4 +8,8 @@
   color: #fff;
   cursor: pointer;
   gap: 16px;
+
+  &_column {
+    flex-direction: column;
+  }
 }

@@ -71,32 +71,26 @@ const Login: React.FC = () => {
     <Container title='Добро пожаловать'>
       <Form onSubmit={handlerSubmit} noValidate>
         <div className={Styles.fieldsets}>
-          <Fieldset
-            placeholder='E-mail'
-            value={values.email}
-            error={errors.email}
-          >
+          <Fieldset error={errors.email}>
             <Input
               onChange={handlerChange}
               onFocus={handlerFocus}
               type='email'
               name='email'
               value={values.email}
+              placeholder='E-mail'
               validationRules='required|email'
               ref={inputsRefs.current[0]}
             />
           </Fieldset>
-          <Fieldset
-            placeholder='Пароль'
-            value={values.password}
-            error={errors.password}
-          >
+          <Fieldset error={errors.password}>
             <Input
               onChange={handlerChange}
               onFocus={handlerFocus}
               type='password'
               name='password'
               value={values.password}
+              placeholder='Пароль'
               validationRules='required|min:8|max:20'
               ref={inputsRefs.current[1]}
             />

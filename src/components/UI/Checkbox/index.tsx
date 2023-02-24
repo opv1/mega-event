@@ -5,10 +5,10 @@ type Props = {} & React.InputHTMLAttributes<HTMLInputElement>
 
 const Checkbox: React.FC<Props> = (props) => {
   return (
-    <>
+    <div className={styles.box}>
       <input {...props} className={styles.input} type='checkbox' />
       <div className={styles.checkbox}></div>
-    </>
+    </div>
   )
 }
 

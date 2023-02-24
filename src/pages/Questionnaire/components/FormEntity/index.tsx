@@ -114,47 +114,38 @@ const FormEntity: React.FC = () => {
       <div className={styles.blocks}>
         <div className={styles.block}>
           <h2 className={styles.title}>Личные данные</h2>
-          <Fieldset
-            placeholder='Название компании'
-            value={values.name_company}
-            error={errors.name_company}
-          >
+          <Fieldset error={errors.name_company}>
             <Input
               onChange={handlerChange}
               onFocus={handlerFocus}
               type='text'
               name='name_company'
               value={values.name_company}
+              placeholder='Название компании'
               validationRules='required|min:2|max:50'
               ref={inputsRefs.current[0]}
             />
           </Fieldset>
-          <Fieldset
-            placeholder='Ваша должность'
-            value={values.position}
-            error={errors.position}
-          >
+          <Fieldset error={errors.position}>
             <Input
               onChange={handlerChange}
               onFocus={handlerFocus}
               type='text'
               name='position'
               value={values.position}
+              placeholder='Ваша должность'
               validationRules='required|min:2|max:20'
               ref={inputsRefs.current[1]}
             />
           </Fieldset>
-          <Fieldset
-            placeholder='Номер телефона'
-            value={values.phone}
-            error={errors.phone}
-          >
+          <Fieldset error={errors.phone}>
             <Input
               onChange={handlerChange}
               onFocus={handlerFocus}
               type='phone'
               name='phone'
               value={values.phone}
+              placeholder='Номер телефона'
               validationRules='required|phone'
               ref={inputsRefs.current[2]}
             />
@@ -162,7 +153,7 @@ const FormEntity: React.FC = () => {
         </div>
         <div className={styles.block}>
           <h2 className={styles.title}>Выберите дату мероприятия</h2>
-          <Fieldset value={values.event_date} error={errors.event_date}>
+          <Fieldset error={errors.event_date}>
             <Select
               onClick={handlerChangeValueSelect}
               onFocus={handlerChangeErrorSelect}

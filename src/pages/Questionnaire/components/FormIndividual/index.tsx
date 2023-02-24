@@ -114,43 +114,38 @@ const FormIndividual: React.FC = () => {
       <div className={styles.blocks}>
         <div className={styles.block}>
           <h2 className={styles.title}>Личные данные</h2>
-          <Fieldset placeholder='ФИО' value={values.name} error={errors.name}>
+          <Fieldset error={errors.name}>
             <Input
               onChange={handlerChange}
               onFocus={handlerFocus}
               type='text'
               name='name'
               value={values.name}
+              placeholder='ФИО'
               validationRules='required|min:2|max:50'
               ref={inputsRefs.current[0]}
             />
           </Fieldset>
-          <Fieldset
-            placeholder='Дата рождения'
-            value={values.birthday}
-            error={errors.birthday}
-          >
+          <Fieldset error={errors.birthday}>
             <Input
               onChange={handlerChange}
               onFocus={handlerFocus}
               type='text'
               name='birthday'
               value={values.birthday}
+              placeholder='Дата рождения'
               validationRules='required'
               ref={inputsRefs.current[1]}
             />
           </Fieldset>
-          <Fieldset
-            placeholder='Номер телефона'
-            value={values.phone}
-            error={errors.phone}
-          >
+          <Fieldset error={errors.phone}>
             <Input
               onChange={handlerChange}
               onFocus={handlerFocus}
               type='phone'
               name='phone'
               value={values.phone}
+              placeholder='Номер телефона'
               validationRules='required|phone'
               ref={inputsRefs.current[2]}
             />
@@ -158,7 +153,7 @@ const FormIndividual: React.FC = () => {
         </div>
         <div className={styles.block}>
           <h2 className={styles.title}>Выберите дату мероприятия</h2>{' '}
-          <Fieldset value={values.event_date} error={errors.event_date}>
+          <Fieldset error={errors.event_date}>
             <Select
               onClick={handlerChangeValueSelect}
               onFocus={handlerChangeErrorSelect}

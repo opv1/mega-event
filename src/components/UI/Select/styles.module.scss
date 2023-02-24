@@ -28,10 +28,10 @@
   right: 20px;
   top: 50%;
   transform: translate(0, -50%);
-}
 
-.arrow_rotate {
-  transform: rotate(180deg);
+  &_rotate {
+    transform: rotate(180deg);
+  }
 }
 
 .options {
@@ -47,10 +47,10 @@
   box-shadow: 0 7px 24px rgb(0 0 0 / 7%);
   background: #1f2235;
   gap: 4px;
-}
 
-.options_display {
-  display: flex;
+  &_display {
+    display: flex;
+  }
 }
 
 .option {

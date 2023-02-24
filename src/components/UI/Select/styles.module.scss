@@ -6,7 +6,7 @@
   width: 100%;
 }
 
-.selected {
+.value {
   border: none;
   border-radius: 4px;
   padding: 11px 12px;
@@ -17,6 +17,10 @@
   line-height: 18px;
   color: #676c7a;
   background: rgb(255 255 255 / 10%);
+
+  &_focus {
+    outline: 1px solid #ab81f1;
+  }
 }
 
 .arrow {
@@ -32,7 +36,11 @@
 
 .options {
   position: absolute;
-  top: 40px;
+  top: 41px;
+  padding: 10px;
+  max-width: 288px;
+  gap: 4px;
+  width: 100%;
   z-index: 100;
   display: none;
   flex-direction: column;
@@ -47,16 +55,20 @@
 
 .option {
   border: none;
-  border-radius: 4px;
-  padding: 11px 12px;
-  width: 288px;
+  padding: 6px 8px;
+  width: 100%;
   font-weight: 500;
   font-style: normal;
   font-size: 14px;
   line-height: 18px;
   color: #676c7a;
-  background: rgb(255 255 255 / 10%);
+  border-radius: 4px;
   cursor: pointer;
+
+  &_active {
+    color: #fff;
+    background-color: #ab81f1;
+  }
 
   &:hover {
     color: #fff;

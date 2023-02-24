@@ -1,37 +1,34 @@
 import React from 'react'
+import classnames from 'classnames'
 import styles from './styles.module.scss'
 
 interface FieldsetProps {
-  placeholder: string
+  placeholder?: string
   value: string
-  error?: string
+  error: string
   children: React.ReactNode
 }
 
 const Fieldset: React.FC<FieldsetProps> = (props) => {
   const { placeholder, value, error, children } = props
 
+  const classNamePlaceholder = classnames(styles.placeholder, {
+    [styles.placeholder_active]: value?.length !== 0,
+  })
+
+  const classNameError = classnames(styles.error, {
+    [styles.error_active]: error.length !== 0,
+  })
+
   return (
     <fieldset className={styles.fieldset}>
-      <label className={styles.label}>
+      <div className={styles.content}>
         {children}
-        <span
-          className={
-            value
-              ? `${styles.placeholder} ${styles.placeholder_active}`
-              : `${styles.placeholder}`
-          }
-        >
-          {placeholder}
-        </span>
-      </label>
-      <span
-        className={
-          error ? `${styles.error} ${styles.error_active}` : `${styles.error}`
-        }
-      >
-        {error}
-      </span>
+        {placeholder && (
+          <span className={classNamePlaceholder}>{placeholder}</span>
+        )}
+      </div>
+      <span className={classNameError}>{error}</span>
     </fieldset>
   )
 }

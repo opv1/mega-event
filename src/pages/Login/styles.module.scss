@@ -1,16 +1,11 @@
 .fieldsets {
   display: flex;
   flex-direction: column;
-
-  & > fieldset {
-    &:not(:last-child) {
-      margin-bottom: 8px;
-    }
-  }
+  gap: 8px;
+  margin-bottom: 40px;
 }
 
 .wrapper {
   display: flex;
   justify-content: center;
-  margin-top: 40px;
 }

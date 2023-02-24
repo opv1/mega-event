@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './styles.module.scss'
 
-export const Complete = () => {
+export const Complete: React.FC = () => {
   return (
     <div className={styles.complete}>
       <div className={styles.field}>

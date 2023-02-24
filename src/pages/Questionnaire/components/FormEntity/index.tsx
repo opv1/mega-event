@@ -1,98 +1,204 @@
-import React, { useState } from 'react'
+import React, { createRef, useCallback, useRef, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import Form from '../../../../components/Form'
 import Fieldset from '../../../../components/UI/Fieldset'
 import Input from '../../../../components/UI/Input'
+import Button from '../../../../components/UI/Button'
 import Select from '../../../../components/UI/Select'
 import { Label } from '../../../../components/UI/Label'
 import Checkbox from '../../../../components/UI/Checkbox'
 import { dates } from '../../../../consts'
+import { IErrors } from '../../../../types'
 import styles from './styles.module.scss'
 
 const FormEntity: React.FC = () => {
-  const [data, setData] = useState({
+  const navigate = useNavigate()
+
+  const inputsRefs = useRef<any[]>([
+    createRef(),
+    createRef(),
+    createRef(),
+    createRef(),
+  ])
+
+  const [values, setValues] = useState({
     name_company: '',
     position: '',
     phone: '',
-    event_day: '',
+    event_date: '',
     parking: false,
     handout: false,
     need_help: false,
   })
 
-  const handlerChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target
-    setData({ ...data, [name]: value })
-  }
+  const [errors, setErrors] = useState<IErrors>({
+    name_company: '',
+    position: '',
+    phone: '',
+    event_date: '',
+  })
 
-  const handlerChangeCheckbox = (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
-    const { name, checked } = event.target
-    setData({ ...data, [name]: checked })
-  }
+  const handlerChange = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      const { name, value } = event.target
+      setValues((prev) => ({ ...prev, [name]: value }))
+    },
+    [],
+  )
+
+  const handlerChangeCheckbox = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      const { name, checked } = event.target
+      setValues((prev) => ({ ...prev, [name]: checked }))
+    },
+    [],
+  )
+
+  const handlerFocus = useCallback(
+    (event: React.FocusEvent<HTMLInputElement>) => {
+      const { name } = event.target
+
+      if (errors[name] !== '') {
+        setErrors((prev) => ({ ...prev, [name]: '' }))
+      }
+    },
+    [errors],
+  )
+
+  const handlerChangeValueSelect = useCallback((date: string) => {
+    setValues((prev) => ({ ...prev, event_date: date }))
+  }, [])
+
+  const handlerChangeErrorSelect = useCallback(
+    (name: string) => {
+      if (errors[name] !== '') {
+        setErrors((prev) => ({ ...prev, [name]: '' }))
+      }
+    },
+    [errors],
+  )
+
+  const handlerSubmit = useCallback(
+    async (event: React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault()
+
+      let isValidForm = true
+
+      for (let i = 0; i < inputsRefs.current.length; i++) {
+        const { isValid, name, error } =
+          inputsRefs.current[i].current.validate()
+
+        if (!isValid) {
+          setErrors((prev) => ({ ...prev, [name]: error }))
+          isValidForm = false
+        }
+      }
+
+      if (!isValidForm) {
+        return
+      }
+
+      navigate('/success')
+    },
+    [values],
+  )
 
   return (
-    <>
-      <div className={styles.block}>
-        <h2 className={styles.title}>Личные данные</h2>
-        <Fieldset placeholder='Название компании' value={data.name_company}>
-          <Input
-            onChange={handlerChange}
-            type='text'
-            name='name_company'
-            value={data.name_company}
-          />
-        </Fieldset>
-        <Fieldset placeholder='Ваша должность' value={data.position}>
-          <Input
-            onChange={handlerChange}
-            type='text'
-            name='position'
-            value={data.position}
-          />
-        </Fieldset>
-        <Fieldset placeholder='Номер телефона' value={data.phone}>
-          <Input
-            onChange={handlerChange}
-            type='phone'
-            name='phone'
-            value={data.phone}
-          />
-        </Fieldset>
-      </div>
-      <div className={styles.block}>
-        <h2 className={styles.title}>Выберите дату мероприятия</h2>
-        <Select data={dates} />
-        <div className={styles.checkboxes}>
-          <Label htmlFor='parking'>
-            <Checkbox
-              id='parking'
-              onChange={handlerChangeCheckbox}
-              name='parking'
-              checked={data.parking}
+    <Form onSubmit={handlerSubmit} noValidate>
+      <div className={styles.blocks}>
+        <div className={styles.block}>
+          <h2 className={styles.title}>Личные данные</h2>
+          <Fieldset
+            placeholder='Название компании'
+            value={values.name_company}
+            error={errors.name_company}
+          >
+            <Input
+              onChange={handlerChange}
+              onFocus={handlerFocus}
+              type='text'
+              name='name_company'
+              value={values.name_company}
+              validationRules='required|min:2|max:50'
+              ref={inputsRefs.current[0]}
             />
-            Нужна парковка
-          </Label>
-          <Label htmlFor='handout'>
-            <Checkbox
-              id='handout'
-              onChange={handlerChangeCheckbox}
-              name='handout'
-              checked={data.handout}
+          </Fieldset>
+          <Fieldset
+            placeholder='Ваша должность'
+            value={values.position}
+            error={errors.position}
+          >
+            <Input
+              onChange={handlerChange}
+              onFocus={handlerFocus}
+              type='text'
+              name='position'
+              value={values.position}
+              validationRules='required|min:2|max:20'
+              ref={inputsRefs.current[1]}
             />
-            Хочу получить раздаточный материал
-          </Label>
-          <Label htmlFor='need_help'>
-            <Checkbox
-              id='need_help'
-              onChange={handlerChangeCheckbox}
-              name='need_help'
-              checked={data.need_help}
+          </Fieldset>
+          <Fieldset
+            placeholder='Номер телефона'
+            value={values.phone}
+            error={errors.phone}
+          >
+            <Input
+              onChange={handlerChange}
+              onFocus={handlerFocus}
+              type='phone'
+              name='phone'
+              value={values.phone}
+              validationRules='required|phone'
+              ref={inputsRefs.current[2]}
             />
-            Нужна помощь сопровождающего
-          </Label>
+          </Fieldset>
+        </div>
+        <div className={styles.block}>
+          <h2 className={styles.title}>Выберите дату мероприятия</h2>
+          <Fieldset value={values.event_date} error={errors.event_date}>
+            <Select
+              onClick={handlerChangeValueSelect}
+              onFocus={handlerChangeErrorSelect}
+              name='event_date'
+              value={values.event_date}
+              validationRules='required'
+              ref={inputsRefs.current[3]}
+            />
+          </Fieldset>
+          <div className={styles.checkboxes}>
+            <Label htmlFor='parking'>
+              <Checkbox
+                id='parking'
+                onChange={handlerChangeCheckbox}
+                name='parking'
+                checked={values.parking}
+              />
+              Нужна парковка
+            </Label>
+            <Label htmlFor='handout'>
+              <Checkbox
+                id='handout'
+                onChange={handlerChangeCheckbox}
+                name='handout'
+                checked={values.handout}
+              />
+              Хочу получить раздаточный материал
+            </Label>
+            <Label htmlFor='need_help'>
+              <Checkbox
+                id='need_help'
+                onChange={handlerChangeCheckbox}
+                name='need_help'
+                checked={values.need_help}
+              />
+              Нужна помощь сопровождающего
+            </Label>
+          </div>
         </div>
       </div>
-    </>
+      <Button type='submit'>Отправить заявку</Button>
+    </Form>
   )
 }
 

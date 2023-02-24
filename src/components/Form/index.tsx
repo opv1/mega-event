@@ -1,16 +1,20 @@
 import React from 'react'
+import classnames from 'classnames'
 import styles from './styles.module.scss'
 
-interface FormProps {
-  onSubmit: () => void
-  children: React.ReactNode
-}
+type Props = {
+  column?: boolean
+} & React.FormHTMLAttributes<HTMLFormElement>
 
-const Form: React.FC<FormProps> = (props) => {
-  const { onSubmit, children } = props
+const Form: React.FC<Props> = (props) => {
+  const { column, children, ...formProps } = props
+
+  const classNameForm = classnames(styles.form, {
+    [styles.form_column]: column,
+  })
 
   return (
-    <form className={styles.form} onSubmit={onSubmit}>
+    <form {...formProps} className={classNameForm}>
       {children}
     </form>
   )

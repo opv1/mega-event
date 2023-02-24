@@ -1,22 +1,22 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import Page from '../../components/Pages'
+import Container from '../../components/Container'
 import { Complete } from './components/Complete'
 import Button from '../../components/UI/Button'
 
 const Success: React.FC = () => {
   const navigate = useNavigate()
 
-  const onBack = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handlerClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
     navigate('/')
   }
 
   return (
-    <Page title='Спасибо за заявку!'>
+    <Container title='Спасибо за заявку!'>
       <Complete />
-      <Button onClick={onBack}>Вернуться на главную</Button>
-    </Page>
+      <Button onClick={handlerClick}>Вернуться на главную</Button>
+    </Container>
   )
 }
 

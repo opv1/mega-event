@@ -1,10 +1,23 @@
-import React, { memo, useState } from 'react'
+import React, { forwardRef, memo, useImperativeHandle } from 'react'
+import { inputValidate } from '../../../helpers/inputValidate'
 import styles from './styles.module.scss'
 
-interface IComponent extends React.InputHTMLAttributes<HTMLInputElement> {}
+type Props = {
+  validationRules: string
+  ref: any
+} & React.InputHTMLAttributes<HTMLInputElement>
 
-const Input: React.FC<IComponent> = (props) => {
-  return <input {...props} className={styles.input} />
-}
+const Input: React.FC<Props> = forwardRef((props, ref) => {
+  const { validationRules, ...inputProps } = props
+
+  useImperativeHandle(ref, () => {
+    return {
+      validate: () =>
+        inputValidate(validationRules, inputProps.name, inputProps.value),
+    }
+  })
+
+  return <input {...inputProps} className={styles.input} />
+})
 
 export default memo(Input)

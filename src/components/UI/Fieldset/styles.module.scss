@@ -6,7 +6,7 @@
   padding: 0;
 }
 
-.label {
+.content {
   position: relative;
   display: flex;
 
@@ -35,7 +35,8 @@
 }
 
 .error {
-  margin-top: 10px;
+  height: 14px;
+  margin-top: 5px;
   font-weight: 500;
   font-style: normal;
   font-size: 12px;

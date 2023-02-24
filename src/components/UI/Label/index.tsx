@@ -5,6 +5,8 @@ interface IComponent extends React.LabelHTMLAttributes<HTMLLabelElement> {
   children: React.ReactNode
 }
 
+// diraction
+
 export const Label: React.FC<IComponent> = (props) => {
   const { children } = props
 

@@ -15,23 +15,3 @@
     outline: 1px solid #ab81f1;
   }
 }
-
-.toggle {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  border: none;
-  width: 24px;
-  height: 24px;
-  background-image: url("../../../assets/eye.svg");
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-color: transparent;
-  transform: translate(0, -50%);
-  cursor: pointer;
-}
-
-.toggle_hide {
-  background-image: url("../../../assets/eye-closed.svg");
-}

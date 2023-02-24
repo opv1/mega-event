@@ -1,16 +1,20 @@
 import React, { createRef, useCallback, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useAppDispatch } from '../../../../redux/hooks'
+import { setData } from '../../../../redux/appSlice'
 import Form from '../../../../components/Form'
 import Fieldset from '../../../../components/UI/Fieldset'
+import Label from '../../../../components/UI/Label'
 import Input from '../../../../components/UI/Input'
 import Button from '../../../../components/UI/Button'
 import Select from '../../../../components/UI/Select'
-import { Label } from '../../../../components/UI/Label'
 import Checkbox from '../../../../components/UI/Checkbox'
 import { IErrors } from '../../../../types'
 import styles from './styles.module.scss'
 
 const FormIndividual: React.FC = () => {
+  const dispatch = useAppDispatch()
+
   const navigate = useNavigate()
 
   const inputsRefs = useRef<any[]>([
@@ -28,6 +32,7 @@ const FormIndividual: React.FC = () => {
     parking: false,
     handout: false,
     need_help: false,
+    type: 'individual',
   })
 
   const [errors, setErrors] = useState<IErrors>({
@@ -96,6 +101,8 @@ const FormIndividual: React.FC = () => {
       if (!isValidForm) {
         return
       }
+
+      dispatch(setData(values))
 
       navigate('/success')
     },

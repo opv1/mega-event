@@ -1,13 +1,13 @@
 .complete {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  margin-bottom: 38px;
   border-radius: 14px;
   padding: 28px 24px;
-  background: #101328;
-  max-width: 336px;
   width: 100%;
-  margin-bottom: 38px;
+  max-width: 336px;
+  background: #101328;
+  gap: 16px;
 }
 
 .field {
@@ -16,12 +16,12 @@
 }
 
 .title {
+  margin-bottom: 2px;
   font-weight: 500;
   font-style: normal;
   font-size: 14px;
   line-height: 18px;
-  color: rgba(255, 255, 255, 0.5);
-  margin-bottom: 2px;
+  color: rgb(255 255 255 / 50%);
 }
 
 .subtitle {

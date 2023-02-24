@@ -2,16 +2,15 @@
   border: none;
   border-radius: 14px;
   padding: 10px 24px;
+  width: fit-content;
   font-weight: 500;
   font-style: normal;
   font-size: 18px;
   line-height: 133%;
   color: #fff;
   background-color: #ab81f1;
-  cursor: pointer;
-  width: fit-content;
-
   transition: background-color 0.3s ease-in;
+  cursor: pointer;
 
   &:hover {
     background-color: #8852e1;

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import classnames from 'classnames'
 import styles from './styles.module.scss'
 
@@ -33,4 +33,4 @@ const Fieldset: React.FC<FieldsetProps> = (props) => {
   )
 }
 
-export default Fieldset
+export default memo(Fieldset)

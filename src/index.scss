@@ -4,8 +4,13 @@
 
 body {
   margin: 0;
-  font-family: 'Roboto Mono', 'Arial', 'Helvetica', sans-serif;
+  height: 100vh;
+  font-family: "Roboto Mono", "Arial", "Helvetica", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #06091f;
+}
+
+#root {
+  height: 100%;
 }

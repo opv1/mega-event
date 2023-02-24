@@ -69,7 +69,7 @@ const Login: React.FC = () => {
 
   return (
     <Container title='Добро пожаловать'>
-      <Form column onSubmit={handlerSubmit} noValidate>
+      <Form onSubmit={handlerSubmit} noValidate>
         <div className={Styles.fieldsets}>
           <Fieldset
             placeholder='E-mail'

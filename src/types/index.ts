@@ -6,3 +6,5 @@ export interface ILogin {
 export interface IErrors {
   [key: string]: string
 }
+
+export interface IDate {}

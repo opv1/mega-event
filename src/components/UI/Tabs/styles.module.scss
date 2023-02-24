@@ -1,24 +1,24 @@
 .tabs {
   display: flex;
   align-items: center;
-  gap: 21px;
   border-radius: 14px;
   padding: 4px 5px;
   background: #1f2235;
+  gap: 21px;
 }
 
 .tab {
   border: none;
+  border-radius: 14px;
   padding: 10px 24px;
   font-weight: 500;
   font-style: normal;
   font-size: 18px;
   line-height: 133%;
+  white-space: nowrap;
   color: #676c7a;
   background-color: transparent;
   cursor: pointer;
-  border-radius: 14px;
-  white-space: nowrap;
 
   &_active {
     color: #fff;

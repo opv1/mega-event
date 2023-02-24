@@ -1,12 +1,12 @@
-import React from 'react'
+import React, { memo } from 'react'
 import styles from './styles.module.scss'
 
-interface PageProps {
+type Props = {
   title: string
   children: React.ReactNode
 }
 
-const Container: React.FC<PageProps> = (props) => {
+const Container: React.FC<Props> = (props) => {
   const { title, children } = props
 
   return (
@@ -17,4 +17,4 @@ const Container: React.FC<PageProps> = (props) => {
   )
 }
 
-export default Container
+export default memo(Container)

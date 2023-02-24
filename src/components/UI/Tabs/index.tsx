@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { memo } from 'react'
 import classnames from 'classnames'
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks'
 import { setIsIndividual } from '../../../redux/appSlice'
 import styles from './styles.module.scss'
 
-export const Tabs: React.FC = () => {
+const Tabs: React.FC = () => {
   const dispatch = useAppDispatch()
 
   const { isIndividual } = useAppSelector((state) => state.app)
@@ -36,3 +36,5 @@ export const Tabs: React.FC = () => {
     </div>
   )
 }
+
+export default memo(Tabs)

@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Login from '../../pages/Login'
 import Questionnaire from '../../pages/Questionnaire'
 import Success from '../../pages/Success'
 import styles from './styles.module.scss'
 
-export const App: React.FC = () => {
+const App: React.FC = () => {
   return (
     <div className={styles.app}>
       <h1 className={styles.caption}>Coding Mega Event</h1>
@@ -17,3 +17,5 @@ export const App: React.FC = () => {
     </div>
   )
 }
+
+export default memo(App)

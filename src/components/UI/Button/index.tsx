@@ -1,11 +1,9 @@
 import React, { memo } from 'react'
 import styles from './styles.module.scss'
 
-interface IComponent extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  children: React.ReactNode
-}
+type Props = {} & React.ButtonHTMLAttributes<HTMLButtonElement>
 
-const Button: React.FC<IComponent> = (props) => {
+const Button: React.FC<Props> = (props) => {
   const { children } = props
 
   return (

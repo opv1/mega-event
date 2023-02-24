@@ -1,13 +1,11 @@
-import React from 'react'
+import React, { memo } from 'react'
 import styles from './styles.module.scss'
 
-interface IComponent extends React.LabelHTMLAttributes<HTMLLabelElement> {
-  children: React.ReactNode
-}
+//TODO direction
 
-// diraction
+type Props = {} & React.LabelHTMLAttributes<HTMLLabelElement>
 
-export const Label: React.FC<IComponent> = (props) => {
+const Label: React.FC<Props> = (props) => {
   const { children } = props
 
   return (
@@ -16,3 +14,5 @@ export const Label: React.FC<IComponent> = (props) => {
     </label>
   )
 }
+
+export default memo(Label)

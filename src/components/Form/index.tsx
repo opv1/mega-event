@@ -1,23 +1,16 @@
-import React from 'react'
-import classnames from 'classnames'
+import React, { memo } from 'react'
 import styles from './styles.module.scss'
 
-type Props = {
-  column?: boolean
-} & React.FormHTMLAttributes<HTMLFormElement>
+type Props = {} & React.FormHTMLAttributes<HTMLFormElement>
 
 const Form: React.FC<Props> = (props) => {
-  const { column, children, ...formProps } = props
-
-  const classNameForm = classnames(styles.form, {
-    [styles.form_column]: column,
-  })
+  const { children, ...formProps } = props
 
   return (
-    <form {...formProps} className={classNameForm}>
+    <form {...formProps} className={styles.form}>
       {children}
     </form>
   )
 }
 
-export default Form
+export default memo(Form)

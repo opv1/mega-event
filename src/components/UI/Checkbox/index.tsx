@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { memo } from 'react'
 import styles from './styles.module.scss'
 
-interface IComponent extends React.InputHTMLAttributes<HTMLInputElement> {}
+type Props = {} & React.InputHTMLAttributes<HTMLInputElement>
 
-const Checkbox: React.FC<IComponent> = (props) => {
+const Checkbox: React.FC<Props> = (props) => {
   return (
     <>
       <input {...props} className={styles.input} type='checkbox' />
@@ -12,4 +12,4 @@ const Checkbox: React.FC<IComponent> = (props) => {
   )
 }
 
-export default Checkbox
+export default memo(Checkbox)

@@ -16,7 +16,6 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   </React.StrictMode>,
 )
 
-// TODO styles
 // TODO mixins typography and animations
 // TODO font family
 // TODO date fns
@@ -26,3 +25,4 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 // TODO without any
 // TODO eslint
 // TODO phone mask
+// TODO custom datepicker

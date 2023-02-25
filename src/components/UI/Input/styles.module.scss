@@ -1,6 +1,7 @@
 .box {
   position: relative;
   display: flex;
+  border-radius: 4px;
   width: 288px;
   background: rgb(255 255 255 / 10%);
 
@@ -25,6 +26,10 @@
   line-height: 18px;
   color: #fff;
   background: transparent;
+
+  &_password {
+    padding-right: 40px;
+  }
 
   &::placeholder {
     opacity: 0;
@@ -53,4 +58,44 @@
     font-size: 11px;
     color: #ab81f1;
   }
+}
+
+.eye {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  border: none;
+  padding: 0;
+  background: none;
+  transform: translate(0, -50%);
+  cursor: pointer;
+
+  &:hover {
+    svg {
+      circle {
+        fill: #fff;
+      }
+
+      path {
+        stroke: #fff;
+      }
+    }
+  }
+}
+
+.calendar {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  border: none;
+  padding: 0;
+  background: none;
+  transform: translate(0, -50%);
+  cursor: pointer;
 }

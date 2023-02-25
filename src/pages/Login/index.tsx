@@ -6,7 +6,7 @@ import Fieldset from '../../components/UI/Fieldset'
 import Input from '../../components/UI/Input'
 import Button from '../../components/UI/Button'
 import { ILogin, IErrors } from '../../types'
-import Styles from './styles.module.scss'
+import styles from './styles.module.scss'
 
 const Login: React.FC = () => {
   const navigate = useNavigate()
@@ -70,7 +70,7 @@ const Login: React.FC = () => {
   return (
     <Container title='Добро пожаловать'>
       <Form onSubmit={handlerSubmit} noValidate>
-        <div className={Styles.fieldsets}>
+        <div className={styles.fieldsets}>
           <Fieldset error={errors.email}>
             <Input
               onChange={handlerChange}

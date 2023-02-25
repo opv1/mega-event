@@ -7,8 +7,7 @@ import Button from '../../components/UI/Button'
 const Success: React.FC = () => {
   const navigate = useNavigate()
 
-  const handlerClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault()
+  const handlerClick = () => {
     navigate('/')
   }
 

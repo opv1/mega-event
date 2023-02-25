@@ -156,6 +156,7 @@ const FormEntity: React.FC = () => {
             />
           </Fieldset>
         </div>
+        <div className={styles.line}></div>
         <div className={styles.block}>
           <h2 className={styles.title}>Выберите дату мероприятия</h2>
           <Fieldset error={errors.date}>
@@ -164,6 +165,7 @@ const FormEntity: React.FC = () => {
               onFocus={handlerChangeErrorSelect}
               name='date'
               value={values.date}
+              placeholder='День мероприятия'
               validationRules='required'
               ref={inputsRefs.current[3]}
             />

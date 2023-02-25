@@ -1,36 +1,71 @@
 .select {
   position: relative;
   display: flex;
-  width: 100%;
-  max-width: 288px;
+  border-radius: 4px;
+  width: 288px;
+  background: rgb(255 255 255 / 10%);
   cursor: pointer;
 }
 
 .value {
-  border: none;
+  position: relative;
+  z-index: 1;
   border-radius: 4px;
-  padding: 11px 12px;
+  padding: 16px 12px 6px;
   width: 100%;
+  height: 40px;
   font-weight: 500;
   font-style: normal;
   font-size: 14px;
   line-height: 18px;
-  color: #676c7a;
-  background: rgb(255 255 255 / 10%);
+  color: #fff;
+  background: transparent;
 
   &_focus {
     outline: 1px solid #ab81f1;
   }
 }
 
-.arrow {
+.placeholder {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  z-index: 0;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 14px;
+  line-height: 18px;
+  color: #676c7a;
+  transform: translate(0, -50%);
+  transition: all 0.2s ease-out;
+
+  &_active {
+    top: 25%;
+    font-size: 11px;
+    color: #ab81f1;
+  }
+}
+
+.icon {
   position: absolute;
   right: 20px;
   top: 50%;
   transform: translate(0, -50%);
 
+  img,
+  svg {
+    display: block;
+    object-fit: cover;
+  }
+
   &_rotate {
     transform: rotate(180deg);
+
+    svg {
+      path {
+        fill: #fff;
+      }
+    }
   }
 }
 

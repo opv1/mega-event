@@ -1,7 +1,7 @@
 import React, { forwardRef, memo, useImperativeHandle, useState } from 'react'
 import classnames from 'classnames'
 import { inputValidate } from '../../../helpers/inputValidate'
-import arrowIcon from '../../../assets/arrow-down.svg'
+import CaretIcon from '../../../assets/CaretIcon'
 import styles from './styles.module.scss'
 
 const dates = [
@@ -16,30 +16,35 @@ type Props = {
   onFocus: any
   name: string
   value: string
+  placeholder: string
   validationRules: string
   ref: any
 }
 
 const Select: React.FC<Props> = forwardRef((props, ref) => {
-  const { onClick, onFocus, name, value, validationRules } = props
+  const { onClick, onFocus, name, value, placeholder, validationRules } = props
 
-  const [isDisplay, setIsDisplay] = useState<boolean>(false)
+  const [isShowOptions, setIsShowOptions] = useState<boolean>(false)
 
   const classNameValue = classnames(styles.value, {
-    [styles.value_focus]: isDisplay,
+    [styles.value_focus]: isShowOptions,
   })
 
-  const classNameIcon = classnames(styles.arrow, {
-    [styles.arrow_rotate]: isDisplay,
+  const classNamePlaceholder = classnames(styles.placeholder, {
+    [styles.placeholder_active]: isShowOptions || value,
+  })
+
+  const classNameIcon = classnames(styles.icon, {
+    [styles.icon_rotate]: isShowOptions,
   })
 
   const classNameOptions = classnames(styles.options, {
-    [styles.options_display]: isDisplay,
+    [styles.options_display]: isShowOptions,
   })
 
   const toggleOptions = () => {
     onFocus(name)
-    setIsDisplay((prev) => !prev)
+    setIsShowOptions((prev) => !prev)
   }
 
   const handlerClick = (date: string) => {
@@ -56,9 +61,12 @@ const Select: React.FC<Props> = forwardRef((props, ref) => {
   return (
     <div className={styles.select}>
       <span className={classNameValue} onClick={toggleOptions}>
-        {value.length === 0 ? 'День мероприятия' : value}
+        {value}
       </span>
-      <img className={classNameIcon} src={arrowIcon} alt='Иконка' />
+      <span className={classNamePlaceholder}>{placeholder}</span>
+      <div className={classNameIcon}>
+        <CaretIcon />
+      </div>
       <div className={classNameOptions}>
         {dates.map((date) => (
           <span

@@ -1,10 +1,11 @@
-@import '../../../styles/variables';
-@import '../../../styles/typography';
-@import '../../../styles/mixins';
+@import "../../../styles/variables";
+@import "../../../styles/typography";
+@import "../../../styles/mixins";
 
 .box {
+  @include flex-direction-row;
+
   position: relative;
-  display: flex;
   border-radius: 4px;
   width: 288px;
   background-color: $color-white-low-opacity;
@@ -46,11 +47,12 @@
 }
 
 .button {
+  @include flex-direction-row;
+
   position: absolute;
   right: 12px;
   top: 50%;
   z-index: 2;
-  display: flex;
   align-items: center;
   transform: translate(0, -50%);
 

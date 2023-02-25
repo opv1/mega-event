@@ -16,9 +16,10 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   </React.StrictMode>,
 )
 
-// TODO components reused
+// TODO select mixins
 // TODO other font family
 // TODO date fns
+// TODO components reused
 // TODO useMemo and useCallback
 // TODO auth and protected routes
 // TODO without any

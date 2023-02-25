@@ -1,5 +1,5 @@
-@import './variables';
-@import './mixins';
+@import "./variables";
+@import "./mixins";
 
 @mixin default($color) {
   font-style: normal;
@@ -33,11 +33,11 @@
 }
 
 @mixin input {
-  font-size: 14px;
-  line-height: 18px;
   border-radius: 4px;
   padding: 16px 12px 6px;
   height: 40px;
+  font-size: 14px;
+  line-height: 18px;
   background-color: transparent;
 
   &::placeholder {

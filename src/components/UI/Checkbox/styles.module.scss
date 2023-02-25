@@ -1,6 +1,9 @@
+@import "../../../styles/mixins";
+
 .box {
+  @include flex-direction-row;
+
   position: relative;
-  display: flex;
 }
 
 .input {

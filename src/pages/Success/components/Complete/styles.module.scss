@@ -1,9 +1,10 @@
-@import '../../../../styles/variables';
-@import '../../../../styles/typography';
+@import "../../../../styles/variables";
+@import "../../../../styles/typography";
+@import "../../../../styles/mixins";
 
 .complete {
-  display: flex;
-  flex-direction: column;
+  @include flex-direction-column;
+
   border-radius: $border-radius-default;
   padding: 28px 24px;
   width: 100%;
@@ -13,8 +14,8 @@
 }
 
 .field {
-  display: flex;
-  flex-direction: column;
+  @include flex-direction-column;
+
   gap: 4px;
 }
 

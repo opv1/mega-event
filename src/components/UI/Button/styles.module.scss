@@ -1,27 +1,6 @@
+@import "../../../styles/variables";
+@import "../../../styles/typography";
+
 .button {
-  border: none;
-  border-radius: 14px;
-  padding: 10px 24px;
-  width: fit-content;
-  font-weight: 500;
-  font-style: normal;
-  font-size: 18px;
-  line-height: 133%;
-  color: #fff;
-  background-color: #ab81f1;
-  transition: background-color 0.3s ease-in;
-  cursor: pointer;
-
-  &:hover {
-    background-color: #8852e1;
-  }
-
-  &:active {
-    background-color: #8852e1;
-  }
-
-  &:disabled {
-    color: #676c7a;
-    background-color: rgb(255 255 255 / 20%);
-  }
+  @include regular-button($color-white);
 }

@@ -1,12 +1,15 @@
+@import '../../../../styles/variables';
+@import '../../../../styles/typography';
+
 .complete {
   display: flex;
   flex-direction: column;
-  border-radius: 14px;
+  border-radius: $border-radius-default;
   padding: 28px 24px;
   width: 100%;
   max-width: 336px;
-  background: #101328;
-  gap: 16px;
+  background-color: $color-corbeau;
+  gap: $gap-small;
 }
 
 .field {
@@ -16,17 +19,9 @@
 }
 
 .title {
-  font-weight: 500;
-  font-style: normal;
-  font-size: 14px;
-  line-height: 18px;
-  color: rgb(255 255 255 / 50%);
+  @include regular-span($color-white-half-opacity, 14px, 18px);
 }
 
 .subtitle {
-  font-weight: 500;
-  font-style: normal;
-  font-size: 14px;
-  line-height: 18px;
-  color: #fff;
+  @include regular-span($color-white, 14px, 18px);
 }

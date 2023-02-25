@@ -118,7 +118,7 @@ const FormEntity: React.FC = () => {
     <Form onSubmit={handlerSubmit} noValidate>
       <div className={styles.blocks}>
         <div className={styles.block}>
-          <h2 className={styles.title}>Личные данные</h2>
+          <h3 className={styles.title}>Личные данные</h3>
           <Fieldset error={errors.name}>
             <Input
               onChange={handlerChange}
@@ -158,7 +158,7 @@ const FormEntity: React.FC = () => {
         </div>
         <div className={styles.line}></div>
         <div className={styles.block}>
-          <h2 className={styles.title}>Выберите дату мероприятия</h2>
+          <h3 className={styles.title}>Выберите дату мероприятия</h3>
           <Fieldset error={errors.date}>
             <Select
               onClick={handlerChangeValueSelect}

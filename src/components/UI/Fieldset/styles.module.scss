@@ -1,3 +1,6 @@
+@import '../../../styles/variables';
+@import '../../../styles/typography';
+
 .fieldset {
   display: flex;
   flex-direction: column;
@@ -7,13 +10,10 @@
 }
 
 .error {
+  @include regular-span($color-dusk-orange, 12px, 110%);
+
   margin-top: 5px;
   height: 14px;
-  font-weight: 500;
-  font-style: normal;
-  font-size: 12px;
-  line-height: 110%;
-  color: #f7483d;
   opacity: 0;
 
   &_active {

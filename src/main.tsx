@@ -16,13 +16,13 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   </React.StrictMode>,
 )
 
-// TODO mixins typography and animations
-// TODO font family
+// TODO components reused
+// TODO other font family
 // TODO date fns
-// TODO useMemo
-// TODO click outside select
+// TODO useMemo and useCallback
 // TODO auth and protected routes
 // TODO without any
 // TODO eslint
 // TODO phone mask
 // TODO custom datepicker
+// TODO adaptive

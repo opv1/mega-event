@@ -12,11 +12,11 @@ type Props = {
 } & React.InputHTMLAttributes<HTMLInputElement>
 
 const Input: React.FC<Props> = forwardRef((props, ref) => {
-  const { validationRules, ...inputProps } = props
+  const { validationRules, className, ...inputProps } = props
 
   const [inputType, setInputType] = useState(inputProps.type)
 
-  const classNameInput = classnames(styles.input, {
+  const classNameInput = classnames(styles.input, className, {
     [styles.input_password]: inputProps.value,
   })
 
@@ -44,12 +44,16 @@ const Input: React.FC<Props> = forwardRef((props, ref) => {
       <input {...inputProps} className={classNameInput} type={inputType} />
       <span className={classNamePlaceholder}>{inputProps.placeholder}</span>
       {inputProps.type === 'password' && (
-        <button className={styles.eye} type='button' onClick={handlerClickEye}>
+        <button
+          className={styles.button}
+          type='button'
+          onClick={handlerClickEye}
+        >
           {inputType === 'password' ? <EyeIcon /> : <EyeClosedIcon />}
         </button>
       )}
       {inputProps.name === 'birthday' && (
-        <button className={styles.calendar} type='button'>
+        <button className={styles.button} type='button'>
           <CalendarIcon />
         </button>
       )}

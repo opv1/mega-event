@@ -1,101 +1,68 @@
+@import '../../../styles/variables';
+@import '../../../styles/typography';
+@import '../../../styles/mixins';
+
 .box {
   position: relative;
   display: flex;
   border-radius: 4px;
   width: 288px;
-  background: rgb(255 255 255 / 10%);
+  background-color: $color-white-low-opacity;
 
   &:focus-within > .placeholder {
     top: 25%;
     font-size: 11px;
-    color: #ab81f1;
+    color: $color-purple-illusionist;
   }
 }
 
 .input {
+  @include regular-input($color-white);
+
   position: relative;
   z-index: 1;
-  border: none;
-  border-radius: 4px;
-  padding: 16px 12px 6px;
   width: 100%;
-  height: 40px;
-  font-weight: 500;
-  font-style: normal;
-  font-size: 14px;
-  line-height: 18px;
-  color: #fff;
-  background: transparent;
 
   &_password {
     padding-right: 40px;
   }
-
-  &::placeholder {
-    opacity: 0;
-  }
-
-  &:focus {
-    outline: 1px solid #ab81f1;
-  }
 }
 
 .placeholder {
+  @include regular-placeholder($color-wind-cave);
+  @include transition(all);
+
   position: absolute;
   left: 12px;
   top: 50%;
   z-index: 0;
-  font-weight: 500;
-  font-style: normal;
-  font-size: 14px;
-  line-height: 18px;
-  color: #676c7a;
   transform: translate(0, -50%);
-  transition: all 0.2s ease-out;
 
   &_active {
     top: 25%;
     font-size: 11px;
-    color: #ab81f1;
+    color: $color-purple-illusionist;
   }
 }
 
-.eye {
+.button {
   position: absolute;
   right: 12px;
   top: 50%;
   z-index: 2;
   display: flex;
   align-items: center;
-  border: none;
-  padding: 0;
-  background: none;
   transform: translate(0, -50%);
-  cursor: pointer;
 
   &:hover {
     svg {
       circle {
-        fill: #fff;
+        fill: $color-white;
       }
 
       path {
-        stroke: #fff;
+        stroke: $color-white;
       }
     }
   }
-}
-
-.calendar {
-  position: absolute;
-  right: 12px;
-  top: 50%;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  border: none;
-  padding: 0;
-  background: none;
-  transform: translate(0, -50%);
-  cursor: pointer;
 }

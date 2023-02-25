@@ -1,27 +1,21 @@
+@import '../../../styles/variables';
+
 .tabs {
   display: flex;
   align-items: center;
-  border-radius: 14px;
+  border-radius: $border-radius-default;
   padding: 4px 5px;
-  background: #1f2235;
-  gap: 30px;
+  background-color: $color-moonless-mystery;
+  gap: $gap-medium;
 }
 
-.tab {
-  border: none;
-  border-radius: 14px;
-  padding: 10px 24px;
-  font-weight: 500;
-  font-style: normal;
-  font-size: 18px;
-  line-height: 133%;
+.button {
   white-space: nowrap;
-  color: #676c7a;
+  color: $color-wind-cave;
   background-color: transparent;
-  cursor: pointer;
 
   &_active {
-    color: #fff;
-    background: #ab81f1;
+    color: $color-white;
+    background-color: $color-purple-illusionist;
   }
 }

@@ -1,4 +1,11 @@
-import React, { forwardRef, memo, useImperativeHandle, useState } from 'react'
+import React, {
+  forwardRef,
+  memo,
+  useCallback,
+  useEffect,
+  useImperativeHandle,
+  useState,
+} from 'react'
 import classnames from 'classnames'
 import { inputValidate } from '../../../helpers/inputValidate'
 import CaretIcon from '../../../assets/CaretIcon'
@@ -43,14 +50,33 @@ const Select: React.FC<Props> = forwardRef((props, ref) => {
   })
 
   const toggleOptions = () => {
-    onFocus(name)
     setIsShowOptions((prev) => !prev)
   }
 
-  const handlerClick = (date: string) => {
-    onClick(date)
+  const handlerClickSelect = () => {
+    onFocus(name)
     toggleOptions()
   }
+
+  const handlerClickValue = (date: string) => {
+    if (date === value) {
+      onClick('')
+    } else {
+      onClick(date)
+    }
+
+    toggleOptions()
+  }
+
+  const handlerClickOutside = useCallback((event: MouseEvent) => {
+    const selectElement = document.getElementById('select') as Element
+    const target = event.target as Element
+    const isClickOutside = !selectElement.contains(target)
+
+    if (isClickOutside) {
+      toggleOptions()
+    }
+  }, [])
 
   useImperativeHandle(ref, () => {
     return {
@@ -58,9 +84,19 @@ const Select: React.FC<Props> = forwardRef((props, ref) => {
     }
   })
 
+  useEffect(() => {
+    if (isShowOptions) {
+      document.addEventListener('click', handlerClickOutside, true)
+    }
+
+    return () => {
+      document.removeEventListener('click', handlerClickOutside, true)
+    }
+  }, [isShowOptions, handlerClickOutside])
+
   return (
-    <div className={styles.select}>
-      <span className={classNameValue} onClick={toggleOptions}>
+    <div id='select' className={styles.select}>
+      <span className={classNameValue} onClick={handlerClickSelect}>
         {value}
       </span>
       <span className={classNamePlaceholder}>{placeholder}</span>
@@ -74,7 +110,7 @@ const Select: React.FC<Props> = forwardRef((props, ref) => {
             className={`${styles.option} ${
               date.data === value && styles['option_active']
             }`}
-            onClick={() => handlerClick(date.data)}
+            onClick={() => handlerClickValue(date.data)}
           >
             {date.data}
           </span>

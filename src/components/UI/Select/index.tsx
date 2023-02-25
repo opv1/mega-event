@@ -7,16 +7,10 @@ import React, {
   useState,
 } from 'react'
 import classnames from 'classnames'
-import { inputValidate } from '../../../helpers/inputValidate'
+import inputValidate from '../../../helpers/inputValidate'
+import getDates from '../../../helpers/getDates'
 import CaretIcon from '../../../assets/CaretIcon'
 import styles from './styles.module.scss'
-
-const dates = [
-  { id: 1, data: '24-04-2021' },
-  { id: 2, data: '07-05-2021' },
-  { id: 3, data: '28-11-2021' },
-  { id: 4, data: '29-02-2022' },
-]
 
 type Props = {
   onClick: any
@@ -30,6 +24,8 @@ type Props = {
 
 const Select: React.FC<Props> = forwardRef((props, ref) => {
   const { onClick, onFocus, name, value, placeholder, validationRules } = props
+
+  const dates = getDates()
 
   const [isShowOptions, setIsShowOptions] = useState<boolean>(false)
 
@@ -106,13 +102,13 @@ const Select: React.FC<Props> = forwardRef((props, ref) => {
       <div className={classNameOptions}>
         {dates.map((date) => (
           <span
-            key={date.id}
+            key={date}
             className={`${styles.option} ${
-              date.data === value && styles['option_active']
+              date === value && styles['option_active']
             }`}
-            onClick={() => handlerClickValue(date.data)}
+            onClick={() => handlerClickValue(date)}
           >
-            {date.data}
+            {date}
           </span>
         ))}
       </div>

@@ -1,48 +1,43 @@
+@import "../../../styles/variables";
+@import "../../../styles/typography";
+@import "../../../styles/mixins";
+
 .select {
+  @include flex-direction-row;
+
   position: relative;
-  display: flex;
   border-radius: 4px;
   width: 288px;
-  background: rgb(255 255 255 / 10%);
+  background-color: $color-white-low-opacity;
   cursor: pointer;
 }
 
 .value {
+  @include regular-input($color-white);
+
   position: relative;
   z-index: 1;
-  border-radius: 4px;
-  padding: 16px 12px 6px;
   width: 100%;
-  height: 40px;
-  font-weight: 500;
-  font-style: normal;
-  font-size: 14px;
-  line-height: 18px;
-  color: #fff;
-  background: transparent;
 
   &_focus {
-    outline: 1px solid #ab81f1;
+    outline: 1px solid $color-purple-illusionist;
   }
 }
 
 .placeholder {
+  @include regular-placeholder($color-wind-cave);
+  @include transition(all);
+
   position: absolute;
   left: 12px;
   top: 50%;
   z-index: 0;
-  font-weight: 500;
-  font-style: normal;
-  font-size: 14px;
-  line-height: 18px;
-  color: #676c7a;
   transform: translate(0, -50%);
-  transition: all 0.2s ease-out;
 
   &_active {
     top: 25%;
     font-size: 11px;
-    color: #ab81f1;
+    color: $color-purple-illusionist;
   }
 }
 
@@ -51,12 +46,6 @@
   right: 20px;
   top: 50%;
   transform: translate(0, -50%);
-
-  img,
-  svg {
-    display: block;
-    object-fit: cover;
-  }
 
   &_rotate {
     transform: rotate(180deg);
@@ -70,17 +59,18 @@
 }
 
 .options {
+  @include flex-direction-column;
+
   position: absolute;
   top: 41px;
   z-index: 100;
   display: none;
-  flex-direction: column;
   border-radius: 4px;
   padding: 10px;
   width: 100%;
   max-width: 288px;
   box-shadow: 0 7px 24px rgb(0 0 0 / 7%);
-  background: #1f2235;
+  background-color: $color-moonless-mystery;
   gap: 4px;
 
   &_display {
@@ -89,24 +79,21 @@
 }
 
 .option {
+  @include regular-span($color-wind-cave, 14px, 18px);
+
   border: none;
   border-radius: 4px;
   padding: 6px 8px;
   width: 100%;
-  font-weight: 500;
-  font-style: normal;
-  font-size: 14px;
-  line-height: 18px;
-  color: #676c7a;
   cursor: pointer;
 
   &_active {
-    color: #fff;
-    background-color: #ab81f1;
+    color: $color-white;
+    background-color: $color-purple-illusionist;
   }
 
   &:hover {
-    color: #fff;
-    background-color: #ab81f1;
+    color: $color-white;
+    background-color: $color-purple-illusionist;
   }
 }

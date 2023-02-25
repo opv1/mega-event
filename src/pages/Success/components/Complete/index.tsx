@@ -18,6 +18,10 @@ export const Complete: React.FC = () => {
         <span className={styles.subtitle}>{participantType}</span>
       </div>
       <div className={styles.field}>
+        <span className={styles.title}>День мероприятия</span>
+        <span className={styles.subtitle}>{data.date}</span>
+      </div>
+      <div className={styles.field}>
         <span className={styles.title}>Номер телфона</span>
         <span className={styles.subtitle}>{data.phone}</span>
       </div>

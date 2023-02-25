@@ -1,6 +1,6 @@
 import React, { forwardRef, memo, useImperativeHandle, useState } from 'react'
 import classnames from 'classnames'
-import { inputValidate } from '../../../helpers/inputValidate'
+import inputValidate from '../../../helpers/inputValidate'
 import EyeIcon from '../../../assets/EyeIcon'
 import EyeClosedIcon from '../../../assets/EyeClosedIcon'
 import CalendarIcon from '../../../assets/CalendarIcon'

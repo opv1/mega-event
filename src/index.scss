@@ -11,7 +11,7 @@
 body {
   margin: 0;
   height: 100vh;
-  font-family: $font-family-default;
+  font-family: $font-family-first;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: $color-tristesse;
@@ -35,4 +35,10 @@ button {
 
 input {
   border: none;
+}
+
+img,
+svg {
+  display: block;
+  object-fit: cover;
 }

@@ -1,6 +1,6 @@
 import { regexpEmail, regexpPhone } from '../const'
 
-export const inputValidate = (
+const inputValidate = (
   validationRules: string | undefined,
   name: string | undefined,
   value: string | number | readonly string[] | undefined,
@@ -79,3 +79,5 @@ export const inputValidate = (
 
   return { isValid: true, name: '', error: '' }
 }
+
+export default inputValidate

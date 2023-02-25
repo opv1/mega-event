@@ -8,16 +8,19 @@
 }
 
 @mixin h1 {
+  font-family: $font-family-second;
   font-size: 53px;
   line-height: 120%;
 }
 
 @mixin h2 {
+  font-family: $font-family-second;
   font-size: 28px;
   line-height: 120%;
 }
 
 @mixin h3 {
+  font-family: $font-family-second;
   font-size: 18px;
   line-height: 133%;
 }
@@ -62,6 +65,7 @@
   width: fit-content;
   font-size: 18px;
   line-height: 133%;
+  white-space: nowrap;
   background-color: $color-purple-illusionist;
 
   &:hover {

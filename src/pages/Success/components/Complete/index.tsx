@@ -1,11 +1,16 @@
-import React, { memo } from 'react'
+import React, { memo, useMemo } from 'react'
 import { useAppSelector } from '../../../../redux/hooks'
 import styles from './styles.module.scss'
 
 const Complete: React.FC = () => {
   const { data } = useAppSelector((state) => state.app)
 
-  const participantType = data.type === 'individual' ? 'Физ. лицо' : 'Юр. лицо'
+  const participantType = useMemo(
+    () => (data.type === 'individual' ? 'Физ. лицо' : 'Юр. лицо'),
+    [data],
+  )
+
+  const objectEntries = useMemo(() => Object.entries(data.options), [data])
 
   return (
     <div className={styles.complete}>
@@ -37,34 +42,32 @@ const Complete: React.FC = () => {
           <span className={styles.subtitle}>{data.position}</span>
         </div>
       )}
-      {Object.entries(data.options).length !== 0 && (
-        <div className={styles.field}>
-          <span className={styles.title}>Опции</span>
-          {Object.entries(data.options).map(([key, value]) => {
-            if (value && key === 'parking') {
-              return (
-                <span key={key} className={styles.subtitle}>
-                  Нужна парковка
-                </span>
-              )
-            } else if (value && key === 'handout') {
-              return (
-                <span key={key} className={styles.subtitle}>
-                  Хочу получить раздаточный материал
-                </span>
-              )
-            } else if (value && key === 'help') {
-              return (
-                <span key={key} className={styles.subtitle}>
-                  Нужна помощь сопровождающего
-                </span>
-              )
-            } else {
-              return null
-            }
-          })}
-        </div>
-      )}
+      <div className={styles.field}>
+        <span className={styles.title}>Опции</span>
+        {objectEntries.map(([key, value]) => {
+          if (value && key === 'parking') {
+            return (
+              <span key={key} className={styles.subtitle}>
+                Нужна парковка
+              </span>
+            )
+          } else if (value && key === 'handout') {
+            return (
+              <span key={key} className={styles.subtitle}>
+                Хочу получить раздаточный материал
+              </span>
+            )
+          } else if (value && key === 'help') {
+            return (
+              <span key={key} className={styles.subtitle}>
+                Нужна помощь сопровождающего
+              </span>
+            )
+          } else {
+            return null
+          }
+        })}
+      </div>
     </div>
   )
 }

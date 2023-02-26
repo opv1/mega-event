@@ -1,10 +1,16 @@
 import { regexpEmail, regexpPhone } from '../const'
 
+interface IReturn {
+  isValid: boolean
+  name: string | undefined
+  error: string
+}
+
 const inputValidate = (
   validationRules: string | undefined,
   name: string | undefined,
   value: string | number | readonly string[] | undefined,
-) => {
+): IReturn => {
   if (validationRules) {
     const rules = validationRules.split('|')
 

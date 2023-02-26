@@ -1,14 +1,16 @@
+export interface IErrors {
+  [key: string]: string
+}
+
 export interface ILogin {
   email: string
   password: string
 }
 
-export interface IErrors {
-  [key: string]: string
-}
+type IType = 'individual' | 'entity'
 
 export interface IIndividualValues {
-  type: 'individual'
+  type: IType
   name: string
   birthday: string
   phone: string
@@ -17,7 +19,7 @@ export interface IIndividualValues {
 }
 
 export interface IEntityValues {
-  type: 'entity'
+  type: IType
   name: string
   position: string
   phone: string
@@ -30,3 +32,5 @@ export interface IOptions {
   handout: boolean
   help: boolean
 }
+
+export type DataType = IIndividualValues & IEntityValues

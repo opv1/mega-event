@@ -19,9 +19,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   </React.StrictMode>,
 )
 
-// TODO useMemo and useCallback
-// TODO without any
 // TODO eslint
 // TODO precommit
-// TODO phone mask and birthday
+// TODO phone and birthday mask
 // TODO adaptive

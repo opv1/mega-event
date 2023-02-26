@@ -1,9 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { DataType } from '../types'
 
 interface IInitialState {
   isAuth: boolean
   isIndividual: boolean
-  data: any
+  data: DataType
 }
 
 export const appSlice = createSlice({

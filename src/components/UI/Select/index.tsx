@@ -4,6 +4,7 @@ import React, {
   useCallback,
   useEffect,
   useImperativeHandle,
+  useMemo,
   useState,
 } from 'react'
 import classnames from 'classnames'
@@ -13,8 +14,8 @@ import CaretIcon from '../../../assets/CaretIcon'
 import styles from './styles.module.scss'
 
 type Props = {
-  onClick: any
-  onFocus: any
+  onClick: (date: string) => void
+  onFocus: (name: string) => void
   name: string
   value: string
   placeholder: string
@@ -25,9 +26,25 @@ type Props = {
 const Select: React.FC<Props> = forwardRef((props, ref) => {
   const { onClick, onFocus, name, value, placeholder, validationRules } = props
 
-  const dates = getDates()
+  const dates = useMemo(() => getDates(), [])
 
-  const [isShowOptions, setIsShowOptions] = useState<boolean>(false)
+  const [isShowOptions, setIsShowOptions] = useState(false)
+
+  const optionNodes = useMemo(
+    () =>
+      dates.map((date) => (
+        <span
+          key={date}
+          className={`${styles.option} ${
+            date === value && styles['option_active']
+          }`}
+          onClick={() => handlerClickValue(date)}
+        >
+          {date}
+        </span>
+      )),
+    [dates, value],
+  )
 
   const classNameValue = classnames(styles.value, {
     [styles.value_focus]: isShowOptions,
@@ -99,19 +116,7 @@ const Select: React.FC<Props> = forwardRef((props, ref) => {
       <div className={classNameIcon}>
         <CaretIcon />
       </div>
-      <div className={classNameOptions}>
-        {dates.map((date) => (
-          <span
-            key={date}
-            className={`${styles.option} ${
-              date === value && styles['option_active']
-            }`}
-            onClick={() => handlerClickValue(date)}
-          >
-            {date}
-          </span>
-        ))}
-      </div>
+      <div className={classNameOptions}>{optionNodes}</div>
     </div>
   )
 })

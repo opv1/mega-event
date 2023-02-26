@@ -3,7 +3,6 @@ import classnames from 'classnames'
 import inputValidate from '../../../helpers/inputValidate'
 import EyeIcon from '../../../assets/EyeIcon'
 import EyeClosedIcon from '../../../assets/EyeClosedIcon'
-import CalendarIcon from '../../../assets/CalendarIcon'
 import styles from './styles.module.scss'
 
 type Props = {
@@ -50,11 +49,6 @@ const Input: React.FC<Props> = forwardRef((props, ref) => {
           onClick={handlerClickEye}
         >
           {inputType === 'password' ? <EyeIcon /> : <EyeClosedIcon />}
-        </button>
-      )}
-      {inputProps.name === 'birthday' && (
-        <button className={styles.button} type='button'>
-          <CalendarIcon />
         </button>
       )}
     </div>

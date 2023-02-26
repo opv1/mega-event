@@ -1,0 +1,6 @@
+@import '../../styles/variables';
+@import '../../styles/typography';
+
+.title {
+  @include regular-H2($color-white);
+}

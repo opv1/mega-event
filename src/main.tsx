@@ -16,11 +16,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   </React.StrictMode>,
 )
 
-// TODO components reused
-// TODO custom datepicker
-// TODO auth and protected routes
+// TODO error boundary
 // TODO useMemo and useCallback
 // TODO without any
 // TODO eslint
-// TODO phone mask
+// TODO phone mask and birthday
 // TODO adaptive

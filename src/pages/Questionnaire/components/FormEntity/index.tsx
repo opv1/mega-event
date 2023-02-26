@@ -1,4 +1,4 @@
-import React, { createRef, useCallback, useRef, useState } from 'react'
+import React, { createRef, memo, useCallback, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAppDispatch } from '../../../../redux/hooks'
 import { setData } from '../../../../redux/appSlice'
@@ -206,4 +206,4 @@ const FormEntity: React.FC = () => {
   )
 }
 
-export default FormEntity
+export default memo(FormEntity)

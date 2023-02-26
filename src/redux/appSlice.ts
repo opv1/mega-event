@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 interface IInitialState {
+  isAuth: boolean
   isIndividual: boolean
   data: any
 }
@@ -8,6 +9,7 @@ interface IInitialState {
 export const appSlice = createSlice({
   name: 'app',
   initialState: {
+    isAuth: false,
     isIndividual: true,
     data: {},
   } as IInitialState,
@@ -16,7 +18,6 @@ export const appSlice = createSlice({
       state.isIndividual = payload
     },
     setData(state, { payload }) {
-      console.log(payload)
       state.data = payload
     },
   },

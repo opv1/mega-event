@@ -1,4 +1,4 @@
-import React, { createRef, memo, useCallback, useRef, useState } from 'react'
+import React, { createRef, useCallback, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Container from '../../components/Container'
 import Form from '../../components/Form'
@@ -70,7 +70,7 @@ const Login: React.FC = () => {
   return (
     <Container title='Добро пожаловать'>
       <Form onSubmit={handlerSubmit} noValidate>
-        <div className={styles.fieldsets}>
+        <div className={styles.block}>
           <Fieldset error={errors.email}>
             <Input
               onChange={handlerChange}
@@ -104,4 +104,4 @@ const Login: React.FC = () => {
   )
 }
 
-export default memo(Login)
+export default Login

@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { useAppSelector } from '../../../../redux/hooks'
 import styles from './styles.module.scss'
 
-export const Complete: React.FC = () => {
+const Complete: React.FC = () => {
   const { data } = useAppSelector((state) => state.app)
 
   const participantType = data.type === 'individual' ? 'Физ. лицо' : 'Юр. лицо'
@@ -68,3 +68,5 @@ export const Complete: React.FC = () => {
     </div>
   )
 }
+
+export default memo(Complete)

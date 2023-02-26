@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import Container from '../../components/Container'
-import { Complete } from './components/Complete'
+import Complete from './components/Complete'
 import Button from '../../components/UI/Button'
 
 const Success: React.FC = () => {

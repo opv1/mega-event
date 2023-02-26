@@ -1,23 +1,25 @@
-import React, { memo } from 'react'
+import React from 'react'
 import { Routes, Route } from 'react-router-dom'
+import RouteProtected from '../Routes/RouteProtected'
+import Layout from '../Layout'
 import Login from '../../pages/Login'
 import Questionnaire from '../../pages/Questionnaire'
 import Success from '../../pages/Success'
 import NotFound from '../../pages/NotFound'
-import styles from './styles.module.scss'
 
 const App: React.FC = () => {
   return (
-    <div className={styles.app}>
-      <h1 className={styles.caption}>Coding Mega Event</h1>
-      <Routes>
+    <Routes>
+      <Route path='/' element={<Layout />}>
         <Route path='/' element={<Login />} />
-        <Route path='/questionnaire' element={<Questionnaire />} />
-        <Route path='/success' element={<Success />} />
+        <Route element={<RouteProtected />}>
+          <Route path='questionnaire' element={<Questionnaire />} />
+          <Route path='success' element={<Success />} />
+        </Route>
         <Route path='*' element={<NotFound />} />
-      </Routes>
-    </div>
+      </Route>
+    </Routes>
   )
 }
 
-export default memo(App)
+export default App

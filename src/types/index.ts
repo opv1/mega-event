@@ -30,5 +30,3 @@ export interface IOptions {
   handout: boolean
   help: boolean
 }
-
-export interface IDate {}

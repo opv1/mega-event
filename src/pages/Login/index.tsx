@@ -1,5 +1,7 @@
 import React, { createRef, useCallback, useRef, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { useAppDispatch } from '../../redux/hooks'
+import { setIsAuth } from '../../redux/appSlice'
 import Container from '../../components/Container'
 import Form from '../../components/Form'
 import Fieldset from '../../components/UI/Fieldset'
@@ -9,7 +11,11 @@ import { ILogin, IErrors } from '../../types'
 import styles from './styles.module.scss'
 
 const Login: React.FC = () => {
+  const dispatch = useAppDispatch()
+
   const navigate = useNavigate()
+  const location = useLocation()
+  const from = location.state?.from?.pathname
 
   const inputsRefs = useRef<any[]>([createRef(), createRef()])
 
@@ -62,7 +68,13 @@ const Login: React.FC = () => {
         return
       }
 
-      navigate('/questionnaire')
+      dispatch(setIsAuth(true))
+
+      if (from) {
+        navigate(from, { replace: true })
+      } else {
+        navigate('/questionnaire')
+      }
     },
     [values],
   )

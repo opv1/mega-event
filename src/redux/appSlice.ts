@@ -14,6 +14,9 @@ export const appSlice = createSlice({
     data: {},
   } as IInitialState,
   reducers: {
+    setIsAuth(state, { payload }) {
+      state.isAuth = payload
+    },
     setIsIndividual(state, { payload }) {
       state.isIndividual = payload
     },
@@ -23,6 +26,6 @@ export const appSlice = createSlice({
   },
 })
 
-export const { setIsIndividual, setData } = appSlice.actions
+export const { setIsAuth, setIsIndividual, setData } = appSlice.actions
 
 export default appSlice.reducer

@@ -147,7 +147,7 @@ const FormEntity: React.FC = () => {
             <Input
               onChange={handlerChange}
               onFocus={handlerFocus}
-              type='phone'
+              type='tel'
               name='phone'
               value={values.phone}
               placeholder='Номер телефона'

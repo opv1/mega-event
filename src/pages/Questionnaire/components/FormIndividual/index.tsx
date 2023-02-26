@@ -135,7 +135,7 @@ const FormIndividual: React.FC = () => {
             <Input
               onChange={handlerChange}
               onFocus={handlerFocus}
-              type='text'
+              type='number'
               name='birthday'
               value={values.birthday}
               placeholder='Дата рождения'
@@ -147,7 +147,7 @@ const FormIndividual: React.FC = () => {
             <Input
               onChange={handlerChange}
               onFocus={handlerFocus}
-              type='phone'
+              type='tel'
               name='phone'
               value={values.phone}
               placeholder='Номер телефона'

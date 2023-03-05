@@ -13,7 +13,9 @@ type Props = {
 const Input: React.FC<Props> = forwardRef((props, ref) => {
   const { validationRules, className, ...inputProps } = props
 
-  const [inputType, setInputType] = useState(inputProps.type)
+  const [inputType, setInputType] = useState<
+    React.HTMLInputTypeAttribute | undefined
+  >(inputProps.type)
 
   const classNameInput = classnames(styles.input, className, {
     [styles.input_password]: inputProps.value,

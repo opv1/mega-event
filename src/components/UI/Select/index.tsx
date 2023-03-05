@@ -5,6 +5,7 @@ import React, {
   useEffect,
   useImperativeHandle,
   useMemo,
+  useRef,
   useState,
 } from 'react'
 import classnames from 'classnames'
@@ -26,9 +27,11 @@ type Props = {
 const Select: React.FC<Props> = forwardRef((props, ref) => {
   const { onClick, onFocus, name, value, placeholder, validationRules } = props
 
-  const dates = useMemo(() => getDates(), [])
+  const selectRef = useRef<HTMLDivElement>(null)
 
-  const [isShowOptions, setIsShowOptions] = useState(false)
+  const [isShowOptions, setIsShowOptions] = useState<boolean>(false)
+
+  const dates = useMemo(() => getDates(), [])
 
   const optionNodes = useMemo(
     () =>
@@ -81,15 +84,20 @@ const Select: React.FC<Props> = forwardRef((props, ref) => {
     toggleOptions()
   }
 
-  const handlerClickOutside = useCallback((event: MouseEvent) => {
-    const selectElement = document.getElementById('select') as Element
-    const target = event.target as Element
-    const isClickOutside = !selectElement.contains(target)
+  const handlerClickOutside = useCallback(
+    (event: MouseEvent) => {
+      if (selectRef.current) {
+        const selectElement = selectRef.current
+        const target = event.target as Element
+        const isClickOutside = !selectElement.contains(target)
 
-    if (isClickOutside) {
-      toggleOptions()
-    }
-  }, [])
+        if (isClickOutside) {
+          toggleOptions()
+        }
+      }
+    },
+    [selectRef],
+  )
 
   useImperativeHandle(ref, () => {
     return {
@@ -100,6 +108,8 @@ const Select: React.FC<Props> = forwardRef((props, ref) => {
   useEffect(() => {
     if (isShowOptions) {
       document.addEventListener('click', handlerClickOutside, true)
+    } else {
+      document.removeEventListener('click', handlerClickOutside, true)
     }
 
     return () => {
@@ -108,7 +118,7 @@ const Select: React.FC<Props> = forwardRef((props, ref) => {
   }, [isShowOptions, handlerClickOutside])
 
   return (
-    <div id='select' className={styles.select}>
+    <div className={styles.select} ref={selectRef}>
       <span className={classNameValue} onClick={handlerClickSelect}>
         {value}
       </span>

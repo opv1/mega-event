@@ -6,7 +6,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "fmt": "npx stylelint '**/*.scss'"
+    "format": "npx stylelint '**/*.scss'"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.5",
@@ -22,6 +22,8 @@
     "@types/react": "^18.0.19",
     "@types/react-dom": "^18.0.6",
     "@vitejs/plugin-react": "^2.1.0",
+    "eslint": "^8.35.0",
+    "prettier": "^2.8.4",
     "stylelint": "^14.11.0",
     "stylelint-config-standard-scss": "^5.0.0",
     "stylelint-declaration-block-no-ignored-properties": "^2.5.0",

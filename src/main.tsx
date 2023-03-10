@@ -19,6 +19,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   </React.StrictMode>,
 )
 
+// TODO hoc
 // TODO eslint
 // TODO precommit
 // TODO phone and birthday mask

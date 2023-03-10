@@ -84,20 +84,17 @@ const Select: React.FC<Props> = forwardRef((props, ref) => {
     toggleOptions()
   }
 
-  const handlerClickOutside = useCallback(
-    (event: MouseEvent) => {
-      if (selectRef.current) {
-        const selectElement = selectRef.current
-        const target = event.target as Element
-        const isClickOutside = !selectElement.contains(target)
+  const handlerClickOutside = useCallback((event: MouseEvent) => {
+    if (selectRef.current) {
+      const selectElement = selectRef.current
+      const target = event.target as Element
+      const isClickOutside = !selectElement.contains(target)
 
-        if (isClickOutside) {
-          toggleOptions()
-        }
+      if (isClickOutside) {
+        toggleOptions()
       }
-    },
-    [selectRef],
-  )
+    }
+  }, [])
 
   useImperativeHandle(ref, () => {
     return {

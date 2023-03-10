@@ -8,10 +8,9 @@
     "preview": "vite preview",
     "eslint": "eslint \"src/**/*.@(js|jsx|ts|tsx)\"",
     "eslint:fix": "eslint \"src/**/*.@(js|jsx|ts|tsx)\" --fix",
-    "stylelint": "npx stylelint \"**/*.scss\"",
-    "stylelint:fix": "npx stylelint \"**/*.scss\" --fix",
-    "prettier": "prettier '**/*.{js,jsx,ts,tsx,json}'",
-    "prettier:fix": "prettier '**/*.{js,jsx,ts,tsx,json}' --write",
+    "stylelint": "npx stylelint \"src/**/*.scss\"",
+    "stylelint:fix": "npx stylelint \"src/**/*.scss\" --fix",
+    "prettier": "prettier \"src/**/*.{js,jsx,ts,tsx,json}\" --write",
     "format": "yarn eslint:fix && stylelint:fix"
   },
   "dependencies": {

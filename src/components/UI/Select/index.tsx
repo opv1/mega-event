@@ -33,11 +33,24 @@ const Select: React.FC<Props> = forwardRef((props, ref) => {
 
   const dates = useMemo(() => getDates(), [])
 
+  const handlerClickValue = useCallback(
+    (date: string) => {
+      if (date === value) {
+        onClick('')
+      } else {
+        onClick(date)
+      }
+
+      toggleOptions()
+    },
+    [value, onClick],
+  )
+
   const optionNodes = useMemo(
     () =>
-      dates.map((date) => (
+      dates.map((date, index) => (
         <span
-          key={date}
+          key={index}
           className={`${styles.option} ${
             date === value && styles['option_active']
           }`}
@@ -46,7 +59,7 @@ const Select: React.FC<Props> = forwardRef((props, ref) => {
           {date}
         </span>
       )),
-    [dates, value],
+    [dates, value, handlerClickValue],
   )
 
   const classNameValue = classnames(styles.value, {
@@ -71,16 +84,6 @@ const Select: React.FC<Props> = forwardRef((props, ref) => {
 
   const handlerClickSelect = () => {
     onFocus(name)
-    toggleOptions()
-  }
-
-  const handlerClickValue = (date: string) => {
-    if (date === value) {
-      onClick('')
-    } else {
-      onClick(date)
-    }
-
     toggleOptions()
   }
 

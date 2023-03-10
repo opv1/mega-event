@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
 import styles from './styles.module.scss'
 
-type Props = {} & React.FormHTMLAttributes<HTMLFormElement>
+type Props = React.FormHTMLAttributes<HTMLFormElement>
 
 const Form: React.FC<Props> = (props) => {
   const { children, ...formProps } = props

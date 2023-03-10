@@ -6,7 +6,13 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "format": "npx stylelint '**/*.scss'"
+    "eslint": "eslint \"src/**/*.@(js|jsx|ts|tsx)\"",
+    "eslint:fix": "eslint \"src/**/*.@(js|jsx|ts|tsx)\" --fix",
+    "stylelint": "npx stylelint \"**/*.scss\"",
+    "stylelint:fix": "npx stylelint \"**/*.scss\" --fix",
+    "prettier": "prettier '**/*.{js,jsx,ts,tsx,json}'",
+    "prettier:fix": "prettier '**/*.{js,jsx,ts,tsx,json}' --write",
+    "format": "yarn eslint:fix && stylelint:fix"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.5",
@@ -21,8 +27,15 @@
   "devDependencies": {
     "@types/react": "^18.0.19",
     "@types/react-dom": "^18.0.6",
+    "@typescript-eslint/eslint-plugin": "^5.54.1",
+    "@typescript-eslint/parser": "^5.54.1",
     "@vitejs/plugin-react": "^2.1.0",
     "eslint": "^8.35.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "prettier": "^2.8.4",
     "stylelint": "^14.11.0",
     "stylelint-config-standard-scss": "^5.0.0",
     "stylelint-declaration-block-no-ignored-properties": "^2.5.0",

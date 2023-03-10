@@ -56,7 +56,7 @@ const Login: React.FC = () => {
 
       for (let i = 0; i < inputsRefs.current.length; i++) {
         const { isValid, name, error } =
-          inputsRefs.current[i].current?.validate()
+          inputsRefs.current[i].current.validate()
 
         if (!isValid) {
           setErrors((prev) => ({ ...prev, [name]: error }))
@@ -76,7 +76,7 @@ const Login: React.FC = () => {
         navigate('/questionnaire')
       }
     },
-    [values],
+    [dispatch, from, navigate],
   )
 
   return (

@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
 import styles from './styles.module.scss'
 
-type Props = {} & React.InputHTMLAttributes<HTMLInputElement>
+type Props = React.InputHTMLAttributes<HTMLInputElement>
 
 const Checkbox: React.FC<Props> = (props) => {
   return (

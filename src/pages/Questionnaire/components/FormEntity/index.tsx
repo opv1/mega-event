@@ -111,7 +111,7 @@ const FormEntity: React.FC = () => {
 
       navigate('/success')
     },
-    [values],
+    [dispatch, values, navigate],
   )
 
   return (

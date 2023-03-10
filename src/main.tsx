@@ -7,7 +7,7 @@ import ErrorBoundary from './components/ErrorBoundary'
 import App from './components/App'
 import './index.scss'
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
+ReactDOM.createRoot(document.getElementById('root') as Element).render(
   <React.StrictMode>
     <BrowserRouter>
       <Provider store={store}>
@@ -20,7 +20,6 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 )
 
 // TODO hoc
-// TODO eslint
 // TODO precommit
 // TODO phone and birthday mask
 // TODO adaptive

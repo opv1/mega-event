@@ -111,7 +111,7 @@ const FormIndividual: React.FC = () => {
 
       navigate('/success')
     },
-    [values],
+    [dispatch, values, navigate],
   )
 
   return (

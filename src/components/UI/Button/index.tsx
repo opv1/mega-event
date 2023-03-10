@@ -2,7 +2,7 @@ import React, { memo } from 'react'
 import classnames from 'classnames'
 import styles from './styles.module.scss'
 
-type Props = {} & React.ButtonHTMLAttributes<HTMLButtonElement>
+type Props = React.ButtonHTMLAttributes<HTMLButtonElement>
 
 const Button: React.FC<Props> = (props) => {
   const { className, children } = props

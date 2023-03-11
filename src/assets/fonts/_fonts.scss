@@ -1,0 +1,65 @@
+@font-face {
+  src:
+    url("assets/fonts/HalvarBreit/HalvarBreit-Rg.woff2") format("woff2"),
+    url("assets/fonts/HalvarBreit/HalvarBreit-Rg.woff") format("woff"),
+    url("assets/fonts/HalvarBreit/HalvarBreit-Rg.ttf") format("truetype");
+  font-family: "Halvar Breit Rg";
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  src:
+    url("assets/fonts/HalvarBreit/HalvarBreit-Md.woff2") format("woff2"),
+    url("assets/fonts/HalvarBreit/HalvarBreit-Md.woff") format("woff"),
+    url("assets/fonts/HalvarBreit/HalvarBreit-Md.ttf") format("truetype");
+  font-family: "Halvar Breit Md";
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  src:
+    url("assets/fonts/HalvarBreit/HalvarBreit-Bd.woff2") format("woff2"),
+    url("assets/fonts/HalvarBreit/HalvarBreit-Bd.woff") format("woff"),
+    url("assets/fonts/HalvarBreit/HalvarBreit-Bd.ttf") format("truetype");
+  font-family: "Halvar Breit Bd";
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  src:
+    url("assets/fonts/PTRootUI/PTRootUI-Regular.woff2") format("woff2"),
+    url("assets/fonts/PTRootUI/PTRootUI-Regular.woff") format("woff"),
+    url("assets/fonts/PTRootUI/PTRootUI-Regular.ttf") format("truetype");
+  font-family: "PT Root UI Rg";
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  src:
+    url("assets/fonts/PTRootUI/PTRootUI-Medium.woff2") format("woff2"),
+    url("assets/fonts/PTRootUI/PTRootUI-Medium.woff") format("woff"),
+    url("assets/fonts/PTRootUI/PTRootUI-Medium.ttf") format("truetype");
+  font-family: "PT Root UI Md";
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  src:
+    url("assets/fonts/PTRootUI/PTRootUI-Bold.woff2") format("woff2"),
+    url("assets/fonts/PTRootUI/PTRootUI-Bold.woff") format("woff"),
+    url("assets/fonts/PTRootUI/PTRootUI-Bold.ttf") format("truetype");
+  font-family: "PT Root UI Bd";
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}

@@ -1,7 +1,7 @@
 const inputMask = (value: string, mask: string): string => {
   let i = 0
-  let def = mask.replace(/\D/g, '')
   let val = value.replace(/\D/g, '')
+  const def = mask.replace(/\D/g, '')
 
   if (def.length >= val.length) {
     val = def

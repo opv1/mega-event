@@ -16,3 +16,13 @@
 
   margin-top: 60px;
 }
+
+@media screen and (max-width: 375px) {
+  .layout {
+    gap: 60px;
+  }
+
+  .caption {
+    margin-top: 20px;
+  }
+}

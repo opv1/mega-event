@@ -20,3 +20,9 @@
     background-color: $color-purple-illusionist;
   }
 }
+
+@media screen and (max-width: 375px) {
+  .tabs {
+    gap: $gap-small;
+  }
+}

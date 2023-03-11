@@ -32,3 +32,21 @@
   border: 1px solid $color-white;
   opacity: 0.1;
 }
+
+@media screen and (max-width: 375px) {
+  .blocks {
+    flex-direction: column;
+  }
+
+  .block {
+    max-width: 288px;
+
+    &:first-child {
+      padding-left: 0;
+    }
+  }
+
+  .line {
+    width: 100%;
+  }
+}

@@ -8,3 +8,9 @@
   width: 100%;
   gap: $gap-medium;
 }
+
+@media screen and (max-width: 375px) {
+  .form {
+    margin-bottom: 60px;
+  }
+}

@@ -19,6 +19,4 @@ ReactDOM.createRoot(document.getElementById('root') as Element).render(
   </React.StrictMode>,
 )
 
-// TODO hoc
 // TODO precommit
-// TODO adaptive

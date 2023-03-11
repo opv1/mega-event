@@ -18,5 +18,3 @@ ReactDOM.createRoot(document.getElementById('root') as Element).render(
     </BrowserRouter>
   </React.StrictMode>,
 )
-
-// TODO precommit

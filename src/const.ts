@@ -1,3 +1,10 @@
+export const fontsForLoad = [
+  '400 18px PT Root UI',
+  '400 14px PT Root UI',
+  '400 50px Halvar Breit',
+  '400 28px Halvar Breit',
+]
+
 export const regexpEmail = /^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$/
 
 export const regexpBirthday =

@@ -52,6 +52,10 @@ const FormEntity: React.FC = () => {
     [],
   )
 
+  const handlerChangePhone = useCallback((value: string) => {
+    setValues((prev) => ({ ...prev, phone: value }))
+  }, [])
+
   const handlerChangeCheckbox = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
       const { name, checked } = event.target
@@ -74,11 +78,11 @@ const FormEntity: React.FC = () => {
     [errors],
   )
 
-  const handlerChangeValueSelect = useCallback((date: string) => {
+  const handlerChangeSelect = useCallback((date: string) => {
     setValues((prev) => ({ ...prev, date: date }))
   }, [])
 
-  const handlerChangeErrorSelect = useCallback(
+  const handlerFocusSelect = useCallback(
     (name: string) => {
       if (errors[name] !== '') {
         setErrors((prev) => ({ ...prev, [name]: '' }))
@@ -145,7 +149,7 @@ const FormEntity: React.FC = () => {
           </Fieldset>
           <Fieldset error={errors.phone}>
             <Input
-              onChange={handlerChange}
+              onChangeMask={handlerChangePhone}
               onFocus={handlerFocus}
               type='tel'
               name='phone'
@@ -161,8 +165,8 @@ const FormEntity: React.FC = () => {
           <h3 className={styles.title}>Выберите дату мероприятия</h3>
           <Fieldset error={errors.date}>
             <Select
-              onClick={handlerChangeValueSelect}
-              onFocus={handlerChangeErrorSelect}
+              onClick={handlerChangeSelect}
+              onFocus={handlerFocusSelect}
               name='date'
               value={values.date}
               placeholder='День мероприятия'

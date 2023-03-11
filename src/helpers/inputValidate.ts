@@ -1,4 +1,4 @@
-import { regexpEmail, regexpPhone } from '../const'
+import { regexpEmail, regexpBirthday, regexpPhone } from '../const'
 
 interface IReturn {
   isValid: boolean
@@ -17,6 +17,8 @@ const inputValidate = (
     for (let i = 0; i < rules.length; i++) {
       const current = rules[i]
 
+      const stringValue = String(value).toLowerCase()
+
       if (current === 'required') {
         if (!value) {
           return {
@@ -28,7 +30,7 @@ const inputValidate = (
       }
 
       if (current === 'email') {
-        if (!regexpEmail.test(String(value).toLowerCase())) {
+        if (!regexpEmail.test(stringValue)) {
           return {
             isValid: false,
             name,
@@ -37,8 +39,18 @@ const inputValidate = (
         }
       }
 
+      if (current === 'birthday') {
+        if (!regexpBirthday.test(stringValue)) {
+          return {
+            isValid: false,
+            name,
+            error: 'Введите корректную дату',
+          }
+        }
+      }
+
       if (current === 'phone') {
-        if (!regexpPhone.test(String(value).toLowerCase())) {
+        if (!regexpPhone.test(stringValue)) {
           return {
             isValid: false,
             name,

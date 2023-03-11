@@ -9,6 +9,7 @@ import Input from '../../../../components/UI/Input'
 import Button from '../../../../components/UI/Button'
 import Select from '../../../../components/UI/Select'
 import Checkbox from '../../../../components/UI/Checkbox'
+import inputMask from '../../../../helpers/inputMask'
 import { IIndividualValues, IErrors } from '../../../../types'
 import styles from './styles.module.scss'
 
@@ -52,6 +53,14 @@ const FormIndividual: React.FC = () => {
     [],
   )
 
+  const handlerChangeBirthday = useCallback((value: string) => {
+    setValues((prev) => ({ ...prev, birthday: value }))
+  }, [])
+
+  const handlerChangePhone = useCallback((value: string) => {
+    setValues((prev) => ({ ...prev, phone: value }))
+  }, [])
+
   const handlerChangeCheckbox = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
       const { name, checked } = event.target
@@ -65,7 +74,12 @@ const FormIndividual: React.FC = () => {
 
   const handlerFocus = useCallback(
     (event: React.FocusEvent<HTMLInputElement>) => {
-      const { name } = event.target
+      const { type, name, value } = event.target
+
+      if (type === 'tel' && value === '') {
+        const valueMask = inputMask(value, '+7 (___) ___-__-__')
+        setValues((prev) => ({ ...prev, phone: valueMask }))
+      }
 
       if (errors[name] !== '') {
         setErrors((prev) => ({ ...prev, [name]: '' }))
@@ -74,11 +88,22 @@ const FormIndividual: React.FC = () => {
     [errors],
   )
 
-  const handlerChangeValueSelect = useCallback((date: string) => {
+  const handlerBlur = useCallback(
+    (event: React.FocusEvent<HTMLInputElement>) => {
+      const { type, value } = event.target
+
+      if (type === 'tel' && value === '+7') {
+        setValues((prev) => ({ ...prev, phone: '' }))
+      }
+    },
+    [],
+  )
+
+  const handlerChangeSelect = useCallback((date: string) => {
     setValues((prev) => ({ ...prev, date: date }))
   }, [])
 
-  const handlerChangeErrorSelect = useCallback(
+  const handlerFocusSelect = useCallback(
     (name: string) => {
       if (errors[name] !== '') {
         setErrors((prev) => ({ ...prev, [name]: '' }))
@@ -133,20 +158,21 @@ const FormIndividual: React.FC = () => {
           </Fieldset>
           <Fieldset error={errors.birthday}>
             <Input
-              onChange={handlerChange}
+              onChangeMask={handlerChangeBirthday}
               onFocus={handlerFocus}
-              type='number'
+              type='text'
               name='birthday'
               value={values.birthday}
               placeholder='Дата рождения'
-              validationRules='required'
+              validationRules='required|birthday'
               ref={inputsRefs.current[1]}
             />
           </Fieldset>
           <Fieldset error={errors.phone}>
             <Input
-              onChange={handlerChange}
+              onChangeMask={handlerChangePhone}
               onFocus={handlerFocus}
+              onBlur={handlerBlur}
               type='tel'
               name='phone'
               value={values.phone}
@@ -161,8 +187,8 @@ const FormIndividual: React.FC = () => {
           <h3 className={styles.title}>Выберите дату мероприятия</h3>
           <Fieldset error={errors.date}>
             <Select
-              onClick={handlerChangeValueSelect}
-              onFocus={handlerChangeErrorSelect}
+              onClick={handlerChangeSelect}
+              onFocus={handlerFocusSelect}
               name='date'
               value={values.date}
               placeholder='День мероприятия'

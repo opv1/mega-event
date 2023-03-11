@@ -21,5 +21,4 @@ ReactDOM.createRoot(document.getElementById('root') as Element).render(
 
 // TODO hoc
 // TODO precommit
-// TODO phone and birthday mask
 // TODO adaptive

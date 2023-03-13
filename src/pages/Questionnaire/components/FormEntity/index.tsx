@@ -9,6 +9,7 @@ import Input from '../../../../components/UI/Input'
 import Button from '../../../../components/UI/Button'
 import Select from '../../../../components/UI/Select'
 import Checkbox from '../../../../components/UI/Checkbox'
+import inputMask from '../../../../helpers/inputMask'
 import { IEntityValues, IErrors } from '../../../../types'
 import styles from './styles.module.scss'
 
@@ -69,13 +70,29 @@ const FormEntity: React.FC = () => {
 
   const handlerFocus = useCallback(
     (event: React.FocusEvent<HTMLInputElement>) => {
-      const { name } = event.target
+      const { type, name, value } = event.target
+
+      if (type === 'tel' && value === '') {
+        const valueMask = inputMask(value, '+7 (___) ___-__-__')
+        setValues((prev) => ({ ...prev, phone: valueMask }))
+      }
 
       if (errors[name] !== '') {
         setErrors((prev) => ({ ...prev, [name]: '' }))
       }
     },
     [errors],
+  )
+
+  const handlerBlur = useCallback(
+    (event: React.FocusEvent<HTMLInputElement>) => {
+      const { type, value } = event.target
+
+      if (type === 'tel' && value === '+7') {
+        setValues((prev) => ({ ...prev, phone: '' }))
+      }
+    },
+    [],
   )
 
   const handlerChangeSelect = useCallback((date: string) => {
@@ -151,6 +168,7 @@ const FormEntity: React.FC = () => {
             <Input
               onChangeMask={handlerChangePhone}
               onFocus={handlerFocus}
+              onBlur={handlerBlur}
               type='tel'
               name='phone'
               value={values.phone}

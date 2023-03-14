@@ -1,5 +1,5 @@
-@import "../../../styles/variables";
-@import "../../../styles/mixins";
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
 
 .tabs {
   @include flex-direction-row;
@@ -21,7 +21,7 @@
   }
 }
 
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 875px) {
   .tabs {
     gap: $gap-small;
   }

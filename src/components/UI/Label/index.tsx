@@ -7,14 +7,14 @@ type Props = {
 } & React.LabelHTMLAttributes<HTMLLabelElement>
 
 const Label: React.FC<Props> = (props) => {
-  const { direction, children } = props
+  const { direction, children, ...labelProps } = props
 
   const classNameLabel = classnames(styles.label, {
     [styles.label_column]: direction === 'column',
   })
 
   return (
-    <label {...props} className={classNameLabel}>
+    <label {...labelProps} className={classNameLabel}>
       {children}
     </label>
   )

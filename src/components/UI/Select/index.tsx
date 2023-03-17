@@ -31,7 +31,30 @@ const Select: React.FC<Props> = forwardRef((props, ref) => {
 
   const [isShowOptions, setIsShowOptions] = useState<boolean>(false)
 
-  const dates = useMemo(() => getDates(), [])
+  const classNameValue = classnames(styles.value, {
+    [styles.value_focus]: isShowOptions,
+  })
+
+  const classNamePlaceholder = classnames(styles.placeholder, {
+    [styles.placeholder_active]: isShowOptions || value,
+  })
+
+  const classNameIcon = classnames(styles.icon, {
+    [styles.icon_rotate]: isShowOptions,
+  })
+
+  const classNameOptions = classnames(styles.options, {
+    [styles.options_display]: isShowOptions,
+  })
+
+  const toggleOptions = useCallback(() => {
+    setIsShowOptions((prev) => !prev)
+  }, [])
+
+  const handlerClickSelect = useCallback(() => {
+    onFocus(name)
+    toggleOptions()
+  }, [name, onFocus, toggleOptions])
 
   const handlerClickValue = useCallback(
     (date: string) => {
@@ -43,8 +66,43 @@ const Select: React.FC<Props> = forwardRef((props, ref) => {
 
       toggleOptions()
     },
-    [value, onClick],
+    [value, onClick, toggleOptions],
   )
+
+  const handlerClickOutside = useCallback(
+    (event: MouseEvent) => {
+      if (selectRef.current) {
+        const selectElement = selectRef.current
+        const target = event.target as Element
+        const isClickOutside = !selectElement.contains(target)
+
+        if (isClickOutside) {
+          toggleOptions()
+        }
+      }
+    },
+    [toggleOptions],
+  )
+
+  const handlerKeyupDocument = useCallback(
+    (event: KeyboardEvent) => {
+      if (isShowOptions && event.code === 'Tab') {
+        toggleOptions()
+      }
+    },
+    [isShowOptions, toggleOptions],
+  )
+
+  const handlerKeyupSelect = useCallback(
+    (event: KeyboardEvent) => {
+      if (!isShowOptions && event.code === 'Space') {
+        toggleOptions()
+      }
+    },
+    [isShowOptions, toggleOptions],
+  )
+
+  const dates = useMemo(() => getDates(), [])
 
   const optionNodes = useMemo(
     () =>
@@ -62,43 +120,6 @@ const Select: React.FC<Props> = forwardRef((props, ref) => {
     [dates, value, handlerClickValue],
   )
 
-  const classNameValue = classnames(styles.value, {
-    [styles.value_focus]: isShowOptions,
-  })
-
-  const classNamePlaceholder = classnames(styles.placeholder, {
-    [styles.placeholder_active]: isShowOptions || value,
-  })
-
-  const classNameIcon = classnames(styles.icon, {
-    [styles.icon_rotate]: isShowOptions,
-  })
-
-  const classNameOptions = classnames(styles.options, {
-    [styles.options_display]: isShowOptions,
-  })
-
-  const toggleOptions = () => {
-    setIsShowOptions((prev) => !prev)
-  }
-
-  const handlerClickSelect = () => {
-    onFocus(name)
-    toggleOptions()
-  }
-
-  const handlerClickOutside = useCallback((event: MouseEvent) => {
-    if (selectRef.current) {
-      const selectElement = selectRef.current
-      const target = event.target as Element
-      const isClickOutside = !selectElement.contains(target)
-
-      if (isClickOutside) {
-        toggleOptions()
-      }
-    }
-  }, [])
-
   useImperativeHandle(ref, () => {
     return {
       validate: () => inputValidate(validationRules, name, value),
@@ -106,19 +127,37 @@ const Select: React.FC<Props> = forwardRef((props, ref) => {
   })
 
   useEffect(() => {
+    let selectRefCurrent: HTMLDivElement | null = null
+
+    if (selectRef.current) {
+      selectRefCurrent = selectRef.current
+      selectRefCurrent.addEventListener('keyup', handlerKeyupSelect)
+    }
+
+    return () => {
+      if (selectRefCurrent) {
+        selectRefCurrent.removeEventListener('keyup', handlerKeyupSelect)
+      }
+    }
+  }, [handlerKeyupSelect])
+
+  useEffect(() => {
     if (isShowOptions) {
       document.addEventListener('click', handlerClickOutside, true)
+      document.addEventListener('keyup', handlerKeyupDocument)
     } else {
       document.removeEventListener('click', handlerClickOutside, true)
+      document.removeEventListener('keyup', handlerKeyupDocument)
     }
 
     return () => {
       document.removeEventListener('click', handlerClickOutside, true)
+      document.removeEventListener('keyup', handlerKeyupDocument)
     }
-  }, [isShowOptions, handlerClickOutside])
+  }, [isShowOptions, handlerClickOutside, handlerKeyupDocument])
 
   return (
-    <div className={styles.select} ref={selectRef}>
+    <div className={styles.select} ref={selectRef} tabIndex={0}>
       <span className={classNameValue} onClick={handlerClickSelect}>
         {value}
       </span>

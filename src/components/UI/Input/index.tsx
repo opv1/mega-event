@@ -33,20 +33,13 @@ const Input: React.FC<Props> = forwardRef((props, ref) => {
     [styles.placeholder_active]: inputProps.value,
   })
 
-  const handlerClickEye = () => {
+  const handlerClickEye = useCallback(() => {
     if (inputType === 'password') {
       setInputType('text')
     } else {
       setInputType('password')
     }
-  }
-
-  useImperativeHandle(ref, () => {
-    return {
-      validate: () =>
-        inputValidate(validationRules, inputProps.name, inputProps.value),
-    }
-  })
+  }, [inputType])
 
   const handlerChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -68,6 +61,13 @@ const Input: React.FC<Props> = forwardRef((props, ref) => {
     },
     [onChangeMask, inputProps],
   )
+
+  useImperativeHandle(ref, () => {
+    return {
+      validate: () =>
+        inputValidate(validationRules, inputProps.name, inputProps.value),
+    }
+  })
 
   return (
     <div className={styles.box}>

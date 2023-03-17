@@ -9,7 +9,7 @@ import NotFound from '../../pages/NotFound'
 import { fontsForLoad } from '../../const'
 
 const App: React.FC = () => {
-  const [isFontsReady, setIsFontsReady] = useState(false)
+  const [isFontsReady, setIsFontsReady] = useState<boolean>(false)
 
   useEffect(() => {
     fontsForLoad.forEach((font) => document.fonts.load(font))

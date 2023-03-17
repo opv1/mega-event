@@ -10,6 +10,10 @@
   width: 288px;
   background-color: $color-white-low-opacity;
   cursor: pointer;
+
+  &:focus {
+    outline: 1px solid $color-purple-illusionist;
+  }
 }
 
 .value {
@@ -90,6 +94,10 @@
   &_active {
     color: $color-white;
     background-color: $color-purple-illusionist;
+  }
+
+  &:focus {
+    outline: 1px solid $color-purple-illusionist;
   }
 
   &:hover {

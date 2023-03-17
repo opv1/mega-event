@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { memo, useCallback } from 'react'
 import classnames from 'classnames'
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks'
 import { setIsIndividual } from '../../../redux/appSlice'
@@ -18,13 +18,17 @@ const Tabs: React.FC = () => {
     [styles.button_active]: !isIndividual,
   })
 
-  const handlerSetIndividual = () => {
-    dispatch(setIsIndividual(true))
-  }
+  const handlerSetIndividual = useCallback(() => {
+    if (!isIndividual) {
+      dispatch(setIsIndividual(true))
+    }
+  }, [isIndividual, dispatch])
 
-  const handlerSetEntity = () => {
-    dispatch(setIsIndividual(false))
-  }
+  const handlerSetEntity = useCallback(() => {
+    if (isIndividual) {
+      dispatch(setIsIndividual(false))
+    }
+  }, [isIndividual, dispatch])
 
   return (
     <div className={styles.tabs}>

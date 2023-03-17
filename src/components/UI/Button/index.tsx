@@ -5,12 +5,12 @@ import styles from './styles.module.scss'
 type Props = React.ButtonHTMLAttributes<HTMLButtonElement>
 
 const Button: React.FC<Props> = (props) => {
-  const { className, children } = props
+  const { children, ...buttonProps } = props
 
-  const classNameButton = classnames(styles.button, className)
+  const classNameButton = classnames(styles.button, buttonProps.className)
 
   return (
-    <button {...props} className={classNameButton}>
+    <button {...buttonProps} className={classNameButton}>
       {children}
     </button>
   )

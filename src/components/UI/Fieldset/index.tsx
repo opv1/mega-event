@@ -7,14 +7,14 @@ type Props = {
 } & React.FieldsetHTMLAttributes<HTMLFieldSetElement>
 
 const Fieldset: React.FC<Props> = (props) => {
-  const { error, children } = props
+  const { error, children, ...fieldsetProps } = props
 
   const classNameError = classnames(styles.error, {
     [styles.error_active]: error,
   })
 
   return (
-    <fieldset className={styles.fieldset}>
+    <fieldset {...fieldsetProps} className={styles.fieldset}>
       {children}
       <span className={classNameError}>{error}</span>
     </fieldset>

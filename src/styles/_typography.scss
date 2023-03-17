@@ -1,5 +1,5 @@
-@import './variables';
-@import './mixins';
+@import "./variables";
+@import "./mixins";
 
 @mixin default($color) {
   font-style: normal;
@@ -8,7 +8,7 @@
 }
 
 @mixin h1 {
-  font-family: $font-family-second;
+  font-family: $font-family-caption;
   font-size: 50px;
   line-height: 120%;
   text-align: center;
@@ -20,7 +20,7 @@
 }
 
 @mixin h2 {
-  font-family: $font-family-second;
+  font-family: $font-family-caption;
   font-size: 28px;
   line-height: 120%;
   text-align: center;
@@ -32,7 +32,7 @@
 }
 
 @mixin h3 {
-  font-family: $font-family-second;
+  font-family: $font-family-caption;
   font-size: 18px;
   line-height: 133%;
 
@@ -43,11 +43,13 @@
 }
 
 @mixin span($font-size, $line-height) {
+  font-family: $font-family-text;
   font-size: $font-size;
   line-height: $line-height;
 }
 
 @mixin label {
+  font-family: $font-family-text;
   font-size: 16px;
   line-height: 20px;
 }
@@ -56,6 +58,7 @@
   border-radius: 4px;
   padding: 16px 12px 6px;
   height: 40px;
+  font-family: $font-family-text;
   font-size: 14px;
   line-height: 18px;
   background-color: transparent;
@@ -67,9 +70,18 @@
   &:focus {
     outline: 1px solid $color-purple-illusionist;
   }
+
+  &:focus-visible {
+    outline: 1px solid $color-purple-illusionist;
+  }
+
+  &:disabled {
+    opacity: $opacity-default;
+  }
 }
 
 @mixin placeholder {
+  font-family: $font-family-text;
   font-size: 14px;
   line-height: 18px;
 }
@@ -80,10 +92,19 @@
   border-radius: $border-radius-default;
   padding: 10px 24px;
   width: fit-content;
+  font-family: $font-family-text;
   font-size: 18px;
   line-height: 133%;
   white-space: nowrap;
   background-color: $color-purple-illusionist;
+
+  &:focus {
+    outline: 1px solid $color-white;
+  }
+
+  &:focus-visible {
+    outline: 1px solid $color-white;
+  }
 
   &:hover {
     color: $color-white;

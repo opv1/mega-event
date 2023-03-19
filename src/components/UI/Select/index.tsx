@@ -51,13 +51,20 @@ const Select: React.FC<Props> = forwardRef((props, ref) => {
     setIsShowOptions((prev) => !prev)
   }, [])
 
-  const handleClickSelect = useCallback(() => {
-    onFocus(name)
-    toggleOptions()
-  }, [name, onFocus, toggleOptions])
-
   const handleClickValue = useCallback(
-    (date: string) => {
+    (event: React.MouseEvent<HTMLSpanElement>) => {
+      event.stopPropagation()
+
+      onFocus(name)
+      toggleOptions()
+    },
+    [name, onFocus, toggleOptions],
+  )
+
+  const handleClickOption = useCallback(
+    (event: React.MouseEvent<HTMLLIElement>, date: string) => {
+      event.stopPropagation()
+
       if (date === value) {
         onClick('')
       } else {
@@ -112,12 +119,12 @@ const Select: React.FC<Props> = forwardRef((props, ref) => {
           className={`${styles.option} ${
             date === value && styles['option_active']
           }`}
-          onClick={() => handleClickValue(date)}
+          onClick={(event) => handleClickOption(event, date)}
         >
           {date}
         </li>
       )),
-    [dates, value, handleClickValue],
+    [dates, value, handleClickOption],
   )
 
   useImperativeHandle(ref, () => {
@@ -158,7 +165,7 @@ const Select: React.FC<Props> = forwardRef((props, ref) => {
 
   return (
     <div className={styles.select} ref={selectRef} tabIndex={0}>
-      <span className={classNameValue} onClick={handleClickSelect}>
+      <span className={classNameValue} onClick={handleClickValue}>
         {value}
       </span>
       <span className={classNamePlaceholder}>{placeholder}</span>

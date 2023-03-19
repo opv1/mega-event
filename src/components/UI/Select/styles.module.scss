@@ -1,6 +1,6 @@
-@import "../../../styles/variables";
-@import "../../../styles/typography";
-@import "../../../styles/mixins";
+@import '../../../styles/variables';
+@import '../../../styles/typography';
+@import '../../../styles/mixins';
 
 .select {
   @include flex-direction-row;
@@ -22,7 +22,7 @@
 
   position: relative;
   z-index: 1;
-  width: 100%;
+  flex-grow: 1;
 
   &_focus {
     outline: 1px solid $color-purple-illusionist;

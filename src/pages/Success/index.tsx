@@ -7,14 +7,14 @@ import Button from '../../components/UI/Button'
 const Success: React.FC = () => {
   const navigate = useNavigate()
 
-  const handlerClick = useCallback(() => {
+  const handleClick = useCallback(() => {
     navigate('/')
   }, [navigate])
 
   return (
     <Container title='Спасибо за заявку!'>
       <Complete />
-      <Button onClick={handlerClick}>Вернуться на главную</Button>
+      <Button onClick={handleClick}>Вернуться на главную</Button>
     </Container>
   )
 }

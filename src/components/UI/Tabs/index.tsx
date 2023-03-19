@@ -18,13 +18,13 @@ const Tabs: React.FC = () => {
     [styles.button_active]: !isIndividual,
   })
 
-  const handlerSetIndividual = useCallback(() => {
+  const handleSetIndividual = useCallback(() => {
     if (!isIndividual) {
       dispatch(setIsIndividual(true))
     }
   }, [isIndividual, dispatch])
 
-  const handlerSetEntity = useCallback(() => {
+  const handleSetEntity = useCallback(() => {
     if (isIndividual) {
       dispatch(setIsIndividual(false))
     }
@@ -32,10 +32,10 @@ const Tabs: React.FC = () => {
 
   return (
     <div className={styles.tabs}>
-      <Button className={classNameIndividual} onClick={handlerSetIndividual}>
+      <Button className={classNameIndividual} onClick={handleSetIndividual}>
         Физ. лицо
       </Button>
-      <Button className={classNameEntity} onClick={handlerSetEntity}>
+      <Button className={classNameEntity} onClick={handleSetEntity}>
         Юр. лицо
       </Button>
     </div>

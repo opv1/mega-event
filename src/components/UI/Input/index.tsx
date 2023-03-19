@@ -33,7 +33,7 @@ const Input: React.FC<Props> = forwardRef((props, ref) => {
     [styles.placeholder_active]: inputProps.value,
   })
 
-  const handlerClickEye = useCallback(() => {
+  const handleClickEye = useCallback(() => {
     if (inputType === 'password') {
       setInputType('text')
     } else {
@@ -41,7 +41,7 @@ const Input: React.FC<Props> = forwardRef((props, ref) => {
     }
   }, [inputType])
 
-  const handlerChange = useCallback(
+  const handleChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
       if (onChangeMask) {
         const { value } = event.target
@@ -74,7 +74,7 @@ const Input: React.FC<Props> = forwardRef((props, ref) => {
       <input
         {...inputProps}
         className={classNameInput}
-        onChange={handlerChange}
+        onChange={handleChange}
         type={inputType}
       />
       <span className={classNamePlaceholder}>{inputProps.placeholder}</span>
@@ -82,7 +82,7 @@ const Input: React.FC<Props> = forwardRef((props, ref) => {
         <button
           className={styles.button}
           type='button'
-          onClick={handlerClickEye}
+          onClick={handleClickEye}
         >
           {inputType === 'password' ? <EyeIcon /> : <EyeClosedIcon />}
         </button>

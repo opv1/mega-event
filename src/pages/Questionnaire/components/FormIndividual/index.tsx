@@ -45,7 +45,7 @@ const FormIndividual: React.FC = () => {
     date: '',
   })
 
-  const handlerChange = useCallback(
+  const handleChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
       const { name, value } = event.target
       setValues((prev) => ({ ...prev, [name]: value }))
@@ -53,15 +53,15 @@ const FormIndividual: React.FC = () => {
     [],
   )
 
-  const handlerChangeBirthday = useCallback((value: string) => {
+  const handleChangeBirthday = useCallback((value: string) => {
     setValues((prev) => ({ ...prev, birthday: value }))
   }, [])
 
-  const handlerChangePhone = useCallback((value: string) => {
+  const handleChangePhone = useCallback((value: string) => {
     setValues((prev) => ({ ...prev, phone: value }))
   }, [])
 
-  const handlerChangeCheckbox = useCallback(
+  const handleChangeCheckbox = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
       const { name, checked } = event.target
       setValues((prev) => ({
@@ -72,7 +72,7 @@ const FormIndividual: React.FC = () => {
     [],
   )
 
-  const handlerFocus = useCallback(
+  const handleFocus = useCallback(
     (event: React.FocusEvent<HTMLInputElement>) => {
       const { type, name, value } = event.target
 
@@ -88,7 +88,7 @@ const FormIndividual: React.FC = () => {
     [errors],
   )
 
-  const handlerBlur = useCallback(
+  const handleBlur = useCallback(
     (event: React.FocusEvent<HTMLInputElement>) => {
       const { type, value } = event.target
 
@@ -99,11 +99,11 @@ const FormIndividual: React.FC = () => {
     [],
   )
 
-  const handlerChangeSelect = useCallback((date: string) => {
+  const handleChangeSelect = useCallback((date: string) => {
     setValues((prev) => ({ ...prev, date: date }))
   }, [])
 
-  const handlerFocusSelect = useCallback(
+  const handleFocusSelect = useCallback(
     (name: string) => {
       if (errors[name] !== '') {
         setErrors((prev) => ({ ...prev, [name]: '' }))
@@ -112,7 +112,7 @@ const FormIndividual: React.FC = () => {
     [errors],
   )
 
-  const handlerSubmit = useCallback(
+  const handleSubmit = useCallback(
     async (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault()
 
@@ -140,14 +140,14 @@ const FormIndividual: React.FC = () => {
   )
 
   return (
-    <Form onSubmit={handlerSubmit} noValidate>
+    <Form onSubmit={handleSubmit} noValidate>
       <div className={styles.blocks}>
         <div className={styles.block}>
           <h3 className={styles.title}>Личные данные</h3>
           <Fieldset error={errors.name}>
             <Input
-              onChange={handlerChange}
-              onFocus={handlerFocus}
+              onChange={handleChange}
+              onFocus={handleFocus}
               type='text'
               name='name'
               value={values.name}
@@ -158,8 +158,8 @@ const FormIndividual: React.FC = () => {
           </Fieldset>
           <Fieldset error={errors.birthday}>
             <Input
-              onChangeMask={handlerChangeBirthday}
-              onFocus={handlerFocus}
+              onChangeMask={handleChangeBirthday}
+              onFocus={handleFocus}
               type='text'
               name='birthday'
               value={values.birthday}
@@ -170,9 +170,9 @@ const FormIndividual: React.FC = () => {
           </Fieldset>
           <Fieldset error={errors.phone}>
             <Input
-              onChangeMask={handlerChangePhone}
-              onFocus={handlerFocus}
-              onBlur={handlerBlur}
+              onChangeMask={handleChangePhone}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
               type='tel'
               name='phone'
               value={values.phone}
@@ -187,8 +187,8 @@ const FormIndividual: React.FC = () => {
           <h3 className={styles.title}>Выберите дату мероприятия</h3>
           <Fieldset error={errors.date}>
             <Select
-              onClick={handlerChangeSelect}
-              onFocus={handlerFocusSelect}
+              onClick={handleChangeSelect}
+              onFocus={handleFocusSelect}
               name='date'
               value={values.date}
               placeholder='День мероприятия'
@@ -200,7 +200,7 @@ const FormIndividual: React.FC = () => {
             <Label htmlFor='parking' direction='row'>
               <Checkbox
                 id='parking'
-                onChange={handlerChangeCheckbox}
+                onChange={handleChangeCheckbox}
                 name='parking'
                 checked={values.options.parking}
               />
@@ -209,7 +209,7 @@ const FormIndividual: React.FC = () => {
             <Label htmlFor='handout' direction='row'>
               <Checkbox
                 id='handout'
-                onChange={handlerChangeCheckbox}
+                onChange={handleChangeCheckbox}
                 name='handout'
                 checked={values.options.handout}
               />
@@ -218,7 +218,7 @@ const FormIndividual: React.FC = () => {
             <Label htmlFor='help' direction='row'>
               <Checkbox
                 id='help'
-                onChange={handlerChangeCheckbox}
+                onChange={handleChangeCheckbox}
                 name='help'
                 checked={values.options.help}
               />

@@ -29,7 +29,7 @@ const Login: React.FC = () => {
     password: '',
   })
 
-  const handlerChange = useCallback(
+  const handleChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
       const { name, value } = event.target
       setValues((prev) => ({ ...prev, [name]: value }))
@@ -37,7 +37,7 @@ const Login: React.FC = () => {
     [],
   )
 
-  const handlerFocus = useCallback(
+  const handleFocus = useCallback(
     (event: React.FocusEvent<HTMLInputElement>) => {
       const { name } = event.target
 
@@ -48,7 +48,7 @@ const Login: React.FC = () => {
     [errors],
   )
 
-  const handlerSubmit = useCallback(
+  const handleSubmit = useCallback(
     async (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault()
 
@@ -81,12 +81,12 @@ const Login: React.FC = () => {
 
   return (
     <Container title='Добро пожаловать'>
-      <Form onSubmit={handlerSubmit} noValidate>
+      <Form onSubmit={handleSubmit} noValidate>
         <div className={styles.block}>
           <Fieldset error={errors.email}>
             <Input
-              onChange={handlerChange}
-              onFocus={handlerFocus}
+              onChange={handleChange}
+              onFocus={handleFocus}
               type='email'
               name='email'
               value={values.email}
@@ -97,8 +97,8 @@ const Login: React.FC = () => {
           </Fieldset>
           <Fieldset error={errors.password}>
             <Input
-              onChange={handlerChange}
-              onFocus={handlerFocus}
+              onChange={handleChange}
+              onFocus={handleFocus}
               type='password'
               name='password'
               value={values.password}

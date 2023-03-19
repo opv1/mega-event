@@ -51,12 +51,12 @@ const Select: React.FC<Props> = forwardRef((props, ref) => {
     setIsShowOptions((prev) => !prev)
   }, [])
 
-  const handlerClickSelect = useCallback(() => {
+  const handleClickSelect = useCallback(() => {
     onFocus(name)
     toggleOptions()
   }, [name, onFocus, toggleOptions])
 
-  const handlerClickValue = useCallback(
+  const handleClickValue = useCallback(
     (date: string) => {
       if (date === value) {
         onClick('')
@@ -69,7 +69,7 @@ const Select: React.FC<Props> = forwardRef((props, ref) => {
     [value, onClick, toggleOptions],
   )
 
-  const handlerClickOutside = useCallback(
+  const handleClickOutside = useCallback(
     (event: MouseEvent) => {
       if (selectRef.current) {
         const selectElement = selectRef.current
@@ -84,7 +84,7 @@ const Select: React.FC<Props> = forwardRef((props, ref) => {
     [toggleOptions],
   )
 
-  const handlerKeyupDocument = useCallback(
+  const handleKeyupDocument = useCallback(
     (event: KeyboardEvent) => {
       if (isShowOptions && event.code === 'Tab') {
         toggleOptions()
@@ -93,7 +93,7 @@ const Select: React.FC<Props> = forwardRef((props, ref) => {
     [isShowOptions, toggleOptions],
   )
 
-  const handlerKeyupSelect = useCallback(
+  const handleKeyupSelect = useCallback(
     (event: KeyboardEvent) => {
       if (!isShowOptions && event.code === 'Space') {
         toggleOptions()
@@ -107,17 +107,17 @@ const Select: React.FC<Props> = forwardRef((props, ref) => {
   const optionNodes = useMemo(
     () =>
       dates.map((date, index) => (
-        <span
+        <li
           key={index}
           className={`${styles.option} ${
             date === value && styles['option_active']
           }`}
-          onClick={() => handlerClickValue(date)}
+          onClick={() => handleClickValue(date)}
         >
           {date}
-        </span>
+        </li>
       )),
-    [dates, value, handlerClickValue],
+    [dates, value, handleClickValue],
   )
 
   useImperativeHandle(ref, () => {
@@ -131,41 +131,41 @@ const Select: React.FC<Props> = forwardRef((props, ref) => {
 
     if (selectRef.current) {
       selectRefCurrent = selectRef.current
-      selectRefCurrent.addEventListener('keyup', handlerKeyupSelect)
+      selectRefCurrent.addEventListener('keyup', handleKeyupSelect)
     }
 
     return () => {
       if (selectRefCurrent) {
-        selectRefCurrent.removeEventListener('keyup', handlerKeyupSelect)
+        selectRefCurrent.removeEventListener('keyup', handleKeyupSelect)
       }
     }
-  }, [handlerKeyupSelect])
+  }, [handleKeyupSelect])
 
   useEffect(() => {
     if (isShowOptions) {
-      document.addEventListener('click', handlerClickOutside, true)
-      document.addEventListener('keyup', handlerKeyupDocument)
+      document.addEventListener('click', handleClickOutside, true)
+      document.addEventListener('keyup', handleKeyupDocument)
     } else {
-      document.removeEventListener('click', handlerClickOutside, true)
-      document.removeEventListener('keyup', handlerKeyupDocument)
+      document.removeEventListener('click', handleClickOutside, true)
+      document.removeEventListener('keyup', handleKeyupDocument)
     }
 
     return () => {
-      document.removeEventListener('click', handlerClickOutside, true)
-      document.removeEventListener('keyup', handlerKeyupDocument)
+      document.removeEventListener('click', handleClickOutside, true)
+      document.removeEventListener('keyup', handleKeyupDocument)
     }
-  }, [isShowOptions, handlerClickOutside, handlerKeyupDocument])
+  }, [isShowOptions, handleClickOutside, handleKeyupDocument])
 
   return (
     <div className={styles.select} ref={selectRef} tabIndex={0}>
-      <span className={classNameValue} onClick={handlerClickSelect}>
+      <span className={classNameValue} onClick={handleClickSelect}>
         {value}
       </span>
       <span className={classNamePlaceholder}>{placeholder}</span>
       <div className={classNameIcon}>
         <CaretIcon />
       </div>
-      <div className={classNameOptions}>{optionNodes}</div>
+      <ul className={classNameOptions}>{optionNodes}</ul>
     </div>
   )
 })

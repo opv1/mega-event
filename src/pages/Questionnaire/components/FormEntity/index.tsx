@@ -183,7 +183,7 @@ const FormEntity: React.FC = () => {
           <h3 className={styles.title}>Выберите дату мероприятия</h3>
           <Fieldset error={errors.date}>
             <Select
-              onClick={handleChangeSelect}
+              onChange={handleChangeSelect}
               onFocus={handleFocusSelect}
               name='date'
               value={values.date}

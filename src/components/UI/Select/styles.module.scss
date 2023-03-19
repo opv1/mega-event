@@ -1,6 +1,6 @@
-@import '../../../styles/variables';
-@import '../../../styles/typography';
-@import '../../../styles/mixins';
+@import "../../../styles/variables";
+@import "../../../styles/typography";
+@import "../../../styles/mixins";
 
 .select {
   @include flex-direction-row;
@@ -98,8 +98,8 @@
     background-color: $color-purple-illusionist;
   }
 
-  &:focus {
-    outline: 1px solid $color-purple-illusionist;
+  &_focus {
+    outline: 1px solid $color-white;
   }
 
   &:hover {

@@ -15,7 +15,7 @@ import CaretIcon from '../../../assets/CaretIcon'
 import styles from './styles.module.scss'
 
 type Props = {
-  onClick: (date: string) => void
+  onChange: (date: string) => void
   onFocus: (name: string) => void
   name: string
   value: string
@@ -25,11 +25,12 @@ type Props = {
 }
 
 const Select: React.FC<Props> = forwardRef((props, ref) => {
-  const { onClick, onFocus, name, value, placeholder, validationRules } = props
+  const { onChange, onFocus, name, value, placeholder, validationRules } = props
 
   const selectRef = useRef<HTMLDivElement>(null)
 
   const [isShowOptions, setIsShowOptions] = useState<boolean>(false)
+  const [optionIndex, setOptionIndex] = useState<number>(0)
 
   const classNameValue = classnames(styles.value, {
     [styles.value_focus]: isShowOptions,
@@ -47,9 +48,23 @@ const Select: React.FC<Props> = forwardRef((props, ref) => {
     [styles.options_display]: isShowOptions,
   })
 
+  const dates = useMemo(() => getDates(), [])
+
   const toggleOptions = useCallback(() => {
     setIsShowOptions((prev) => !prev)
   }, [])
+
+  const handleBlur = useCallback(() => {
+    setIsShowOptions(false)
+  }, [])
+
+  const handleChange = useCallback(() => {
+    if (dates[optionIndex] === value) {
+      onChange('')
+    } else {
+      onChange(dates[optionIndex])
+    }
+  }, [value, optionIndex, dates, onChange])
 
   const handleClickValue = useCallback(
     (event: React.MouseEvent<HTMLSpanElement>) => {
@@ -61,70 +76,76 @@ const Select: React.FC<Props> = forwardRef((props, ref) => {
     [name, onFocus, toggleOptions],
   )
 
+  const handleMouseEnter = useCallback((index: number) => {
+    setOptionIndex(index)
+  }, [])
+
   const handleClickOption = useCallback(
-    (event: React.MouseEvent<HTMLLIElement>, date: string) => {
+    (event: React.MouseEvent<HTMLLIElement>) => {
       event.stopPropagation()
 
-      if (date === value) {
-        onClick('')
-      } else {
-        onClick(date)
-      }
-
+      handleChange()
       toggleOptions()
     },
-    [value, onClick, toggleOptions],
-  )
-
-  const handleClickOutside = useCallback(
-    (event: MouseEvent) => {
-      if (selectRef.current) {
-        const selectElement = selectRef.current
-        const target = event.target as Element
-        const isClickOutside = !selectElement.contains(target)
-
-        if (isClickOutside) {
-          toggleOptions()
-        }
-      }
-    },
-    [toggleOptions],
-  )
-
-  const handleKeyupDocument = useCallback(
-    (event: KeyboardEvent) => {
-      if (isShowOptions && event.code === 'Tab') {
-        toggleOptions()
-      }
-    },
-    [isShowOptions, toggleOptions],
+    [handleChange, toggleOptions],
   )
 
   const handleKeyupSelect = useCallback(
     (event: KeyboardEvent) => {
-      if (!isShowOptions && event.code === 'Space') {
-        toggleOptions()
+      const { code } = event
+
+      switch (code) {
+        case 'Tab':
+          if (isShowOptions) {
+            toggleOptions()
+          }
+          break
+        case 'Space':
+          toggleOptions()
+          break
+        case 'ArrowUp':
+        case 'ArrowDown':
+          if (isShowOptions) {
+            const newOptionIndex = optionIndex + (code === 'ArrowDown' ? 1 : -1)
+
+            if (newOptionIndex >= 0 && newOptionIndex < dates.length) {
+              setOptionIndex(newOptionIndex)
+            }
+          }
+          break
+        case 'Enter':
+          if (isShowOptions) {
+            handleChange()
+            toggleOptions()
+          }
+          break
+        default:
+          break
       }
     },
-    [isShowOptions, toggleOptions],
+    [isShowOptions, optionIndex, dates, handleChange, toggleOptions],
   )
-
-  const dates = useMemo(() => getDates(), [])
 
   const optionNodes = useMemo(
     () =>
-      dates.map((date, index) => (
-        <li
-          key={index}
-          className={`${styles.option} ${
-            date === value && styles['option_active']
-          }`}
-          onClick={(event) => handleClickOption(event, date)}
-        >
-          {date}
-        </li>
-      )),
-    [dates, value, handleClickOption],
+      dates.map((date, index) => {
+        const classNameOption = classnames(styles.option, {
+          [styles.option_active]: date === value,
+          [styles.option_focus]: index === optionIndex,
+        })
+
+        return (
+          <li
+            key={index}
+            className={classNameOption}
+            onMouseEnter={() => handleMouseEnter(index)}
+            onClick={(event) => handleClickOption(event)}
+          >
+            {date}
+          </li>
+        )
+      }),
+    [dates, value, optionIndex, handleClickOption, handleMouseEnter],
   )
 
   useImperativeHandle(ref, () => {
@@ -132,6 +153,12 @@ const Select: React.FC<Props> = forwardRef((props, ref) => {
       validate: () => inputValidate(validationRules, name, value),
     }
   })
+
+  useEffect(() => {
+    if (!isShowOptions) {
+      setOptionIndex(0)
+    }
+  }, [isShowOptions])
 
   useEffect(() => {
     let selectRefCurrent: HTMLDivElement | null = null
@@ -148,23 +175,13 @@ const Select: React.FC<Props> = forwardRef((props, ref) => {
     }
   }, [handleKeyupSelect])
 
-  useEffect(() => {
-    if (isShowOptions) {
-      document.addEventListener('click', handleClickOutside, true)
-      document.addEventListener('keyup', handleKeyupDocument)
-    } else {
-      document.removeEventListener('click', handleClickOutside, true)
-      document.removeEventListener('keyup', handleKeyupDocument)
-    }
-
-    return () => {
-      document.removeEventListener('click', handleClickOutside, true)
-      document.removeEventListener('keyup', handleKeyupDocument)
-    }
-  }, [isShowOptions, handleClickOutside, handleKeyupDocument])
-
   return (
-    <div className={styles.select} ref={selectRef} tabIndex={0}>
+    <div
+      className={styles.select}
+      onBlur={handleBlur}
+      ref={selectRef}
+      tabIndex={0}
+    >
       <span className={classNameValue} onClick={handleClickValue}>
         {value}
       </span>

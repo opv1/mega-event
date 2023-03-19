@@ -1,5 +1,5 @@
 import React, { memo, useMemo } from 'react'
-import { useAppSelector } from '../../../../redux/hooks'
+import { useAppSelector } from 'state/hooks'
 import styles from './styles.module.scss'
 
 const Complete: React.FC = () => {

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Navigate, Outlet, useLocation } from 'react-router-dom'
-import { useAppSelector } from '../../redux/hooks'
+import { useAppSelector } from 'state/hooks'
 
 const RouteProtected: React.FC = () => {
   const location = useLocation()

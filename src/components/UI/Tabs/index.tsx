@@ -1,8 +1,8 @@
 import React, { memo, useCallback } from 'react'
 import classnames from 'classnames'
-import { useAppDispatch, useAppSelector } from '../../../redux/hooks'
-import { setIsIndividual } from '../../../redux/appSlice'
-import Button from '../Button'
+import { useAppDispatch, useAppSelector } from 'state/hooks'
+import { setIsIndividual } from 'state/appSlice'
+import Button from 'components/UI/Button'
 import styles from './styles.module.scss'
 
 const Tabs: React.FC = () => {

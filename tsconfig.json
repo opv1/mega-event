@@ -2,6 +2,7 @@
   "compilerOptions": {
     "allowJs": false,
     "allowSyntheticDefaultImports": true,
+    "baseUrl": "src",
     "esModuleInterop": false,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
@@ -12,6 +13,14 @@
     "noEmit": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+    "paths": {
+      "assets/*": ["assets/*"],
+      "components/*": ["components/*"],
+      "helpers/*": ["helpers/*"],
+      "pages/*": ["pages/*"],
+      "state/*": ["redux/*"],
+      "types/*": ["types/*"]
+    },
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,

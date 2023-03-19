@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { DataType } from '../types'
+import { DataType } from 'types'
 
 interface IInitialState {
   isAuth: boolean

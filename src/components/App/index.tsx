@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { Routes, Route } from 'react-router-dom'
-import RouteProtected from '../Routes/RouteProtected'
-import Layout from '../Layout'
-import Login from '../../pages/Login'
-import Questionnaire from '../../pages/Questionnaire'
-import Success from '../../pages/Success'
-import NotFound from '../../pages/NotFound'
+import RouteProtected from 'components/Routes/RouteProtected'
+import Layout from 'components/Layout'
+import Login from 'pages/Login'
+import Questionnaire from 'pages/Questionnaire'
+import Success from 'pages/Success'
+import NotFound from 'pages/NotFound'
 import { fontsForLoad } from '../../const'
 
 const App: React.FC = () => {

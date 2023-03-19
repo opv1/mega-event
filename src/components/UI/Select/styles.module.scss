@@ -102,8 +102,10 @@
     outline: 1px solid $color-white;
   }
 
-  &:hover {
-    color: $color-white;
-    background-color: $color-purple-illusionist;
+  @media screen and (min-width: 875px) {
+    &:hover {
+      color: $color-white;
+      background-color: $color-purple-illusionist;
+    }
   }
 }

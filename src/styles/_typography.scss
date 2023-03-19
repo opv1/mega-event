@@ -106,11 +106,6 @@
     outline: 1px solid $color-white;
   }
 
-  &:hover {
-    color: $color-white;
-    background-color: $color-gloomy-purple;
-  }
-
   &:active {
     background-color: $color-gloomy-purple;
   }
@@ -118,6 +113,13 @@
   &:disabled {
     color: $color-wind-cave;
     background-color: $color-moonless-mystery;
+  }
+
+  @media screen and (min-width: 875px) {
+    &:hover {
+      color: $color-white;
+      background-color: $color-gloomy-purple;
+    }
   }
 }
 

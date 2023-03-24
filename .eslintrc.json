@@ -36,6 +36,7 @@
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-unused-vars": "error",
     "import/no-named-as-default": "off",
+    "import/no-unresolved": "off",
     "no-caller": "error",
     "no-class-assign": "error",
     "no-console": "warn",

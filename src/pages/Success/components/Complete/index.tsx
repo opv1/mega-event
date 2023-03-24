@@ -1,4 +1,4 @@
-import React, { memo, useMemo } from 'react'
+import React, { memo, useCallback, useMemo } from 'react'
 import { useAppSelector } from 'state/hooks'
 import styles from './styles.module.scss'
 
@@ -11,6 +11,36 @@ const Complete: React.FC = () => {
   )
 
   const objectEntries = useMemo(() => Object.entries(data.options), [data])
+
+  const renderOptions = useCallback(() => {
+    return (
+      <>
+        {objectEntries.map(([key, value]) => {
+          if (value && key === 'parking') {
+            return (
+              <span key={key} className={styles.subtitle}>
+                Нужна парковка
+              </span>
+            )
+          } else if (value && key === 'handout') {
+            return (
+              <span key={key} className={styles.subtitle}>
+                Хочу получить раздаточный материал
+              </span>
+            )
+          } else if (value && key === 'help') {
+            return (
+              <span key={key} className={styles.subtitle}>
+                Нужна помощь сопровождающего
+              </span>
+            )
+          } else {
+            return null
+          }
+        })}
+      </>
+    )
+  }, [objectEntries])
 
   return (
     <div className={styles.complete}>
@@ -44,29 +74,7 @@ const Complete: React.FC = () => {
       )}
       <div className={styles.field}>
         <span className={styles.title}>Опции</span>
-        {objectEntries.map(([key, value]) => {
-          if (value && key === 'parking') {
-            return (
-              <span key={key} className={styles.subtitle}>
-                Нужна парковка
-              </span>
-            )
-          } else if (value && key === 'handout') {
-            return (
-              <span key={key} className={styles.subtitle}>
-                Хочу получить раздаточный материал
-              </span>
-            )
-          } else if (value && key === 'help') {
-            return (
-              <span key={key} className={styles.subtitle}>
-                Нужна помощь сопровождающего
-              </span>
-            )
-          } else {
-            return null
-          }
-        })}
+        {renderOptions()}
       </div>
     </div>
   )

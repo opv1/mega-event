@@ -113,10 +113,11 @@
   &:disabled {
     color: $color-wind-cave;
     background-color: $color-moonless-mystery;
+    cursor: not-allowed;
   }
 
   @media screen and (min-width: 875px) {
-    &:hover {
+    &:not(:disabled):hover {
       color: $color-white;
       background-color: $color-gloomy-purple;
     }

@@ -1,5 +1,10 @@
-import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import { defineConfig, UserConfig } from 'vite'
+import { InlineConfig } from 'vitest'
+
+interface DefineConfig extends UserConfig {
+  test: InlineConfig
+}
 
 export default defineConfig({
   plugins: [react()],
@@ -13,4 +18,9 @@ export default defineConfig({
       types: '/src/types',
     },
   },
-})
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: ['./src/setupTests.ts'],
+  },
+} as DefineConfig)

@@ -1,7 +1,7 @@
 import { addDays, format } from 'date-fns'
-import ru from 'date-fns/locale/ru'
+import { ru } from 'date-fns/locale'
 
-const getDates = (): string[] => {
+export const getDates = (): string[] => {
   const today = new Date()
   const array = []
 
@@ -13,5 +13,3 @@ const getDates = (): string[] => {
 
   return array
 }
-
-export default getDates

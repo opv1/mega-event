@@ -1,4 +1,4 @@
-const inputMask = (value: string, mask: string): string => {
+export const inputMask = (value: string, mask: string): string => {
   let i = 0
   let val = value.replace(/\D/g, '')
   const def = mask.replace(/\D/g, '')
@@ -15,5 +15,3 @@ const inputMask = (value: string, mask: string): string => {
       : a
   })
 }
-
-export default inputMask

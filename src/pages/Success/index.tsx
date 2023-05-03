@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
-import Container from 'components/Container'
+import { Container } from 'components/Container'
 import Button from 'components/UI/Button'
 import Complete from './components/Complete'
 

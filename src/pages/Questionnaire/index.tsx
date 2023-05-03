@@ -1,5 +1,5 @@
 import React from 'react'
-import Container from 'components/Container'
+import { Container } from 'components/Container'
 import Tabs from 'components/UI/Tabs'
 import FormIndividual from './components/FormIndividual'
 import FormEntity from './components/FormEntity'

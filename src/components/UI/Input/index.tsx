@@ -6,10 +6,10 @@ import React, {
   useState,
 } from 'react'
 import classnames from 'classnames'
-import inputValidate from 'helpers/inputValidate'
-import inputMask from 'helpers/inputMask'
-import EyeIcon from 'assets/EyeIcon'
-import EyeClosedIcon from 'assets/EyeClosedIcon'
+import { inputValidate } from 'helpers/inputValidate'
+import { inputMask } from 'helpers/inputMask'
+import { EyeIcon } from 'assets/EyeIcon'
+import { EyeClosedIcon } from 'assets/EyeClosedIcon'
 import styles from './styles.module.scss'
 
 type Props = {

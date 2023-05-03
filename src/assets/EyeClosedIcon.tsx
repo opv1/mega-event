@@ -1,6 +1,6 @@
 import React from 'react'
 
-const EyeClosedIcon: React.FC = () => {
+export const EyeClosedIcon: React.FC = () => {
   return (
     <svg
       width='24'
@@ -19,5 +19,3 @@ const EyeClosedIcon: React.FC = () => {
     </svg>
   )
 }
-
-export default EyeClosedIcon

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const CaretIcon: React.FC = () => {
+export const CaretIcon: React.FC = () => {
   return (
     <svg
       width='10'
@@ -16,5 +16,3 @@ const CaretIcon: React.FC = () => {
     </svg>
   )
 }
-
-export default CaretIcon

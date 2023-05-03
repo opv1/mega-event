@@ -6,7 +6,7 @@ interface IReturn {
   error: string
 }
 
-const inputValidate = (
+export const inputValidate = (
   validationRules: string | undefined,
   name: string | undefined,
   value: string | number | readonly string[] | undefined,
@@ -97,5 +97,3 @@ const inputValidate = (
 
   return { isValid: true, name: '', error: '' }
 }
-
-export default inputValidate

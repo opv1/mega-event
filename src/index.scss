@@ -1,5 +1,5 @@
-@import "./assets/fonts/fonts";
-@import "./styles/variables";
+@import './assets/fonts/fonts';
+@import './styles/variables';
 
 #root {
   height: 100%;
@@ -39,7 +39,7 @@ input {
   border: none;
 }
 
-input[type="number"] {
+input[type='number'] {
   &::-webkit-inner-spin-button,
   &::-webkit-outer-spin-button {
     appearance: none;

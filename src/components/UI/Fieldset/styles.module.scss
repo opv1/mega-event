@@ -1,6 +1,6 @@
-@import "../../../styles/variables";
-@import "../../../styles/typography";
-@import "../../../styles/mixins";
+@import '../../../styles/variables';
+@import '../../../styles/typography';
+@import '../../../styles/mixins';
 
 .fieldset {
   @include flex-direction-column;

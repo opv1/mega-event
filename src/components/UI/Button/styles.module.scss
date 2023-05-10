@@ -1,5 +1,5 @@
-@import "../../../styles/variables";
-@import "../../../styles/typography";
+@import '../../../styles/variables';
+@import '../../../styles/typography';
 
 .button {
   @include regular-button($color-white);

@@ -1,5 +1,5 @@
-@import "../../../styles/variables";
-@import "../../../styles/mixins";
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
 
 .box {
   @include flex-direction-row;
@@ -13,7 +13,7 @@
   opacity: 0;
 
   &:checked + .checkbox {
-    background-image: url("../../../assets/checkbox-check.svg");
+    background-image: url('../../../assets/checkbox-check.svg');
   }
 
   &:focus + .checkbox {
@@ -29,7 +29,7 @@
   border-radius: 4px;
   width: 24px;
   height: 24px;
-  background-image: url("../../../assets/checkbox.svg");
+  background-image: url('../../../assets/checkbox.svg');
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;

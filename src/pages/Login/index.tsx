@@ -1,4 +1,10 @@
-import React, { createRef, memo, useCallback, useRef, useState } from 'react'
+import React, {
+  MutableRefObject,
+  memo,
+  useCallback,
+  useRef,
+  useState,
+} from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 import { useAppDispatch } from 'state/hooks'
@@ -20,7 +26,10 @@ export const Login = memo(() => {
 
   const from = location.state?.from?.pathname
 
-  const inputsRefs = useRef<any[]>([createRef(), createRef()])
+  const inputsRefs = useRef<MutableRefObject<HTMLInputElement | any>[]>([
+    useRef(),
+    useRef(),
+  ])
 
   const [values, setValues] = useState<LoginInterface>({
     email: '',

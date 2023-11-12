@@ -35,7 +35,7 @@ export const App = () => {
           <Route path={RoutePath.Questionnaire} element={<Questionnaire />} />
           <Route path={RoutePath.Success} element={<Success />} />
         </Route>
-        <Route path='*' element={<NotFound />} />
+        <Route path={RoutePath.NotFound} element={<NotFound />} />
       </Route>
     </Routes>
   ) : null

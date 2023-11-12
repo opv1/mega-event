@@ -1,4 +1,10 @@
-import React, { createRef, memo, useCallback, useRef, useState } from 'react'
+import React, {
+  MutableRefObject,
+  memo,
+  useCallback,
+  useRef,
+  useState,
+} from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { useAppDispatch } from 'state/hooks'
@@ -20,11 +26,11 @@ export const FormIndividual = memo(() => {
 
   const navigate = useNavigate()
 
-  const inputsRefs = useRef<any[]>([
-    createRef(),
-    createRef(),
-    createRef(),
-    createRef(),
+  const inputsRefs = useRef<MutableRefObject<HTMLInputElement | any>[]>([
+    useRef(),
+    useRef(),
+    useRef(),
+    useRef(),
   ])
 
   const [values, setValues] = useState<IndividualValuesType>({

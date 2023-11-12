@@ -1,5 +1,6 @@
-import React, { createRef, useCallback, useRef, useState } from 'react'
+import React, { createRef, memo, useCallback, useRef, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
+
 import { useAppDispatch } from 'state/hooks'
 import { setIsAuth } from 'state/appSlice'
 import { Container } from 'components/Container'
@@ -7,24 +8,26 @@ import { Form } from 'components/Form'
 import { Fieldset } from 'components/UI/Fieldset'
 import { Input } from 'components/UI/Input'
 import { Button } from 'components/UI/Button'
-import { ILogin, IErrors } from 'types'
+import { ErrorsInterface, LoginInterface } from 'types'
+
 import styles from './styles.module.scss'
 
-const Login: React.FC = () => {
+export const Login = memo(() => {
   const dispatch = useAppDispatch()
 
   const navigate = useNavigate()
   const location = useLocation()
+
   const from = location.state?.from?.pathname
 
   const inputsRefs = useRef<any[]>([createRef(), createRef()])
 
-  const [values, setValues] = useState<ILogin>({
+  const [values, setValues] = useState<LoginInterface>({
     email: '',
     password: '',
   })
 
-  const [errors, setErrors] = useState<IErrors>({
+  const [errors, setErrors] = useState<ErrorsInterface>({
     email: '',
     password: '',
   })
@@ -114,6 +117,4 @@ const Login: React.FC = () => {
       </Form>
     </Container>
   )
-}
-
-export default Login
+})

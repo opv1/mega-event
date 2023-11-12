@@ -1,3 +1,15 @@
-import Form from './Form'
+import React, { memo } from 'react'
 
-export { Form }
+import styles from './styles.module.scss'
+
+type FormPropsType = React.FormHTMLAttributes<HTMLFormElement>
+
+export const Form = memo((props: FormPropsType) => {
+  const { children, ...formProps } = props
+
+  return (
+    <form {...formProps} className={styles.form}>
+      {children}
+    </form>
+  )
+})

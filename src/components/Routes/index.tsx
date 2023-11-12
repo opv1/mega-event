@@ -1,3 +1,3 @@
-import RouteProtected from './RouteProtected'
+import { RouteProtected } from './RouteProtected'
 
 export { RouteProtected }

@@ -1,34 +1,38 @@
 import React, { memo, useCallback, useMemo } from 'react'
+
 import { useAppSelector } from 'state/hooks'
+import { FormType } from 'types/index'
+
 import styles from './styles.module.scss'
 
-const Complete: React.FC = () => {
+enum OptionsType {
+  Parking = 'parking',
+  Handout = 'handout',
+  Help = 'help',
+}
+
+export const Complete = memo(() => {
   const { data } = useAppSelector((state) => state.app)
 
-  const participantType = useMemo(
-    () => (data.type === 'individual' ? 'Физ. лицо' : 'Юр. лицо'),
-    [data],
-  )
-
-  const objectEntries = useMemo(() => Object.entries(data.options), [data])
+  const entriesOptions = useMemo(() => Object.entries(data.options), [data])
 
   const renderOptions = useCallback(() => {
     return (
       <>
-        {objectEntries.map(([key, value]) => {
-          if (value && key === 'parking') {
+        {entriesOptions.map(([key, value]) => {
+          if (value && key === OptionsType.Parking) {
             return (
               <span key={key} className={styles.subtitle}>
                 Нужна парковка
               </span>
             )
-          } else if (value && key === 'handout') {
+          } else if (value && key === OptionsType.Handout) {
             return (
               <span key={key} className={styles.subtitle}>
                 Хочу получить раздаточный материал
               </span>
             )
-          } else if (value && key === 'help') {
+          } else if (value && key === OptionsType.Help) {
             return (
               <span key={key} className={styles.subtitle}>
                 Нужна помощь сопровождающего
@@ -40,7 +44,7 @@ const Complete: React.FC = () => {
         })}
       </>
     )
-  }, [objectEntries])
+  }, [entriesOptions])
 
   return (
     <div className={styles.complete}>
@@ -50,7 +54,9 @@ const Complete: React.FC = () => {
       </div>
       <div className={styles.field}>
         <span className={styles.title}>Тип участника</span>
-        <span className={styles.subtitle}>{participantType}</span>
+        <span className={styles.subtitle}>
+          {data.type === FormType.Individual ? 'Физ. лицо' : 'Юр. лицо'}
+        </span>
       </div>
       <div className={styles.field}>
         <span className={styles.title}>День мероприятия</span>
@@ -78,6 +84,4 @@ const Complete: React.FC = () => {
       </div>
     </div>
   )
-}
-
-export default memo(Complete)
+})

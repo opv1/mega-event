@@ -1,11 +1,13 @@
-import React from 'react'
+import React, { memo } from 'react'
+
 import { Container } from 'components/Container'
 import { Tabs } from 'components/UI/Tabs'
-import FormIndividual from './components/FormIndividual'
-import FormEntity from './components/FormEntity'
 import { useAppSelector } from 'state/hooks'
 
-const Questionnaire: React.FC = () => {
+import { FormIndividual } from './components/FormIndividual'
+import { FormEntity } from './components/FormEntity'
+
+export const Questionnaire = memo(() => {
   const { isIndividual } = useAppSelector((state) => state.app)
 
   return (
@@ -14,6 +16,4 @@ const Questionnaire: React.FC = () => {
       {isIndividual ? <FormIndividual /> : <FormEntity />}
     </Container>
   )
-}
-
-export default Questionnaire
+})

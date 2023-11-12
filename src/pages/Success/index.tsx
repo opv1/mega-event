@@ -1,10 +1,12 @@
-import React, { useCallback } from 'react'
+import React, { memo, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
+
 import { Container } from 'components/Container'
 import { Button } from 'components/UI/Button'
-import Complete from './components/Complete'
 
-const Success: React.FC = () => {
+import { Complete } from './components/Complete'
+
+export const Success = memo(() => {
   const navigate = useNavigate()
 
   const handleClick = useCallback(() => {
@@ -17,6 +19,4 @@ const Success: React.FC = () => {
       <Button onClick={handleClick}>Вернуться на главную</Button>
     </Container>
   )
-}
-
-export default Success
+})

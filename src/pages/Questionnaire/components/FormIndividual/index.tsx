@@ -1,19 +1,21 @@
 import React, { createRef, memo, useCallback, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+
 import { useAppDispatch } from 'state/hooks'
 import { setData } from 'state/appSlice'
 import { Form } from 'components/Form'
 import { Fieldset } from 'components/UI/Fieldset'
-import { Label } from 'components/UI/Label'
+import { Label, LabelDirection } from 'components/UI/Label'
 import { Input } from 'components/UI/Input'
 import { Button } from 'components/UI/Button'
 import { Select } from 'components/UI/Select'
 import { Checkbox } from 'components/UI/Checkbox'
 import { inputMask } from 'helpers/inputMask'
-import { IIndividualValues, IErrors } from 'types'
+import { ErrorsInterface, FormType, IndividualValuesType } from 'types'
+
 import styles from './styles.module.scss'
 
-const FormIndividual: React.FC = () => {
+export const FormIndividual = memo(() => {
   const dispatch = useAppDispatch()
 
   const navigate = useNavigate()
@@ -25,8 +27,8 @@ const FormIndividual: React.FC = () => {
     createRef(),
   ])
 
-  const [values, setValues] = useState<IIndividualValues>({
-    type: 'individual',
+  const [values, setValues] = useState<IndividualValuesType>({
+    type: FormType.Individual,
     name: '',
     birthday: '',
     phone: '',
@@ -38,7 +40,7 @@ const FormIndividual: React.FC = () => {
     },
   })
 
-  const [errors, setErrors] = useState<IErrors>({
+  const [errors, setErrors] = useState<ErrorsInterface>({
     name: '',
     birthday: '',
     phone: '',
@@ -197,7 +199,7 @@ const FormIndividual: React.FC = () => {
             />
           </Fieldset>
           <div className={styles.checkboxes}>
-            <Label htmlFor='parking' direction='row'>
+            <Label htmlFor='parking' direction={LabelDirection.Row}>
               <Checkbox
                 id='parking'
                 onChange={handleChangeCheckbox}
@@ -206,7 +208,7 @@ const FormIndividual: React.FC = () => {
               />
               Нужна парковка
             </Label>
-            <Label htmlFor='handout' direction='row'>
+            <Label htmlFor='handout' direction={LabelDirection.Row}>
               <Checkbox
                 id='handout'
                 onChange={handleChangeCheckbox}
@@ -215,7 +217,7 @@ const FormIndividual: React.FC = () => {
               />
               Хочу получить раздаточный материал
             </Label>
-            <Label htmlFor='help' direction='row'>
+            <Label htmlFor='help' direction={LabelDirection.Row}>
               <Checkbox
                 id='help'
                 onChange={handleChangeCheckbox}
@@ -230,6 +232,4 @@ const FormIndividual: React.FC = () => {
       <Button type='submit'>Отправить заявку</Button>
     </Form>
   )
-}
-
-export default memo(FormIndividual)
+})

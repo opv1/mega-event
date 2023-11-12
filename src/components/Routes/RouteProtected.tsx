@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { Navigate, Outlet, useLocation } from 'react-router-dom'
+
 import { useAppSelector } from 'state/hooks'
 
-const RouteProtected: React.FC = () => {
+export const RouteProtected = memo(() => {
   const location = useLocation()
 
   const { isAuth } = useAppSelector((state) => state.app)
@@ -12,6 +13,4 @@ const RouteProtected: React.FC = () => {
   ) : (
     <Navigate to='/' state={{ from: location }} replace />
   )
-}
-
-export default RouteProtected
+})

@@ -1,19 +1,21 @@
 import React, { createRef, memo, useCallback, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+
 import { useAppDispatch } from 'state/hooks'
 import { setData } from 'state/appSlice'
 import { Form } from 'components/Form'
 import { Fieldset } from 'components/UI/Fieldset'
-import { Label } from 'components/UI/Label'
+import { Label, LabelDirection } from 'components/UI/Label'
 import { Input } from 'components/UI/Input'
 import { Button } from 'components/UI/Button'
 import { Select } from 'components/UI/Select'
 import { Checkbox } from 'components/UI/Checkbox'
 import { inputMask } from 'helpers/inputMask'
-import { IEntityValues, IErrors } from 'types'
+import { EntityValuesType, ErrorsInterface, FormType } from 'types'
+
 import styles from './styles.module.scss'
 
-const FormEntity: React.FC = () => {
+export const FormEntity = memo(() => {
   const dispatch = useAppDispatch()
 
   const navigate = useNavigate()
@@ -25,8 +27,8 @@ const FormEntity: React.FC = () => {
     createRef(),
   ])
 
-  const [values, setValues] = useState<IEntityValues>({
-    type: 'entity',
+  const [values, setValues] = useState<EntityValuesType>({
+    type: FormType.Entity,
     name: '',
     position: '',
     phone: '',
@@ -38,7 +40,7 @@ const FormEntity: React.FC = () => {
     },
   })
 
-  const [errors, setErrors] = useState<IErrors>({
+  const [errors, setErrors] = useState<ErrorsInterface>({
     name: '',
     position: '',
     phone: '',
@@ -193,7 +195,7 @@ const FormEntity: React.FC = () => {
             />
           </Fieldset>
           <div className={styles.checkboxes}>
-            <Label htmlFor='parking' direction='row'>
+            <Label htmlFor='parking' direction={LabelDirection.Row}>
               <Checkbox
                 id='parking'
                 onChange={handleChangeCheckbox}
@@ -202,7 +204,7 @@ const FormEntity: React.FC = () => {
               />
               Нужна парковка
             </Label>
-            <Label htmlFor='handout' direction='row'>
+            <Label htmlFor='handout' direction={LabelDirection.Row}>
               <Checkbox
                 id='handout'
                 onChange={handleChangeCheckbox}
@@ -211,7 +213,7 @@ const FormEntity: React.FC = () => {
               />
               Хочу получить раздаточный материал
             </Label>
-            <Label htmlFor='help' direction='row'>
+            <Label htmlFor='help' direction={LabelDirection.Row}>
               <Checkbox
                 id='help'
                 onChange={handleChangeCheckbox}
@@ -226,6 +228,4 @@ const FormEntity: React.FC = () => {
       <Button type='submit'>Отправить заявку</Button>
     </Form>
   )
-}
-
-export default memo(FormEntity)
+})

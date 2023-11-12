@@ -1,16 +1,29 @@
 import { regexpEmail, regexpBirthday, regexpPhone } from '../const'
 
-interface IReturn {
+enum RulesType {
+  Required = 'required',
+  Email = 'email',
+  Birthday = 'birthday',
+  Phone = 'phone',
+}
+
+type InputValidatePropsType = {
+  validationRules: string | undefined
+  name: string | undefined
+  value: string | number | readonly string[] | undefined
+}
+
+type InputValidateType = (props: InputValidatePropsType) => {
   isValid: boolean
   name: string | undefined
   error: string
 }
 
-export const inputValidate = (
-  validationRules: string | undefined,
-  name: string | undefined,
-  value: string | number | readonly string[] | undefined,
-): IReturn => {
+export const inputValidate: InputValidateType = ({
+  validationRules,
+  name,
+  value,
+}) => {
   if (validationRules) {
     const rules = validationRules.split('|')
 
@@ -19,7 +32,7 @@ export const inputValidate = (
 
       const stringValue = String(value).toLowerCase()
 
-      if (current === 'required') {
+      if (current === RulesType.Required) {
         if (!value) {
           return {
             isValid: false,
@@ -29,7 +42,7 @@ export const inputValidate = (
         }
       }
 
-      if (current === 'email') {
+      if (current === RulesType.Email) {
         if (!regexpEmail.test(stringValue)) {
           return {
             isValid: false,
@@ -39,7 +52,7 @@ export const inputValidate = (
         }
       }
 
-      if (current === 'birthday') {
+      if (current === RulesType.Birthday) {
         if (!regexpBirthday.test(stringValue)) {
           return {
             isValid: false,
@@ -49,7 +62,7 @@ export const inputValidate = (
         }
       }
 
-      if (current === 'phone') {
+      if (current === RulesType.Phone) {
         if (!regexpPhone.test(stringValue)) {
           return {
             isValid: false,

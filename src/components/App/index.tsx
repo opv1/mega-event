@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { Routes, Route } from 'react-router-dom'
 
-import { RouteProtected } from 'components/Routes'
 import { Layout } from 'components/Layout'
+import { RouteProtected } from 'components/Routes'
 import { Login } from 'pages/Login'
+import { NotFound } from 'pages/NotFound'
 import { Questionnaire } from 'pages/Questionnaire'
 import { Success } from 'pages/Success'
-import { NotFound } from 'pages/NotFound'
 
 import { fontsForLoad } from '../../const'
 

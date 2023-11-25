@@ -1,3 +1,4 @@
+import classnames from 'classnames'
 import React, {
   forwardRef,
   memo,
@@ -5,12 +6,11 @@ import React, {
   useImperativeHandle,
   useState,
 } from 'react'
-import classnames from 'classnames'
 
-import { inputValidate } from 'helpers/inputValidate'
-import { inputMask } from 'helpers/inputMask'
-import { EyeIcon } from 'assets/icons/EyeIcon'
 import { EyeClosedIcon } from 'assets/icons/EyeClosedIcon'
+import { EyeIcon } from 'assets/icons/EyeIcon'
+import { inputMask } from 'helpers/inputMask'
+import { inputValidate } from 'helpers/inputValidate'
 
 import styles from './styles.module.scss'
 

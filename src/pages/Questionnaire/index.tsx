@@ -4,8 +4,8 @@ import { Container } from 'components/Container'
 import { Tabs } from 'components/UI/Tabs'
 import { useAppSelector } from 'state/hooks'
 
-import { FormIndividual } from './components/FormIndividual'
 import { FormEntity } from './components/FormEntity'
+import { FormIndividual } from './components/FormIndividual'
 
 export const Questionnaire = memo(() => {
   const { isIndividual } = useAppSelector((state) => state.app)

@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+
 import { DataType } from 'types'
 
 interface IInitialState {

@@ -1,7 +1,7 @@
 import React, { memo, useCallback, useMemo } from 'react'
+import { FormType } from 'types/index'
 
 import { useAppSelector } from 'state/hooks'
-import { FormType } from 'types/index'
 
 import styles from './styles.module.scss'
 

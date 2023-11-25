@@ -1,11 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
+import { BrowserRouter } from 'react-router-dom'
 
-import { store } from 'state/store'
-import { ErrorBoundary } from 'components/ErrorBoundary'
 import { App } from 'components/App'
+import { ErrorBoundary } from 'components/ErrorBoundary'
+import { store } from 'state/store'
 
 import './index.scss'
 

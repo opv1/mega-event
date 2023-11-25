@@ -1,3 +1,4 @@
+import classnames from 'classnames'
 import React, {
   forwardRef,
   memo,
@@ -8,11 +9,10 @@ import React, {
   useRef,
   useState,
 } from 'react'
-import classnames from 'classnames'
 
-import { inputValidate } from 'helpers/inputValidate'
-import { getDates } from 'helpers/getDates'
 import { CaretIcon } from 'assets/icons/CaretIcon'
+import { getDates } from 'helpers/getDates'
+import { inputValidate } from 'helpers/inputValidate'
 
 import styles from './styles.module.scss'
 

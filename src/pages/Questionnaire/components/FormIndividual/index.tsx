@@ -7,16 +7,17 @@ import React, {
 } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { useAppDispatch } from 'state/hooks'
-import { setData } from 'state/appSlice'
 import { Form } from 'components/Form'
-import { Fieldset } from 'components/UI/Fieldset'
-import { Label, LabelDirection } from 'components/UI/Label'
-import { Input } from 'components/UI/Input'
 import { Button } from 'components/UI/Button'
-import { Select } from 'components/UI/Select'
 import { Checkbox } from 'components/UI/Checkbox'
+import { Fieldset } from 'components/UI/Fieldset'
+import { Input } from 'components/UI/Input'
+import { Label, LabelDirection } from 'components/UI/Label'
+import { Select } from 'components/UI/Select'
 import { inputMask } from 'helpers/inputMask'
+import { setData } from 'state/appSlice'
+import { useAppDispatch } from 'state/hooks'
+
 import { ErrorsInterface, FormType, IndividualValuesType } from 'types'
 
 import styles from './styles.module.scss'

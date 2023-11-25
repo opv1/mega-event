@@ -1,9 +1,9 @@
-import React, { memo, useCallback } from 'react'
 import classnames from 'classnames'
+import React, { memo, useCallback } from 'react'
 
-import { useAppDispatch, useAppSelector } from 'state/hooks'
-import { setIsIndividual } from 'state/appSlice'
 import { Button } from 'components/UI/Button'
+import { setIsIndividual } from 'state/appSlice'
+import { useAppDispatch, useAppSelector } from 'state/hooks'
 
 import styles from './styles.module.scss'
 

@@ -7,13 +7,14 @@ import React, {
 } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
-import { useAppDispatch } from 'state/hooks'
-import { setIsAuth } from 'state/appSlice'
 import { Container } from 'components/Container'
 import { Form } from 'components/Form'
+import { Button } from 'components/UI/Button'
 import { Fieldset } from 'components/UI/Fieldset'
 import { Input } from 'components/UI/Input'
-import { Button } from 'components/UI/Button'
+import { setIsAuth } from 'state/appSlice'
+import { useAppDispatch } from 'state/hooks'
+
 import { ErrorsInterface, LoginInterface } from 'types'
 
 import styles from './styles.module.scss'

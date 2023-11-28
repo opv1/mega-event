@@ -6,7 +6,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "cypress": "npx cypress open",
+    "cypress:open": "npx cypress open",
     "eslint": "eslint \"src/**/*.@(js|jsx|ts|tsx)\"",
     "eslint:fix": "eslint \"src/**/*.@(js|jsx|ts|tsx)\" --fix",
     "stylelint": "stylelint \"src/**/*.scss\"",

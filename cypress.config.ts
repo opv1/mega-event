@@ -1,9 +1,11 @@
-import path from 'path'
 import { defineConfig } from 'cypress'
 import vitePreprocessor from 'cypress-vite'
+import path from 'path'
 
 export default defineConfig({
   e2e: {
+    baseUrl: 'http://localhost:5173/',
+    video: false,
     setupNodeEvents(on) {
       on(
         'file:preprocessor',
@@ -12,6 +14,12 @@ export default defineConfig({
           mode: 'development',
         }),
       )
+    },
+  },
+  component: {
+    devServer: {
+      framework: 'react',
+      bundler: 'vite',
     },
   },
 })

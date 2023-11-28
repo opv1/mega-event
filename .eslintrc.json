@@ -7,6 +7,7 @@
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
+    "plugin:cypress/recommended",
     "plugin:import/errors",
     "plugin:import/recommended",
     "plugin:import/typescript",
@@ -24,6 +25,7 @@
   },
   "plugins": [
     "@typescript-eslint",
+    "cypress",
     "import",
     "prettier",
     "react",

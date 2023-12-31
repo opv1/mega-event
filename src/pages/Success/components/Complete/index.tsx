@@ -1,50 +1,14 @@
-import React, { memo, useCallback, useMemo } from 'react'
+import React, { memo } from 'react'
 import { FormType } from 'types/index'
 
 import { useAppSelector } from 'state/hooks'
 
-import styles from './styles.module.scss'
+import { Options } from '../Options'
 
-enum OptionsType {
-  Parking = 'parking',
-  Handout = 'handout',
-  Help = 'help',
-}
+import styles from './styles.module.scss'
 
 export const Complete = memo(() => {
   const { data } = useAppSelector((state) => state.app)
-
-  const entriesOptions = useMemo(() => Object.entries(data.options), [data])
-
-  const renderOptions = useCallback(() => {
-    return (
-      <>
-        {entriesOptions.map(([key, value]) => {
-          if (value && key === OptionsType.Parking) {
-            return (
-              <span key={key} className={styles.subtitle}>
-                Нужна парковка
-              </span>
-            )
-          } else if (value && key === OptionsType.Handout) {
-            return (
-              <span key={key} className={styles.subtitle}>
-                Хочу получить раздаточный материал
-              </span>
-            )
-          } else if (value && key === OptionsType.Help) {
-            return (
-              <span key={key} className={styles.subtitle}>
-                Нужна помощь сопровождающего
-              </span>
-            )
-          } else {
-            return null
-          }
-        })}
-      </>
-    )
-  }, [entriesOptions])
 
   return (
     <div className={styles.complete}>
@@ -80,7 +44,7 @@ export const Complete = memo(() => {
       )}
       <div className={styles.field}>
         <span className={styles.title}>Опции</span>
-        {renderOptions()}
+        <Options />
       </div>
     </div>
   )

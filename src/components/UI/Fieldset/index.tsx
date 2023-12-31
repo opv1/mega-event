@@ -8,7 +8,7 @@ type FieldsetPropsType = {
 } & React.FieldsetHTMLAttributes<HTMLFieldSetElement>
 
 export const Fieldset = memo((props: FieldsetPropsType) => {
-  const { error, children, ...fieldsetProps } = props
+  const { children, error, ...fieldsetProps } = props
 
   const classNameError = classnames(styles.error, {
     [styles.error_active]: error,

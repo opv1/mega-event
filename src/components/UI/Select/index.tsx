@@ -181,9 +181,9 @@ export const Select = memo(
 
     return (
       <div
+        ref={selectRef}
         className={styles.select}
         onBlur={handleBlur}
-        ref={selectRef}
         tabIndex={0}
       >
         <span className={classNameValue} onClick={handleClickValue}>

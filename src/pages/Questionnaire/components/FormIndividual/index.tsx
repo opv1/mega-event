@@ -155,18 +155,20 @@ export const FormIndividual = memo(() => {
           <h3 className={styles.title}>Личные данные</h3>
           <Fieldset error={errors.name}>
             <Input
+              ref={inputsRefs.current[0]}
               onChange={handleChange}
               onFocus={handleFocus}
               type='text'
               name='name'
               value={values.name}
+              maxLength={45}
               placeholder='ФИО'
               validationRules='required|min:2|max:50'
-              ref={inputsRefs.current[0]}
             />
           </Fieldset>
           <Fieldset error={errors.birthday}>
             <Input
+              ref={inputsRefs.current[1]}
               onChangeMask={handleChangeBirthday}
               onFocus={handleFocus}
               type='text'
@@ -174,11 +176,11 @@ export const FormIndividual = memo(() => {
               value={values.birthday}
               placeholder='Дата рождения'
               validationRules='required|birthday'
-              ref={inputsRefs.current[1]}
             />
           </Fieldset>
           <Fieldset error={errors.phone}>
             <Input
+              ref={inputsRefs.current[2]}
               onChangeMask={handleChangePhone}
               onFocus={handleFocus}
               onBlur={handleBlur}
@@ -187,7 +189,6 @@ export const FormIndividual = memo(() => {
               value={values.phone}
               placeholder='Номер телефона'
               validationRules='required|phone'
-              ref={inputsRefs.current[2]}
             />
           </Fieldset>
         </div>
@@ -196,13 +197,13 @@ export const FormIndividual = memo(() => {
           <h3 className={styles.title}>Выберите дату мероприятия</h3>
           <Fieldset error={errors.date}>
             <Select
+              ref={inputsRefs.current[3]}
               onChange={handleChangeSelect}
               onFocus={handleFocusSelect}
               name='date'
               value={values.date}
               placeholder='День мероприятия'
               validationRules='required'
-              ref={inputsRefs.current[3]}
             />
           </Fieldset>
           <div className={styles.checkboxes}>

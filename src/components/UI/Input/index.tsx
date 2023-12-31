@@ -14,6 +14,8 @@ import { inputValidate } from 'helpers/inputValidate'
 
 import styles from './styles.module.scss'
 
+const DEFAULT_MAX_LENGTH = 25
+
 type InputPropsType = {
   validationRules: string
   onChangeMask?: (value: string) => void
@@ -82,6 +84,7 @@ export const Input = memo(
           className={classNameInput}
           onChange={handleChange}
           type={inputType}
+          maxLength={inputProps.maxLength || DEFAULT_MAX_LENGTH}
         />
         <span className={classNamePlaceholder}>{inputProps.placeholder}</span>
         {inputProps.type === 'password' && (

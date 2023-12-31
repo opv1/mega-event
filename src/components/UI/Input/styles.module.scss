@@ -56,16 +56,14 @@
   align-items: center;
   transform: translate(0, -50%);
 
-  @media screen and (min-width: 875px) {
-    &:hover {
-      svg {
-        circle {
-          fill: $color-white;
-        }
+  @include hover {
+    svg {
+      circle {
+        fill: $color-white;
+      }
 
-        path {
-          stroke: $color-white;
-        }
+      path {
+        stroke: $color-white;
       }
     }
   }

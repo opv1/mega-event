@@ -98,6 +98,7 @@ export const Login = memo(() => {
         <div className={styles.block}>
           <Fieldset error={errors.email}>
             <Input
+              ref={inputsRefs.current[0]}
               onChange={handleChange}
               onFocus={handleFocus}
               type='email'
@@ -105,11 +106,11 @@ export const Login = memo(() => {
               value={values.email}
               placeholder='E-mail'
               validationRules='required|email'
-              ref={inputsRefs.current[0]}
             />
           </Fieldset>
           <Fieldset error={errors.password}>
             <Input
+              ref={inputsRefs.current[1]}
               onChange={handleChange}
               onFocus={handleFocus}
               type='password'
@@ -117,7 +118,6 @@ export const Login = memo(() => {
               value={values.password}
               placeholder='Пароль'
               validationRules='required|min:8|max:20'
-              ref={inputsRefs.current[1]}
             />
           </Fieldset>
         </div>

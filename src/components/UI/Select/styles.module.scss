@@ -93,19 +93,13 @@
   width: 100%;
   cursor: pointer;
 
-  &_active {
-    color: $color-white;
-    background-color: $color-purple-illusionist;
-  }
-
   &_focus {
     outline: 1px solid $color-white;
   }
 
-  @media screen and (min-width: 875px) {
-    &:hover {
-      color: $color-white;
-      background-color: $color-purple-illusionist;
-    }
+  @include hover {
+    outline: 1px solid $color-white;
+    color: $color-white;
+    background-color: $color-purple-illusionist;
   }
 }

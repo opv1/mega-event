@@ -5,19 +5,19 @@
   @include flex-direction-row;
 
   align-items: center;
-  border-radius: $border-radius-default;
   padding: 4px 5px;
+  border-radius: $border-radius-default;
   background-color: $color-moonless-mystery;
   gap: $gap-medium;
 }
 
 .button {
-  color: $color-wind-cave;
   background-color: transparent;
+  color: $color-wind-cave;
 
   &_active {
-    color: $color-white;
     background-color: $color-purple-illusionist;
+    color: $color-white;
   }
 }
 

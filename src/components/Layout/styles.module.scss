@@ -5,14 +5,14 @@
 .layout {
   @include flex-direction-column;
 
+  height: 100%;
   align-items: center;
   padding: 0 20px;
-  height: 100%;
   gap: $gap-big;
 }
 
 .caption {
-  @include medium-H1($color-white);
+  @include medium-h1($color-white);
 
   margin-top: 60px;
 }

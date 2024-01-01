@@ -6,8 +6,8 @@
   @include flex-direction-row;
 
   position: relative;
-  border-radius: 4px;
   width: 288px;
+  border-radius: 4px;
   background-color: $color-white-low-opacity;
   cursor: pointer;
   user-select: none;
@@ -34,22 +34,22 @@
   @include transition(all);
 
   position: absolute;
-  left: 12px;
-  top: 50%;
   z-index: 0;
+  top: 50%;
+  left: 12px;
   transform: translate(0, -50%);
 
   &_active {
     top: 25%;
-    font-size: 11px;
     color: $color-purple-illusionist;
+    font-size: 11px;
   }
 }
 
 .icon {
   position: absolute;
-  right: 20px;
   top: 50%;
+  right: 20px;
   transform: translate(0, -50%);
 
   &_rotate {
@@ -67,18 +67,18 @@
   @include flex-direction-column;
 
   position: absolute;
-  top: 41px;
   z-index: 100;
+  top: 41px;
   display: none;
-  list-style: none;
-  margin: 0;
-  border-radius: 4px;
-  padding: 10px;
   width: 100%;
   max-width: 288px;
-  box-shadow: 0 7px 24px rgb(0 0 0 / 7%);
+  padding: 10px;
+  border-radius: 4px;
+  margin: 0;
   background-color: $color-moonless-mystery;
+  box-shadow: 0 7px 24px rgb(0 0 0 / 7%);
   gap: 4px;
+  list-style: none;
 
   &_display {
     display: flex;
@@ -88,18 +88,22 @@
 .option {
   @include regular-span($color-wind-cave, 14px, 18px);
 
-  border-radius: 4px;
-  padding: 6px 8px;
   width: 100%;
+  padding: 6px 8px;
+  border-radius: 4px;
   cursor: pointer;
+
+  &_active {
+    background-color: $color-purple-illusionist;
+    color: $color-white;
+  }
 
   &_focus {
     outline: 1px solid $color-white;
   }
 
   @include hover {
-    outline: 1px solid $color-white;
-    color: $color-white;
     background-color: $color-purple-illusionist;
+    color: $color-white;
   }
 }

@@ -7,9 +7,19 @@
   position: relative;
 }
 
+.checkbox {
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  background-image: url('../../../assets/icons/checkbox.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .input {
-  appearance: none;
   position: absolute;
+  appearance: none;
   opacity: 0;
 
   &:checked + .checkbox {
@@ -23,14 +33,4 @@
   &:disabled + .checkbox {
     opacity: $opacity-default;
   }
-}
-
-.checkbox {
-  border-radius: 4px;
-  width: 24px;
-  height: 24px;
-  background-image: url('../../../assets/icons/checkbox.svg');
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
 }

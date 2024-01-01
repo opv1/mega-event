@@ -2,18 +2,35 @@
 @import '../../../styles/typography';
 @import '../../../styles/mixins';
 
+.placeholder {
+  @include regular-placeholder($color-wind-cave);
+  @include transition(all);
+
+  position: absolute;
+  z-index: 0;
+  top: 50%;
+  left: 12px;
+  transform: translate(0, -50%);
+
+  &_active {
+    top: 25%;
+    color: $color-purple-illusionist;
+    font-size: 11px;
+  }
+}
+
 .box {
   @include flex-direction-row;
 
   position: relative;
-  border-radius: 4px;
   width: 288px;
+  border-radius: 4px;
   background-color: $color-white-low-opacity;
 
   &:focus-within > .placeholder {
     top: 25%;
-    font-size: 11px;
     color: $color-purple-illusionist;
+    font-size: 11px;
   }
 }
 
@@ -29,30 +46,13 @@
   }
 }
 
-.placeholder {
-  @include regular-placeholder($color-wind-cave);
-  @include transition(all);
-
-  position: absolute;
-  left: 12px;
-  top: 50%;
-  z-index: 0;
-  transform: translate(0, -50%);
-
-  &_active {
-    top: 25%;
-    font-size: 11px;
-    color: $color-purple-illusionist;
-  }
-}
-
 .button {
   @include flex-direction-row;
 
   position: absolute;
-  right: 12px;
-  top: 50%;
   z-index: 2;
+  top: 50%;
+  right: 12px;
   align-items: center;
   transform: translate(0, -50%);
 

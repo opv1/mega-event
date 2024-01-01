@@ -2,5 +2,5 @@
 @import '../../styles/typography';
 
 .title {
-  @include regular-H2($color-white);
+  @include regular-h2($color-white);
 }

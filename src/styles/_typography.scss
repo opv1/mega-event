@@ -2,9 +2,9 @@
 @import './mixins';
 
 @mixin default($color) {
-  font-style: normal;
-  font-stretch: normal;
   color: $color;
+  font-stretch: normal;
+  font-style: normal;
 }
 
 @mixin h1 {
@@ -55,13 +55,13 @@
 }
 
 @mixin input {
-  border-radius: 4px;
-  padding: 16px 12px 6px;
   height: 40px;
+  padding: 16px 12px 6px;
+  border-radius: 4px;
+  background-color: transparent;
   font-family: $font-family-text;
   font-size: 14px;
   line-height: 18px;
-  background-color: transparent;
 
   &::placeholder {
     opacity: 0;
@@ -89,14 +89,14 @@
 @mixin button {
   @include transition(all);
 
-  border-radius: $border-radius-default;
-  padding: 10px 24px;
   width: fit-content;
+  padding: 10px 24px;
+  border-radius: $border-radius-default;
+  background-color: $color-purple-illusionist;
   font-family: $font-family-text;
   font-size: 18px;
   line-height: 133%;
   white-space: nowrap;
-  background-color: $color-purple-illusionist;
 
   &:focus {
     outline: 1px solid $color-white;
@@ -111,55 +111,55 @@
   }
 
   &:disabled {
-    color: $color-wind-cave;
     background-color: $color-moonless-mystery;
+    color: $color-wind-cave;
     cursor: not-allowed;
   }
 
   @media screen and (min-width: 875px) {
     &:not(:disabled):hover {
-      color: $color-white;
       background-color: $color-gloomy-purple;
+      color: $color-white;
     }
   }
 }
 
-@mixin regular-H1($color) {
+@mixin regular-h1($color) {
   @include default($color);
   @include h1;
 
   font-weight: $font-weight-regular;
 }
 
-@mixin medium-H1($color) {
+@mixin medium-h1($color) {
   @include default($color);
   @include h1;
 
   font-weight: $font-weight-medium;
 }
 
-@mixin regular-H2($color) {
+@mixin regular-h2($color) {
   @include default($color);
   @include h2;
 
   font-weight: $font-weight-regular;
 }
 
-@mixin medium-H2($color) {
+@mixin medium-h2($color) {
   @include default($color);
   @include h2;
 
   font-weight: $font-weight-medium;
 }
 
-@mixin regular-H3($color) {
+@mixin regular-h3($color) {
   @include default($color);
   @include h3;
 
   font-weight: $font-weight-regular;
 }
 
-@mixin medium-H3($color) {
+@mixin medium-h3($color) {
   @include default($color);
   @include h3;
 

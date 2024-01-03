@@ -16,6 +16,7 @@
     "paths": {
       "assets/*": ["assets/*"],
       "components/*": ["components/*"],
+      "const/*": ["const/*"],
       "helpers/*": ["helpers/*"],
       "pages/*": ["pages/*"],
       "state/*": ["redux/*"],

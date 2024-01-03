@@ -7,6 +7,7 @@ export default defineConfig({
     alias: {
       assets: '/src/assets',
       components: '/src/components',
+      const: '/src/const',
       helpers: '/src/helpers',
       pages: '/src/pages',
       state: '/src/redux',

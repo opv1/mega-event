@@ -182,15 +182,12 @@ export const Select = memo(
     return (
       <div
         ref={selectRef}
+        id='select'
         className={styles.select}
         onBlur={handleBlur}
         tabIndex={0}
       >
-        <span
-          className={classNameValue}
-          onClick={handleClickValue}
-          data-test='value'
-        >
+        <span id='date' className={classNameValue} onClick={handleClickValue}>
           {value}
         </span>
         <span className={classNamePlaceholder}>{placeholder}</span>

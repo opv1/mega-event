@@ -1,4 +1,4 @@
-import { regexpEmail, regexpBirthday, regexpPhone } from '../const'
+import { regexpEmail, regexpBirthday, regexpPhone } from 'const'
 
 enum RulesType {
   Required = 'required',

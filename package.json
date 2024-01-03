@@ -8,12 +8,13 @@
     "preview": "vite preview",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
-    "eslint": "eslint \"src/**/*.{js,ts,tsx}\"",
-    "eslint:fix": "eslint \"src/**/*.{js,ts,tsx}\" --fix",
+    "eslint": "eslint \"{cypress,src}/**/*.{js,ts,tsx}\"",
+    "eslint:fix": "eslint \"{cypress,src}/**/*.{js,ts,tsx}\" --fix",
     "stylelint": "stylelint \"src/**/*.scss\"",
     "stylelint:fix": "stylelint \"src/**/*.scss\" --fix",
-    "prettier": "prettier \"src/**/*.{js,ts,tsx,json,scss}\" --write",
-    "format": "yarn eslint:fix && stylelint:fix",
+    "prettier": "prettier \"{cypress,src}/**/*.{js,ts,tsx,json}\" --write",
+    "prettier:styles": "prettier \"src/**/*.scss\" --write",
+    "format": "yarn eslint:fix && stylelint:fix && prettier && prettier:styles",
     "reinstall-modules": "rm -rf ./node_modules && yarn cache clean && yarn install"
   },
   "dependencies": {

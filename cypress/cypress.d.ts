@@ -1,12 +1,14 @@
 import { mount } from 'cypress/react'
 
+import { QuestionnaireType } from 'types'
+
 declare global {
   namespace Cypress {
     interface Chainable {
       mount: typeof mount
       login(email: string, password: string): Chainable<void>
       questionnaire(
-        type: string,
+        type: QuestionnaireType,
         name: string,
         position: string,
         phone: string,
@@ -14,7 +16,7 @@ declare global {
         options: string[],
       ): Chainable<void>
       success(
-        type: string,
+        type: QuestionnaireType,
         name: string,
         position: string,
         phone: string,

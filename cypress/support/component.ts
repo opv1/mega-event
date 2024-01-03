@@ -1,8 +1,5 @@
-import './commands'
-
 import { mount } from 'cypress/react18'
 
-Cypress.Commands.add('mount', mount)
+import './commands'
 
-// Example use:
-// cy.mount(<MyComponent />)
+Cypress.Commands.add('mount', mount)

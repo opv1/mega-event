@@ -18,7 +18,7 @@ import { inputMask } from 'helpers/inputMask'
 import { setData } from 'state/appSlice'
 import { useAppDispatch } from 'state/hooks'
 
-import { EntityValuesType, ErrorsInterface, FormType } from 'types'
+import { EntityValuesType, ErrorsInterface, QuestionnaireType } from 'types'
 
 import styles from './styles.module.scss'
 
@@ -35,7 +35,7 @@ export const FormEntity = memo(() => {
   ])
 
   const [values, setValues] = useState<EntityValuesType>({
-    type: FormType.Entity,
+    type: QuestionnaireType.Entity,
     name: '',
     position: '',
     phone: '',

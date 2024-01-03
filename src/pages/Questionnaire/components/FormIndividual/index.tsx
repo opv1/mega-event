@@ -18,7 +18,7 @@ import { inputMask } from 'helpers/inputMask'
 import { setData } from 'state/appSlice'
 import { useAppDispatch } from 'state/hooks'
 
-import { ErrorsInterface, FormType, IndividualValuesType } from 'types'
+import { ErrorsInterface, IndividualValuesType, QuestionnaireType } from 'types'
 
 import styles from './styles.module.scss'
 
@@ -35,7 +35,7 @@ export const FormIndividual = memo(() => {
   ])
 
   const [values, setValues] = useState<IndividualValuesType>({
-    type: FormType.Individual,
+    type: QuestionnaireType.Individual,
     name: '',
     birthday: '',
     phone: '',

@@ -7,33 +7,39 @@ export interface LoginInterface {
   password: string
 }
 
-export enum FormType {
+export enum QuestionnaireType {
   Individual = 'individual',
   Entity = 'entity',
 }
 
-export type OptionsType = {
+export enum OptionsType {
+  Parking = 'parking',
+  Handout = 'handout',
+  Help = 'help',
+}
+
+export type OptionsObjectType = {
   parking: boolean
   handout: boolean
   help: boolean
 }
 
 export type IndividualValuesType = {
-  type: FormType.Individual | FormType.Entity
+  type: QuestionnaireType.Individual | QuestionnaireType.Entity
   name: string
   birthday: string
   phone: string
   date: string
-  options: OptionsType
+  options: OptionsObjectType
 }
 
 export type EntityValuesType = {
-  type: FormType.Individual | FormType.Entity
+  type: QuestionnaireType.Individual | QuestionnaireType.Entity
   name: string
   position: string
   phone: string
   date: string
-  options: OptionsType
+  options: OptionsObjectType
 }
 
 export type DataType = IndividualValuesType & EntityValuesType

@@ -1,7 +1,8 @@
 import React, { memo } from 'react'
-import { FormType } from 'types/index'
 
 import { useAppSelector } from 'state/hooks'
+
+import { MEMBER_VALUES } from 'const'
 
 import { Options } from '../Options'
 
@@ -18,9 +19,7 @@ export const Complete = memo(() => {
       </div>
       <div className={styles.field}>
         <span className={styles.title}>Тип участника</span>
-        <span className={styles.subtitle}>
-          {data.type === FormType.Individual ? 'Физ. лицо' : 'Юр. лицо'}
-        </span>
+        <span className={styles.subtitle}>{MEMBER_VALUES[data.type]}</span>
       </div>
       <div className={styles.field}>
         <span className={styles.title}>День мероприятия</span>

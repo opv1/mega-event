@@ -5,6 +5,9 @@ import { Button } from 'components/UI/Button'
 import { setIsIndividual } from 'state/appSlice'
 import { useAppDispatch, useAppSelector } from 'state/hooks'
 
+import { MEMBER_VALUES } from 'const'
+import { QuestionnaireType } from 'types'
+
 import styles from './styles.module.scss'
 
 export const Tabs = memo(() => {
@@ -24,21 +27,29 @@ export const Tabs = memo(() => {
     if (!isIndividual) {
       dispatch(setIsIndividual(true))
     }
-  }, [isIndividual, dispatch])
+  }, [dispatch, isIndividual])
 
   const handleSetEntity = useCallback(() => {
     if (isIndividual) {
       dispatch(setIsIndividual(false))
     }
-  }, [isIndividual, dispatch])
+  }, [dispatch, isIndividual])
 
   return (
     <div className={styles.tabs}>
-      <Button className={classNameIndividual} onClick={handleSetIndividual}>
-        Физ. лицо
+      <Button
+        id={QuestionnaireType.Individual}
+        className={classNameIndividual}
+        onClick={handleSetIndividual}
+      >
+        {MEMBER_VALUES[QuestionnaireType.Individual]}
       </Button>
-      <Button className={classNameEntity} onClick={handleSetEntity}>
-        Юр. лицо
+      <Button
+        id={QuestionnaireType.Entity}
+        className={classNameEntity}
+        onClick={handleSetEntity}
+      >
+        {MEMBER_VALUES[QuestionnaireType.Entity]}
       </Button>
     </div>
   )

@@ -1,8 +1,9 @@
 import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
+import devcert from 'vite-plugin-devcert'
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), devcert({})],
   resolve: {
     alias: {
       assets: '/src/assets',

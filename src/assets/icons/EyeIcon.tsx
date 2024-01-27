@@ -3,6 +3,8 @@ import React from 'react'
 export const EyeIcon: React.FC = () => {
   return (
     <svg
+      aria-label='eye'
+      role='img'
       width='24'
       height='24'
       viewBox='0 0 24 24'

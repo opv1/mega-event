@@ -3,6 +3,8 @@ import React from 'react'
 export const CaretIcon: React.FC = () => {
   return (
     <svg
+      aria-label='caret'
+      role='img'
       width='10'
       height='5'
       viewBox='0 0 10 5'

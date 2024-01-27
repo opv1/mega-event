@@ -21,21 +21,25 @@ export const Options = memo(() => {
               {OPTIONS_VALUES[OptionsType.Parking]}
             </span>
           )
-        } else if (value && key === OptionsType.Handout) {
+        }
+
+        if (value && key === OptionsType.Handout) {
           return (
             <span id={key} key={key} className={styles.option}>
               {OPTIONS_VALUES[OptionsType.Handout]}
             </span>
           )
-        } else if (value && key === OptionsType.Help) {
+        }
+
+        if (value && key === OptionsType.Help) {
           return (
             <span id={key} key={key} className={styles.option}>
               {OPTIONS_VALUES[OptionsType.Help]}
             </span>
           )
-        } else {
-          return null
         }
+
+        return null
       })}
     </div>
   )

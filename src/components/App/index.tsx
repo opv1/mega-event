@@ -21,7 +21,10 @@ export const App = () => {
   const [isFontsReady, setIsFontsReady] = useState<boolean>(false)
 
   useEffect(() => {
-    fontsForLoad.forEach((font) => document.fonts.load(font))
+    for (const font of fontsForLoad) {
+      document.fonts.load(font)
+    }
+
     document.fonts.ready
       .then(() => setIsFontsReady(true))
       .catch(() => setIsFontsReady(true))

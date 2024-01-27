@@ -188,7 +188,7 @@ export const FormEntity = memo(() => {
             />
           </Fieldset>
         </div>
-        <div className={styles.line}></div>
+        <div className={styles.line} />
         <div className={styles.block}>
           <h3 className={styles.title}>Выберите дату мероприятия</h3>
           <Fieldset error={errors.date}>

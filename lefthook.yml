@@ -1,9 +1,10 @@
 pre-commit:
+  piped: true
   commands:
     lint:
       glob: '*.{js,ts,tsx}'
       run: yarn eslint {staged_files} --fix
     prettier:
       run: yarn prettier {staged_files} --write
-    add:
+    git add:
       run: git add {staged_files}

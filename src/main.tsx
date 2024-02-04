@@ -1,4 +1,5 @@
 import React from 'react'
+import { Inspector } from 'react-dev-inspector'
 import ReactDOM from 'react-dom/client'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
@@ -13,6 +14,7 @@ ReactDOM.createRoot(document.getElementById('root') as Element).render(
   <React.StrictMode>
     <BrowserRouter>
       <Provider store={store}>
+        <Inspector />
         <ErrorBoundary>
           <App />
         </ErrorBoundary>

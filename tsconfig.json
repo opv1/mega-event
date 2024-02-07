@@ -29,7 +29,7 @@
     "types": ["cypress", "node"],
     "useDefineForClassFields": true
   },
-  "include": ["src", "cypress", "cypress/cypress.d.ts"],
+  "include": ["src", "cypress"],
   "references": [
     {
       "path": "./tsconfig.node.json"

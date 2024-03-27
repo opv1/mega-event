@@ -1,10 +1,10 @@
+import MillionLint from '@million/lint'
 import { inspectorServer } from '@react-dev-inspector/vite-plugin'
 import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
-import devcert from 'vite-plugin-devcert'
 
 export default defineConfig({
-  plugins: [react(), devcert({}), inspectorServer()],
+  plugins: [react(), inspectorServer(), MillionLint.vite()],
   resolve: {
     alias: {
       assets: '/src/assets',

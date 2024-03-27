@@ -11,7 +11,7 @@ export const inputMask = (value: string, mask: string): string => {
     return /[_\d]/.test(a) && i < val.length
       ? val.charAt(i++)
       : i >= val.length
-      ? ''
-      : a
+        ? ''
+        : a
   })
 }

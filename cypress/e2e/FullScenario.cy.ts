@@ -2,22 +2,22 @@ import { getDates } from 'helpers/getDates'
 import { inputMask } from 'helpers/inputMask'
 
 import { OPTIONS_VALUES } from 'const'
-import { OptionsType, QuestionnaireType } from 'types'
+import { OPTIONS_TYPE, QUESTIONNAIRE_TYPE } from 'types'
 
 const email = 'example@mail.com'
 const invalidEmail = 'example@mail'
 const password = 'password'
 const invalidPassword = 'pass'
-const type = QuestionnaireType.Entity
+const type = QUESTIONNAIRE_TYPE.entity
 const name = 'Rambler'
 const position = 'HR'
 const phone = '9951124357'
 const phoneMask = inputMask(`+7${phone}`, '+7 (___) ___-__-__')
 const date = getDates()[0]
-const options = [OptionsType.Parking, OptionsType.Handout, OptionsType.Help]
+const options = [OPTIONS_TYPE.parking, OPTIONS_TYPE.handout, OPTIONS_TYPE.help]
 const optionsValues = Object.fromEntries(
   Object.entries(OPTIONS_VALUES).filter(([option]) =>
-    options.includes(option as OptionsType),
+    options.includes(option as OPTIONS_TYPE),
   ),
 )
 

@@ -1,6 +1,6 @@
 import { mount } from 'cypress/react'
 
-import { QuestionnaireType } from 'types'
+import { QUESTIONNAIRE_TYPE } from 'types'
 
 declare global {
   namespace Cypress {
@@ -8,7 +8,7 @@ declare global {
       mount: typeof mount
       login(email: string, password: string): Chainable<void>
       questionnaire(
-        type: QuestionnaireType,
+        type: QUESTIONNAIRE_TYPE,
         name: string,
         position: string,
         phone: string,
@@ -16,7 +16,7 @@ declare global {
         options: string[],
       ): Chainable<void>
       success(
-        type: QuestionnaireType,
+        type: QUESTIONNAIRE_TYPE,
         name: string,
         position: string,
         phone: string,

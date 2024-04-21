@@ -9,6 +9,7 @@
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
     "test": "concurrently \"npm run dev\" \"npm run cypress:run\"",
+    "tsc": "tsc --noEmit",
     "eslint": "eslint \"{cypress,src}/**/*.{js,ts,tsx}\"",
     "eslint:fix": "eslint \"{cypress,src}/**/*.{js,ts,tsx}\" --fix",
     "stylelint": "stylelint \"src/**/*.scss\"",

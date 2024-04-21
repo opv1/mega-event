@@ -32,8 +32,8 @@ export const Select = memo(
 
     const selectRef = useRef<HTMLDivElement>(null)
 
-    const [isShowOptions, setIsShowOptions] = useState<boolean>(false)
-    const [optionIndex, setOptionIndex] = useState<number>(0)
+    const [isShowOptions, setIsShowOptions] = useState(false)
+    const [optionIndex, setOptionIndex] = useState(0)
 
     const classNameValue = classnames(styles.value, {
       [styles.value_focus]: isShowOptions,
@@ -53,7 +53,7 @@ export const Select = memo(
 
     const dates = useMemo(() => getDates(), [])
 
-    const toggleOptions = useCallback(() => {
+    const handleToggle = useCallback(() => {
       setIsShowOptions((prev) => !prev)
     }, [])
 
@@ -74,9 +74,9 @@ export const Select = memo(
         event.stopPropagation()
 
         onFocus(name)
-        toggleOptions()
+        handleToggle()
       },
-      [name, onFocus, toggleOptions],
+      [name, onFocus, handleToggle],
     )
 
     const handleMouseEnter = useCallback((index: number) => {
@@ -88,9 +88,9 @@ export const Select = memo(
         event.stopPropagation()
 
         handleChange()
-        toggleOptions()
+        handleToggle()
       },
-      [handleChange, toggleOptions],
+      [handleChange, handleToggle],
     )
 
     const handleKeyupSelect = useCallback(
@@ -100,11 +100,11 @@ export const Select = memo(
         switch (code) {
           case 'Tab':
             if (isShowOptions) {
-              toggleOptions()
+              handleToggle()
             }
             break
           case 'Space':
-            toggleOptions()
+            handleToggle()
             break
           case 'ArrowUp':
           case 'ArrowDown':
@@ -120,14 +120,14 @@ export const Select = memo(
           case 'Enter':
             if (isShowOptions) {
               handleChange()
-              toggleOptions()
+              handleToggle()
             }
             break
           default:
             break
         }
       },
-      [isShowOptions, optionIndex, dates, handleChange, toggleOptions],
+      [isShowOptions, optionIndex, dates, handleChange, handleToggle],
     )
 
     const optionNodes = useMemo(

@@ -8,17 +8,17 @@ import { NotFound } from 'pages/NotFound'
 import { Questionnaire } from 'pages/Questionnaire'
 import { Success } from 'pages/Success'
 
-import { fontsForLoad } from '../../const'
+import { fontsForLoad } from 'const'
 
-enum RoutePath {
-  Main = '/',
-  Questionnaire = 'questionnaire',
-  Success = 'success',
-  NotFound = '*',
+enum ROUTE_PATH {
+  main = '/',
+  questionnaire = 'questionnaire',
+  success = 'success',
+  notFound = '*',
 }
 
 export const App = () => {
-  const [isFontsReady, setIsFontsReady] = useState<boolean>(false)
+  const [isFontsReady, setIsFontsReady] = useState(false)
 
   useEffect(() => {
     for (const font of fontsForLoad) {
@@ -32,13 +32,13 @@ export const App = () => {
 
   return isFontsReady ? (
     <Routes>
-      <Route path={RoutePath.Main} element={<Layout />}>
-        <Route path={RoutePath.Main} element={<Login />} />
+      <Route path={ROUTE_PATH.main} element={<Layout />}>
+        <Route path={ROUTE_PATH.main} element={<Login />} />
         <Route element={<RouteProtected />}>
-          <Route path={RoutePath.Questionnaire} element={<Questionnaire />} />
-          <Route path={RoutePath.Success} element={<Success />} />
+          <Route path={ROUTE_PATH.questionnaire} element={<Questionnaire />} />
+          <Route path={ROUTE_PATH.success} element={<Success />} />
         </Route>
-        <Route path={RoutePath.NotFound} element={<NotFound />} />
+        <Route path={ROUTE_PATH.notFound} element={<NotFound />} />
       </Route>
     </Routes>
   ) : null

@@ -7,11 +7,11 @@ export const inputMask = (value: string, mask: string): string => {
     val = def
   }
 
-  return mask.replace(/./g, (a) => {
-    return /[_\d]/.test(a) && i < val.length
+  return mask.replace(/./g, (a) =>
+    /[_\d]/.test(a) && i < val.length
       ? val.charAt(i++)
       : i >= val.length
         ? ''
-        : a
-  })
+        : a,
+  )
 }

@@ -8,7 +8,7 @@ export const Form = memo((props: FormPropsType) => {
   const { children, ...formProps } = props
 
   return (
-    <form {...formProps} className={styles.form}>
+    <form className={styles.form} {...formProps}>
       {children}
     </form>
   )

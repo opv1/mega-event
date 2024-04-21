@@ -1,21 +1,22 @@
-export interface ErrorsInterface {
-  [key: string]: string
+export enum INPUT_TYPE {
+  email = 'email',
+  password = 'password',
+  name = 'name',
+  phone = 'phone',
+  date = 'date',
+  birthday = 'birthday',
+  position = 'position',
 }
 
-export interface LoginInterface {
-  email: string
-  password: string
+export enum QUESTIONNAIRE_TYPE {
+  individual = 'individual',
+  entity = 'entity',
 }
 
-export enum QuestionnaireType {
-  Individual = 'individual',
-  Entity = 'entity',
-}
-
-export enum OptionsType {
-  Parking = 'parking',
-  Handout = 'handout',
-  Help = 'help',
+export enum OPTIONS_TYPE {
+  parking = 'parking',
+  handout = 'handout',
+  help = 'help',
 }
 
 export type OptionsObjectType = {
@@ -24,8 +25,8 @@ export type OptionsObjectType = {
   help: boolean
 }
 
-export type IndividualValuesType = {
-  type: QuestionnaireType.Individual | QuestionnaireType.Entity
+type IndividualValuesType = {
+  type: QUESTIONNAIRE_TYPE.individual | QUESTIONNAIRE_TYPE.entity
   name: string
   birthday: string
   phone: string
@@ -33,8 +34,8 @@ export type IndividualValuesType = {
   options: OptionsObjectType
 }
 
-export type EntityValuesType = {
-  type: QuestionnaireType.Individual | QuestionnaireType.Entity
+type EntityValuesType = {
+  type: QUESTIONNAIRE_TYPE.individual | QUESTIONNAIRE_TYPE.entity
   name: string
   position: string
   phone: string
@@ -42,4 +43,4 @@ export type EntityValuesType = {
   options: OptionsObjectType
 }
 
-export type DataType = IndividualValuesType & EntityValuesType
+export type InfoType = IndividualValuesType & EntityValuesType

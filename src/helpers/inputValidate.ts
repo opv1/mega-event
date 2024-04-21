@@ -1,10 +1,10 @@
 import { regexpEmail, regexpBirthday, regexpPhone } from 'const'
 
-enum RulesType {
-  Required = 'required',
-  Email = 'email',
-  Birthday = 'birthday',
-  Phone = 'phone',
+enum RULE_TYPE {
+  required = 'required',
+  email = 'email',
+  birthday = 'birthday',
+  phone = 'phone',
 }
 
 type InputValidatePropsType = {
@@ -13,11 +13,15 @@ type InputValidatePropsType = {
   value: string | number | readonly string[] | undefined
 }
 
-type InputValidateType = (props: InputValidatePropsType) => {
+export type InputValidateReturnType = {
   isValid: boolean
   name: string | undefined
-  error: string
+  error: string | undefined
 }
+
+type InputValidateType = (
+  props: InputValidatePropsType,
+) => InputValidateReturnType
 
 export const inputValidate: InputValidateType = ({
   validationRules,
@@ -28,11 +32,11 @@ export const inputValidate: InputValidateType = ({
     const rules = validationRules.split('|')
 
     for (let i = 0; i < rules.length; i++) {
-      const current = rules[i]
+      const rule = rules[i]
 
-      const stringValue = String(value).toLowerCase()
+      const stringValue = `${value}`.toLowerCase()
 
-      if (current === RulesType.Required) {
+      if (rule === RULE_TYPE.required) {
         if (!value) {
           return {
             isValid: false,
@@ -42,7 +46,7 @@ export const inputValidate: InputValidateType = ({
         }
       }
 
-      if (current === RulesType.Email) {
+      if (rule === RULE_TYPE.email) {
         if (!regexpEmail.test(stringValue)) {
           return {
             isValid: false,
@@ -52,7 +56,7 @@ export const inputValidate: InputValidateType = ({
         }
       }
 
-      if (current === RulesType.Birthday) {
+      if (rule === RULE_TYPE.birthday) {
         if (!regexpBirthday.test(stringValue)) {
           return {
             isValid: false,
@@ -62,7 +66,7 @@ export const inputValidate: InputValidateType = ({
         }
       }
 
-      if (current === RulesType.Phone) {
+      if (rule === RULE_TYPE.phone) {
         if (!regexpPhone.test(stringValue)) {
           return {
             isValid: false,
@@ -72,7 +76,7 @@ export const inputValidate: InputValidateType = ({
         }
       }
 
-      const pair = current.split(':')
+      const pair = rule.split(':')
 
       switch (pair[0]) {
         case 'min':
@@ -108,5 +112,5 @@ export const inputValidate: InputValidateType = ({
     }
   }
 
-  return { isValid: true, name: '', error: '' }
+  return { isValid: true, name, error: '' }
 }

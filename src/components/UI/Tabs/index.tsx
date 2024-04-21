@@ -2,54 +2,56 @@ import classnames from 'classnames'
 import React, { memo, useCallback } from 'react'
 
 import { Button } from 'components/UI/Button'
-import { setIsIndividual } from 'state/appSlice'
+import { setQuestionnaireType } from 'state/app'
+import { selectAppQuestionnaireType } from 'state/app/selectors'
 import { useAppDispatch, useAppSelector } from 'state/hooks'
 
 import { MEMBER_VALUES } from 'const'
-import { QuestionnaireType } from 'types'
+import { QUESTIONNAIRE_TYPE } from 'types'
 
 import styles from './styles.module.scss'
 
 export const Tabs = memo(() => {
   const dispatch = useAppDispatch()
 
-  const { isIndividual } = useAppSelector((state) => state.app)
+  const appQuestionnaireType = useAppSelector(selectAppQuestionnaireType)
 
   const classNameIndividual = classnames(styles.button, {
-    [styles.button_active]: isIndividual,
+    [styles.button_active]:
+      appQuestionnaireType === QUESTIONNAIRE_TYPE.individual,
   })
 
   const classNameEntity = classnames(styles.button, {
-    [styles.button_active]: !isIndividual,
+    [styles.button_active]: appQuestionnaireType === QUESTIONNAIRE_TYPE.entity,
   })
 
   const handleSetIndividual = useCallback(() => {
-    if (!isIndividual) {
-      dispatch(setIsIndividual(true))
+    if (appQuestionnaireType === QUESTIONNAIRE_TYPE.entity) {
+      dispatch(setQuestionnaireType(QUESTIONNAIRE_TYPE.individual))
     }
-  }, [dispatch, isIndividual])
+  }, [dispatch, appQuestionnaireType])
 
   const handleSetEntity = useCallback(() => {
-    if (isIndividual) {
-      dispatch(setIsIndividual(false))
+    if (appQuestionnaireType === QUESTIONNAIRE_TYPE.individual) {
+      dispatch(setQuestionnaireType(QUESTIONNAIRE_TYPE.entity))
     }
-  }, [dispatch, isIndividual])
+  }, [dispatch, appQuestionnaireType])
 
   return (
     <div className={styles.tabs}>
       <Button
-        id={QuestionnaireType.Individual}
+        id={QUESTIONNAIRE_TYPE.individual}
         className={classNameIndividual}
         onClick={handleSetIndividual}
       >
-        {MEMBER_VALUES[QuestionnaireType.Individual]}
+        {MEMBER_VALUES[QUESTIONNAIRE_TYPE.individual]}
       </Button>
       <Button
-        id={QuestionnaireType.Entity}
+        id={QUESTIONNAIRE_TYPE.entity}
         className={classNameEntity}
         onClick={handleSetEntity}
       >
-        {MEMBER_VALUES[QuestionnaireType.Entity]}
+        {MEMBER_VALUES[QUESTIONNAIRE_TYPE.entity]}
       </Button>
     </div>
   )

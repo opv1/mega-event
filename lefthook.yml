@@ -3,9 +3,9 @@ pre-commit:
   commands:
     lint:
       glob: '*.{js,ts,tsx}'
-      run: yarn eslint {staged_files} --fix
+      run: npm run eslint {staged_files} --fix
     prettier:
       glob: '*.{js,ts,tsx,scss}'
-      run: yarn prettier {staged_files} --write
+      run: npm run prettier {staged_files} --write
     git add:
       run: git add {staged_files}

@@ -1,23 +1,24 @@
-import React, {
-  MutableRefObject,
-  memo,
-  useCallback,
-  useRef,
-  useState,
-} from 'react'
+import React, { memo, useCallback, useRef, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 import { Container } from 'components/Container'
 import { Form } from 'components/Form'
 import { Button } from 'components/UI/Button'
 import { Fieldset } from 'components/UI/Fieldset'
-import { Input } from 'components/UI/Input'
-import { setIsAuth } from 'state/appSlice'
+import { FormInputRefType, Input } from 'components/UI/Input'
+import { setAppIsAuth } from 'state/app'
 import { useAppDispatch } from 'state/hooks'
 
-import { ErrorsInterface, LoginInterface } from 'types'
+import { INPUT_TYPE } from 'types'
 
 import styles from './styles.module.scss'
+
+const INPUT_INDEX = {
+  [INPUT_TYPE.email]: 0,
+  [INPUT_TYPE.password]: 1,
+}
+
+type INPUT_NAME_TYPE = INPUT_TYPE.email | INPUT_TYPE.password
 
 export const Login = memo(() => {
   const dispatch = useAppDispatch()
@@ -27,19 +28,19 @@ export const Login = memo(() => {
 
   const from = location.state?.from?.pathname
 
-  const inputsRefs = useRef<MutableRefObject<HTMLInputElement | any>[]>([
-    useRef(),
-    useRef(),
+  const inputsRefs = useRef([
+    useRef<FormInputRefType>(null),
+    useRef<FormInputRefType>(null),
   ])
 
-  const [values, setValues] = useState<LoginInterface>({
-    email: '',
-    password: '',
+  const [values, setValues] = useState({
+    [INPUT_TYPE.email]: '',
+    [INPUT_TYPE.password]: '',
   })
 
-  const [errors, setErrors] = useState<ErrorsInterface>({
-    email: '',
-    password: '',
+  const [errors, setErrors] = useState({
+    [INPUT_TYPE.email]: '',
+    [INPUT_TYPE.password]: '',
   })
 
   const handleChange = useCallback(
@@ -54,7 +55,7 @@ export const Login = memo(() => {
     (event: React.FocusEvent<HTMLInputElement>) => {
       const { name } = event.target
 
-      if (errors[name] !== '') {
+      if (errors[name as INPUT_NAME_TYPE] !== '') {
         setErrors((prev) => ({ ...prev, [name]: '' }))
       }
     },
@@ -65,23 +66,25 @@ export const Login = memo(() => {
     async (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault()
 
-      let isValidForm = true
+      let isValid = true
 
       for (let i = 0; i < inputsRefs.current.length; i++) {
-        const { isValid, name, error } =
-          inputsRefs.current[i].current.validate()
+        const inputData = inputsRefs.current[i].current?.validate({})
 
-        if (!isValid) {
-          setErrors((prev) => ({ ...prev, [name]: error }))
-          isValidForm = false
+        if (!inputData?.isValid) {
+          isValid = false
+          setErrors((prev) => ({
+            ...prev,
+            [inputData?.name ?? 'unknown']: inputData?.error,
+          }))
         }
       }
 
-      if (!isValidForm) {
+      if (!isValid) {
         return
       }
 
-      dispatch(setIsAuth(true))
+      dispatch(setAppIsAuth(true))
 
       if (from) {
         navigate(from, { replace: true })
@@ -96,26 +99,26 @@ export const Login = memo(() => {
     <Container title='Добро пожаловать'>
       <Form onSubmit={handleSubmit} noValidate>
         <div className={styles.block}>
-          <Fieldset error={errors.email}>
+          <Fieldset error={errors[INPUT_TYPE.email]}>
             <Input
-              ref={inputsRefs.current[0]}
+              ref={inputsRefs.current[INPUT_INDEX[INPUT_TYPE.email]]}
               onChange={handleChange}
               onFocus={handleFocus}
               type='email'
-              name='email'
-              value={values.email}
+              name={INPUT_TYPE.email}
+              value={values[INPUT_TYPE.email]}
               placeholder='E-mail'
               validationRules='required|email'
             />
           </Fieldset>
-          <Fieldset error={errors.password}>
+          <Fieldset error={errors[INPUT_TYPE.password]}>
             <Input
-              ref={inputsRefs.current[1]}
+              ref={inputsRefs.current[INPUT_INDEX[INPUT_TYPE.password]]}
               onChange={handleChange}
               onFocus={handleFocus}
               type='password'
-              name='password'
-              value={values.password}
+              name={INPUT_TYPE.password}
+              value={values[INPUT_TYPE.password]}
               placeholder='Пароль'
               validationRules='required|min:8|max:20'
             />

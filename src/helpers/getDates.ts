@@ -8,6 +8,7 @@ export const getDates = (): string[] => {
   for (let i = 0; i < 4; i++) {
     const date = addDays(today, i)
     const formatDate = `${format(date, 'd MMMM yyyy', { locale: ru })} года`
+
     array.push(formatDate)
   }
 

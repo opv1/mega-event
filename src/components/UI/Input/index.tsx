@@ -4,17 +4,24 @@ import React, {
   memo,
   useCallback,
   useImperativeHandle,
+  useRef,
   useState,
 } from 'react'
 
 import { EyeClosedIcon } from 'assets/icons/EyeClosedIcon'
 import { EyeIcon } from 'assets/icons/EyeIcon'
 import { inputMask } from 'helpers/inputMask'
-import { inputValidate } from 'helpers/inputValidate'
+import { InputValidateReturnType, inputValidate } from 'helpers/inputValidate'
 
 import styles from './styles.module.scss'
 
 const DEFAULT_MAX_LENGTH = 25
+
+type ValidatePropsType = { name?: string; value?: string }
+
+export type FormInputRefType = {
+  validate: ({ name, value }: ValidatePropsType) => InputValidateReturnType
+}
 
 type InputPropsType = {
   validationRules: string
@@ -22,14 +29,14 @@ type InputPropsType = {
 } & React.InputHTMLAttributes<HTMLInputElement>
 
 export const Input = memo(
-  forwardRef((props: InputPropsType, ref) => {
-    const { validationRules, onChangeMask, className, ...inputProps } = props
+  forwardRef<FormInputRefType, InputPropsType>((props, ref) => {
+    const { validationRules, onChangeMask, ...inputProps } = props
 
-    const [inputType, setInputType] = useState<
-      React.HTMLInputTypeAttribute | undefined
-    >(inputProps.type)
+    const inputRef = useRef<HTMLInputElement>(null)
 
-    const classNameInput = classnames(styles.input, className, {
+    const [inputType, setInputType] = useState(inputProps.type)
+
+    const classNameInput = classnames(styles.input, inputProps.className, {
       [styles.input_password]: inputProps.value,
     })
 
@@ -66,21 +73,20 @@ export const Input = memo(
       [onChangeMask, inputProps],
     )
 
-    useImperativeHandle(ref, () => {
-      return {
-        validate: () =>
-          inputValidate({
-            validationRules,
-            name: inputProps.name,
-            value: inputProps.value,
-          }),
-      }
-    })
+    useImperativeHandle(ref, () => ({
+      validate: ({ name, value }) =>
+        inputValidate({
+          validationRules,
+          name: name ?? inputProps.name,
+          value: value ?? inputProps.value,
+        }),
+    }))
 
     return (
       <div className={styles.box}>
         <input
           {...inputProps}
+          ref={inputRef}
           className={classNameInput}
           onChange={handleChange}
           type={inputType}

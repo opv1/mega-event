@@ -1,11 +1,12 @@
 pre-commit:
   piped: true
   commands:
-    lint:
+    1_tsc:
+      run: npm run tsc
+    1_lint:
       glob: '*.{js,ts,tsx}'
-      run: npm run eslint {staged_files} --fix
-    prettier:
-      glob: '*.{js,ts,tsx,scss}'
-      run: npm run prettier {staged_files} --write
-    git add:
+      run: npx eslint {staged_files} --fix
+    2_prettier:
+      run: npx prettier {staged_files} --write
+    3_git add:
       run: git add {staged_files}

@@ -171,6 +171,7 @@ export const FormIndividual = memo(() => {
               onChange={handleChange}
               onFocus={handleFocus}
               type='text'
+              inputMode='text'
               name={INPUT_TYPE.name}
               value={values[INPUT_TYPE.name]}
               maxLength={45}
@@ -184,6 +185,7 @@ export const FormIndividual = memo(() => {
               onChangeMask={handleChangeBirthday}
               onFocus={handleFocus}
               type='text'
+              inputMode='numeric'
               name={INPUT_TYPE.birthday}
               value={values[INPUT_TYPE.birthday]}
               placeholder='Дата рождения'
@@ -197,6 +199,7 @@ export const FormIndividual = memo(() => {
               onFocus={handleFocus}
               onBlur={handleBlur}
               type='tel'
+              inputMode='tel'
               name={INPUT_TYPE.phone}
               value={values[INPUT_TYPE.phone]}
               placeholder='Номер телефона'

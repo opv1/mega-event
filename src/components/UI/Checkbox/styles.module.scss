@@ -26,7 +26,7 @@
     background-image: url('../../../assets/icons/checkbox-check.svg');
   }
 
-  &:focus + .checkbox {
+  &:focus-visible + .checkbox {
     outline: 1px solid $color-white;
   }
 

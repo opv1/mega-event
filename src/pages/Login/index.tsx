@@ -105,6 +105,7 @@ export const Login = memo(() => {
               onChange={handleChange}
               onFocus={handleFocus}
               type='email'
+              inputMode='email'
               name={INPUT_TYPE.email}
               value={values[INPUT_TYPE.email]}
               placeholder='E-mail'
@@ -117,6 +118,7 @@ export const Login = memo(() => {
               onChange={handleChange}
               onFocus={handleFocus}
               type='password'
+              inputMode='text'
               name={INPUT_TYPE.password}
               value={values[INPUT_TYPE.password]}
               placeholder='Пароль'

@@ -163,6 +163,7 @@ export const FormEntity = memo(() => {
               onChange={handleChange}
               onFocus={handleFocus}
               type='text'
+              inputMode='text'
               name={INPUT_TYPE.name}
               value={values[INPUT_TYPE.name]}
               maxLength={45}
@@ -176,6 +177,7 @@ export const FormEntity = memo(() => {
               onChange={handleChange}
               onFocus={handleFocus}
               type='text'
+              inputMode='text'
               name={INPUT_TYPE.position}
               value={values[INPUT_TYPE.position]}
               placeholder='Ваша должность'
@@ -189,6 +191,7 @@ export const FormEntity = memo(() => {
               onFocus={handleFocus}
               onBlur={handleBlur}
               type='tel'
+              inputMode='tel'
               name={INPUT_TYPE.phone}
               value={values[INPUT_TYPE.phone]}
               placeholder='Номер телефона'

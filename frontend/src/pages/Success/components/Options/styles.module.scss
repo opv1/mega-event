@@ -1,0 +1,12 @@
+@import '../../../../styles/variables';
+@import '../../../../styles/typography';
+
+.options {
+  @include flex-direction-column;
+
+  gap: 4px;
+}
+
+.option {
+  @include regular-span($color-white, 14px, 18px);
+}

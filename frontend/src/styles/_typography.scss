@@ -1,0 +1,202 @@
+@import './variables';
+@import './mixins';
+
+@mixin default($color) {
+  color: $color;
+  font-stretch: normal;
+  font-style: normal;
+}
+
+@mixin h1 {
+  font-family: $font-family-caption;
+  font-size: 50px;
+  line-height: 120%;
+  text-align: center;
+
+  @media screen and (max-width: 875px) {
+    font-size: 25px;
+    line-height: 120%;
+  }
+}
+
+@mixin h2 {
+  font-family: $font-family-caption;
+  font-size: 28px;
+  line-height: 120%;
+  text-align: center;
+
+  @media screen and (max-width: 875px) {
+    font-size: 24px;
+    line-height: 120%;
+  }
+}
+
+@mixin h3 {
+  font-family: $font-family-caption;
+  font-size: 18px;
+  line-height: 133%;
+
+  @media screen and (max-width: 875px) {
+    font-size: 16px;
+    line-height: 133%;
+  }
+}
+
+@mixin span($font-size, $line-height) {
+  font-family: $font-family-text;
+  font-size: $font-size;
+  line-height: $line-height;
+}
+
+@mixin label {
+  font-family: $font-family-text;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+@mixin input {
+  height: 40px;
+  padding: 16px 12px 6px;
+  border-radius: 4px;
+  background-color: transparent;
+  font-family: $font-family-text;
+  font-size: 14px;
+  line-height: 18px;
+
+  &::placeholder {
+    opacity: 0;
+  }
+
+  &:focus {
+    outline: 1px solid $color-purple-illusionist;
+  }
+
+  &:focus-visible {
+    outline: 1px solid $color-purple-illusionist;
+  }
+
+  &:disabled {
+    opacity: $opacity-default;
+  }
+}
+
+@mixin placeholder {
+  font-family: $font-family-text;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+@mixin button {
+  @include transition(all);
+
+  width: fit-content;
+  padding: 10px 24px;
+  border-radius: $border-radius-default;
+  background-color: $color-purple-illusionist;
+  font-family: $font-family-text;
+  font-size: 18px;
+  line-height: 133%;
+  white-space: nowrap;
+
+  &:focus {
+    outline: 1px solid $color-white;
+  }
+
+  &:focus-visible {
+    outline: 1px solid $color-white;
+  }
+
+  &:active {
+    background-color: $color-gloomy-purple;
+  }
+
+  &:disabled {
+    background-color: $color-moonless-mystery;
+    color: $color-wind-cave;
+    cursor: not-allowed;
+  }
+
+  @media screen and (min-width: 875px) {
+    &:not(:disabled):hover {
+      background-color: $color-gloomy-purple;
+      color: $color-white;
+    }
+  }
+}
+
+@mixin regular-h1($color) {
+  @include default($color);
+  @include h1;
+
+  font-weight: $font-weight-regular;
+}
+
+@mixin medium-h1($color) {
+  @include default($color);
+  @include h1;
+
+  font-weight: $font-weight-medium;
+}
+
+@mixin regular-h2($color) {
+  @include default($color);
+  @include h2;
+
+  font-weight: $font-weight-regular;
+}
+
+@mixin medium-h2($color) {
+  @include default($color);
+  @include h2;
+
+  font-weight: $font-weight-medium;
+}
+
+@mixin regular-h3($color) {
+  @include default($color);
+  @include h3;
+
+  font-weight: $font-weight-regular;
+}
+
+@mixin medium-h3($color) {
+  @include default($color);
+  @include h3;
+
+  font-weight: $font-weight-medium;
+}
+
+@mixin regular-span($color, $font-size, $line-height) {
+  @include default($color);
+  @include span($font-size, $line-height);
+
+  font-weight: $font-weight-regular;
+}
+
+@mixin regular-label($color) {
+  @include default($color);
+  @include label;
+
+  font-weight: $font-weight-regular;
+}
+
+@mixin regular-input($color) {
+  @include default($color);
+  @include input;
+
+  font-weight: $font-weight-regular;
+}
+
+@mixin regular-placeholder($color) {
+  @include default($color);
+  @include placeholder;
+
+  font-weight: $font-weight-regular;
+}
+
+@mixin regular-button($color) {
+  @include default($color);
+  @include button;
+
+  font-weight: $font-weight-regular;
+}

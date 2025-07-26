@@ -1,0 +1,15 @@
+@import '../../styles/mixins';
+
+.block {
+  @include flex-direction-column;
+
+  width: 100%;
+  align-items: center;
+  gap: 8px;
+}
+
+.wrapper {
+  @include flex-direction-row;
+
+  justify-content: center;
+}

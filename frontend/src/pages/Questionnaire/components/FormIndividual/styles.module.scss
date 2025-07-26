@@ -1,0 +1,52 @@
+@import '../../../../styles/variables';
+@import '../../../../styles/typography';
+@import '../../../../styles/mixins';
+
+.blocks {
+  @include flex-direction-row;
+
+  gap: $gap-medium;
+}
+
+.block {
+  @include flex-direction-column;
+
+  gap: $gap-small;
+
+  &:first-child {
+    padding-left: 85px;
+  }
+}
+
+.title {
+  @include regular-h3($color-white);
+}
+
+.checkboxes {
+  @include flex-direction-column;
+
+  gap: $gap-small;
+}
+
+.line {
+  border: 1px solid $color-white;
+  opacity: 0.1;
+}
+
+@media screen and (max-width: 875px) {
+  .blocks {
+    flex-direction: column;
+  }
+
+  .block {
+    max-width: 288px;
+
+    &:first-child {
+      padding-left: 0;
+    }
+  }
+
+  .line {
+    width: 100%;
+  }
+}

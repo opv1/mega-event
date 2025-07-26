@@ -1,0 +1,70 @@
+@import '../../../styles/variables';
+@import '../../../styles/typography';
+@import '../../../styles/mixins';
+
+.placeholder {
+  @include regular-placeholder($color-wind-cave);
+  @include transition(all);
+
+  position: absolute;
+  z-index: 0;
+  top: 50%;
+  left: 12px;
+  transform: translate(0, -50%);
+
+  &_active {
+    top: 25%;
+    color: $color-purple-illusionist;
+    font-size: 11px;
+  }
+}
+
+.box {
+  @include flex-direction-row;
+
+  position: relative;
+  width: 288px;
+  border-radius: 4px;
+  background-color: $color-white-low-opacity;
+
+  &:focus-within > .placeholder {
+    top: 25%;
+    color: $color-purple-illusionist;
+    font-size: 11px;
+  }
+}
+
+.input {
+  @include regular-input($color-white);
+
+  position: relative;
+  z-index: 1;
+  flex-grow: 1;
+
+  &_password {
+    padding-right: 40px;
+  }
+}
+
+.button {
+  @include flex-direction-row;
+
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  right: 12px;
+  align-items: center;
+  transform: translate(0, -50%);
+
+  @include hover {
+    svg {
+      circle {
+        fill: $color-white;
+      }
+
+      path {
+        stroke: $color-white;
+      }
+    }
+  }
+}

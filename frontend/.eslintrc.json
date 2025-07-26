@@ -1,0 +1,103 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:cypress/recommended",
+    "plugin:import/recommended",
+    "plugin:promise/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:react/recommended",
+    "prettier"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": [
+    "@typescript-eslint",
+    "cypress",
+    "import",
+    "prettier",
+    "promise",
+    "react",
+    "react-hooks"
+  ],
+  "rules": {
+    "@typescript-eslint/ban-ts-comment": "off",
+    "@typescript-eslint/ban-types": "off",
+    "@typescript-eslint/no-empty-function": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-unused-vars": "error",
+    "import/no-named-as-default": "off",
+    "import/no-unresolved": "off",
+    "import/order": [
+      "warn",
+      {
+        "alphabetize": {
+          "caseInsensitive": true,
+          "order": "asc"
+        },
+        "groups": [
+          ["builtin", "external"],
+          ["internal"],
+          ["parent"],
+          ["sibling", "index"],
+          ["object", "type"]
+        ],
+        "newlines-between": "always",
+        "pathGroups": [
+          {
+            "group": "internal",
+            "pattern": "{assets,components,const,helpers,pages,state}/**",
+            "position": "after"
+          },
+          {
+            "group": "internal",
+            "pattern": "{const,types}",
+            "position": "after"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": []
+      }
+    ],
+    "no-caller": "error",
+    "no-class-assign": "error",
+    "no-console": "warn",
+    "no-const-assign": "error",
+    "no-eq-null": "error",
+    "no-extra-bind": "error",
+    "no-loop-func": "error",
+    "no-new-require": "error",
+    "no-new-wrappers": "error",
+    "no-proto": "error",
+    "no-redeclare": "error",
+    "no-return-assign": "error",
+    "no-sequences": "error",
+    "no-useless-call": "warn",
+    "no-var": "error",
+    "no-with": "error",
+    "prefer-const": [
+      "error",
+      {
+        "destructuring": "any",
+        "ignoreReadBeforeAssign": true
+      }
+    ],
+    "react-hooks/exhaustive-deps": "warn",
+    "react-hooks/rules-of-hooks": "error",
+    "react/display-name": "off",
+    "react/no-unused-prop-types": "off",
+    "react/prop-types": "off"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
+}

@@ -1,0 +1,28 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
+.tabs {
+  @include flex-direction-row;
+
+  align-items: center;
+  padding: 4px 5px;
+  border-radius: $border-radius-default;
+  background-color: $color-moonless-mystery;
+  gap: $gap-medium;
+}
+
+.button {
+  background-color: transparent;
+  color: $color-wind-cave;
+
+  &_active {
+    background-color: $color-purple-illusionist;
+    color: $color-white;
+  }
+}
+
+@media screen and (max-width: 875px) {
+  .tabs {
+    gap: $gap-small;
+  }
+}

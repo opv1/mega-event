@@ -1,0 +1,54 @@
+@import './assets/fonts/fonts';
+@import './styles/variables';
+
+#root {
+  height: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  max-height: 100%;
+  margin: 0;
+  background-color: $color-tristesse;
+  font-family: $font-family-text;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+button {
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+input {
+  border: none;
+}
+
+input[type='number'] {
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    margin: 0;
+    appearance: none;
+  }
+}
+
+img,
+svg {
+  display: block;
+  object-fit: cover;
+}

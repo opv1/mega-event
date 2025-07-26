@@ -1,0 +1,23 @@
+@import '../../../styles/variables';
+@import '../../../styles/typography';
+@import '../../../styles/mixins';
+
+.fieldset {
+  @include flex-direction-column;
+
+  padding: 0;
+  border: none;
+  margin: 0;
+}
+
+.error {
+  @include regular-span($color-dusk-orange, 12px, 110%);
+
+  height: 14px;
+  margin-top: 5px;
+  opacity: 0;
+
+  &_active {
+    opacity: 1;
+  }
+}

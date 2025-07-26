@@ -1,0 +1,29 @@
+@import './variables';
+
+@mixin flex-direction-row() {
+  display: flex;
+  flex-direction: row;
+}
+
+@mixin flex-direction-column() {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin transition($property) {
+  transition: $property $transition-options-default;
+}
+
+@mixin hover() {
+  @media (hover: hover) {
+    &:hover {
+      @content;
+    }
+  }
+
+  @media (hover: none) {
+    &:active {
+      @content;
+    }
+  }
+}

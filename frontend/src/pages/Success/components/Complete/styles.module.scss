@@ -1,0 +1,28 @@
+@import '../../../../styles/variables';
+@import '../../../../styles/typography';
+@import '../../../../styles/mixins';
+
+.complete {
+  @include flex-direction-column;
+
+  width: 100%;
+  max-width: 336px;
+  padding: 28px 24px;
+  border-radius: $border-radius-default;
+  background-color: $color-corbeau;
+  gap: $gap-small;
+}
+
+.field {
+  @include flex-direction-column;
+
+  gap: 4px;
+}
+
+.title {
+  @include regular-span($color-white-half-opacity, 14px, 18px);
+}
+
+.subtitle {
+  @include regular-span($color-white, 14px, 18px);
+}

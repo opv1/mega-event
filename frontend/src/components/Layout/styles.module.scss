@@ -1,0 +1,28 @@
+@import '../../styles/variables';
+@import '../../styles/typography';
+@import '../../styles/mixins';
+
+.layout {
+  @include flex-direction-column;
+
+  height: 100%;
+  align-items: center;
+  padding: 0 20px;
+  gap: $gap-big;
+}
+
+.caption {
+  @include medium-h1($color-white);
+
+  margin-top: 60px;
+}
+
+@media screen and (max-width: 875px) {
+  .layout {
+    gap: 60px;
+  }
+
+  .caption {
+    margin-top: 20px;
+  }
+}

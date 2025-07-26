@@ -1,0 +1,59 @@
+@font-face {
+  font-display: swap;
+  font-family: 'Halvar Breit';
+  font-style: normal;
+  font-weight: 400;
+  src: url('assets/fonts/HalvarBreit/HalvarBreit-Rg.woff2') format('woff2'),
+    url('assets/fonts/HalvarBreit/HalvarBreit-Rg.woff') format('woff'),
+    url('assets/fonts/HalvarBreit/HalvarBreit-Rg.ttf') format('truetype');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Halvar Breit';
+  font-style: normal;
+  font-weight: 500;
+  src: url('assets/fonts/HalvarBreit/HalvarBreit-Md.woff2') format('woff2'),
+    url('assets/fonts/HalvarBreit/HalvarBreit-Md.woff') format('woff'),
+    url('assets/fonts/HalvarBreit/HalvarBreit-Md.ttf') format('truetype');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Halvar Breit';
+  font-style: normal;
+  font-weight: 700;
+  src: url('assets/fonts/HalvarBreit/HalvarBreit-Bd.woff2') format('woff2'),
+    url('assets/fonts/HalvarBreit/HalvarBreit-Bd.woff') format('woff'),
+    url('assets/fonts/HalvarBreit/HalvarBreit-Bd.ttf') format('truetype');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'PT Root UI';
+  font-style: normal;
+  font-weight: 400;
+  src: url('assets/fonts/PTRootUI/PTRootUI-Regular.woff2') format('woff2'),
+    url('assets/fonts/PTRootUI/PTRootUI-Regular.woff') format('woff'),
+    url('assets/fonts/PTRootUI/PTRootUI-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'PT Root UI';
+  font-style: normal;
+  font-weight: 500;
+  src: url('assets/fonts/PTRootUI/PTRootUI-Medium.woff2') format('woff2'),
+    url('assets/fonts/PTRootUI/PTRootUI-Medium.woff') format('woff'),
+    url('assets/fonts/PTRootUI/PTRootUI-Medium.ttf') format('truetype');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'PT Root UI';
+  font-style: normal;
+  font-weight: 700;
+  src: url('assets/fonts/PTRootUI/PTRootUI-Bold.woff2') format('woff2'),
+    url('assets/fonts/PTRootUI/PTRootUI-Bold.woff') format('woff'),
+    url('assets/fonts/PTRootUI/PTRootUI-Bold.ttf') format('truetype');
+}

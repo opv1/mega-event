@@ -1,0 +1,36 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
+.box {
+  @include flex-direction-row;
+
+  position: relative;
+}
+
+.checkbox {
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  background-image: url('../../../assets/icons/checkbox.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.input {
+  position: absolute;
+  appearance: none;
+  opacity: 0;
+
+  &:checked + .checkbox {
+    background-image: url('../../../assets/icons/checkbox-check.svg');
+  }
+
+  &:focus-visible + .checkbox {
+    outline: 1px solid $color-white;
+  }
+
+  &:disabled + .checkbox {
+    opacity: $opacity-default;
+  }
+}

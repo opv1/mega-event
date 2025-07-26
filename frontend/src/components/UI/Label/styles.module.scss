@@ -1,0 +1,16 @@
+@import '../../../styles/variables';
+@import '../../../styles/typography';
+@import '../../../styles/mixins';
+
+.label {
+  @include flex-direction-row;
+  @include regular-label($color-white);
+
+  align-items: center;
+  cursor: pointer;
+  gap: $gap-small;
+
+  &_column {
+    flex-direction: column;
+  }
+}

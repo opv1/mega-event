@@ -1,0 +1,109 @@
+@import '../../../styles/variables';
+@import '../../../styles/typography';
+@import '../../../styles/mixins';
+
+.select {
+  @include flex-direction-row;
+
+  position: relative;
+  width: 288px;
+  border-radius: 4px;
+  background-color: $color-white-low-opacity;
+  cursor: pointer;
+  user-select: none;
+
+  &:focus {
+    outline: 1px solid $color-purple-illusionist;
+  }
+}
+
+.value {
+  @include regular-input($color-white);
+
+  position: relative;
+  z-index: 1;
+  flex-grow: 1;
+
+  &_focus {
+    outline: 1px solid $color-purple-illusionist;
+  }
+}
+
+.placeholder {
+  @include regular-placeholder($color-wind-cave);
+  @include transition(all);
+
+  position: absolute;
+  z-index: 0;
+  top: 50%;
+  left: 12px;
+  transform: translate(0, -50%);
+
+  &_active {
+    top: 25%;
+    color: $color-purple-illusionist;
+    font-size: 11px;
+  }
+}
+
+.icon {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translate(0, -50%);
+
+  &_rotate {
+    transform: rotate(180deg);
+
+    svg {
+      path {
+        fill: #fff;
+      }
+    }
+  }
+}
+
+.options {
+  @include flex-direction-column;
+
+  position: absolute;
+  z-index: 100;
+  top: 41px;
+  display: none;
+  width: 100%;
+  max-width: 288px;
+  padding: 10px;
+  border-radius: 4px;
+  margin: 0;
+  background-color: $color-moonless-mystery;
+  box-shadow: 0 7px 24px rgb(0 0 0 / 7%);
+  gap: 4px;
+  list-style: none;
+
+  &_display {
+    display: flex;
+  }
+}
+
+.option {
+  @include regular-span($color-wind-cave, 14px, 18px);
+
+  width: 100%;
+  padding: 6px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &_active {
+    background-color: $color-purple-illusionist;
+    color: $color-white;
+  }
+
+  &_focus {
+    outline: 1px solid $color-white;
+  }
+
+  @include hover {
+    background-color: $color-purple-illusionist;
+    color: $color-white;
+  }
+}

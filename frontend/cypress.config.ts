@@ -1,6 +1,7 @@
+import path from 'path'
+
 import { defineConfig } from 'cypress'
 import vitePreprocessor from 'cypress-vite'
-import path from 'path'
 
 export default defineConfig({
   e2e: {

@@ -1,14 +1,14 @@
-import React, { memo } from 'react'
+import React from 'react'
 
-import styles from './styles.module.scss'
+import s from './styles.module.scss'
 
 type CheckboxPropsType = React.InputHTMLAttributes<HTMLInputElement>
 
-export const Checkbox = memo((props: CheckboxPropsType) => {
+export const Checkbox = (props: CheckboxPropsType) => {
   return (
-    <div className={styles.box}>
-      <input {...props} className={styles.input} type='checkbox' />
-      <div className={styles.checkbox} />
+    <div className={s.box}>
+      <input {...props} className={s.input} type='checkbox' />
+      <div className={s.checkbox} />
     </div>
   )
-})
+}

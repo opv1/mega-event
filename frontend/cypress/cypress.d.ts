@@ -1,6 +1,6 @@
 import { mount } from 'cypress/react'
 
-import { QUESTIONNAIRE_TYPE } from 'types'
+import { QUESTIONNAIRE_TYPE } from '@types'
 
 declare global {
   namespace Cypress {

@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-import { InfoType, QUESTIONNAIRE_TYPE } from 'types'
+import { InfoType, QUESTIONNAIRE_TYPE } from '@types'
 
 type InitialStateType = {
   isAuth: boolean
@@ -10,7 +10,7 @@ type InitialStateType = {
 
 const initialState: InitialStateType = {
   isAuth: false,
-  questionnaireType: QUESTIONNAIRE_TYPE.individual,
+  questionnaireType: QUESTIONNAIRE_TYPE.Individual,
   info: {} as InfoType,
 }
 

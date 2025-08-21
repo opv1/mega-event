@@ -1,22 +1,22 @@
 export enum INPUT_TYPE {
-  email = 'email',
-  password = 'password',
-  name = 'name',
-  phone = 'phone',
-  date = 'date',
-  birthday = 'birthday',
-  position = 'position',
+  Email = 'email',
+  Password = 'password',
+  Name = 'name',
+  Phone = 'phone',
+  Date = 'date',
+  Birthday = 'birthday',
+  Position = 'position',
 }
 
 export enum QUESTIONNAIRE_TYPE {
-  individual = 'individual',
-  entity = 'entity',
+  Individual = 'individual',
+  Entity = 'entity',
 }
 
 export enum OPTIONS_TYPE {
-  parking = 'parking',
-  handout = 'handout',
-  help = 'help',
+  Parking = 'parking',
+  Handout = 'handout',
+  Help = 'help',
 }
 
 export type OptionsObjectType = {
@@ -26,7 +26,7 @@ export type OptionsObjectType = {
 }
 
 type IndividualValuesType = {
-  type: QUESTIONNAIRE_TYPE.individual | QUESTIONNAIRE_TYPE.entity
+  type: QUESTIONNAIRE_TYPE.Individual | QUESTIONNAIRE_TYPE.Entity
   name: string
   birthday: string
   phone: string
@@ -35,7 +35,7 @@ type IndividualValuesType = {
 }
 
 type EntityValuesType = {
-  type: QUESTIONNAIRE_TYPE.individual | QUESTIONNAIRE_TYPE.entity
+  type: QUESTIONNAIRE_TYPE.Individual | QUESTIONNAIRE_TYPE.Entity
   name: string
   position: string
   phone: string

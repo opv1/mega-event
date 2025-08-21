@@ -1,18 +1,16 @@
-import classnames from 'classnames'
-import React, { memo } from 'react'
+import cn from 'classnames'
+import React from 'react'
 
-import styles from './styles.module.scss'
+import s from './styles.module.scss'
 
 type ButtonPropsType = React.ButtonHTMLAttributes<HTMLButtonElement>
 
-export const Button = memo((props: ButtonPropsType) => {
+export const Button = (props: ButtonPropsType) => {
   const { children, ...buttonProps } = props
 
-  const classNameButton = classnames(styles.button, buttonProps.className)
-
   return (
-    <button {...buttonProps} className={classNameButton}>
+    <button {...buttonProps} className={cn(s.button, buttonProps.className)}>
       {children}
     </button>
   )
-})
+}

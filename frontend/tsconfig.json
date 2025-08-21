@@ -14,13 +14,13 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "paths": {
-      "assets/*": ["assets/*"],
-      "components/*": ["components/*"],
-      "const/*": ["const/*"],
-      "helpers/*": ["helpers/*"],
-      "pages/*": ["pages/*"],
-      "state/*": ["redux/*"],
-      "types/*": ["types/*"]
+      "@assets/*": ["assets/*"],
+      "@components/*": ["components/*"],
+      "@constants": ["constants.ts"],
+      "@helpers/*": ["helpers/*"],
+      "@pages/*": ["pages/*"],
+      "@state/*": ["redux/*"],
+      "@types": ["types.ts"]
     },
     "resolveJsonModule": true,
     "skipLibCheck": true,

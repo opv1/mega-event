@@ -1,7 +1,7 @@
-import React, { memo } from 'react'
+import React from 'react'
 
-import styles from './styles.module.scss'
+import s from './styles.module.scss'
 
-export const NotFound = memo(() => {
-  return <h2 className={styles.title}>Такой страницы нет</h2>
-})
+export const NotFound = () => {
+  return <h2 className={s.title}>Такой страницы нет</h2>
+}

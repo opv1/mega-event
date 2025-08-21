@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-import { MEMBER_VALUES } from 'const'
+import { MEMBER_VALUES } from '@constants'
 
 Cypress.Commands.add('login', (email, password) => {
   cy.get('form').within(() => {

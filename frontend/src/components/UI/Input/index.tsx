@@ -1,19 +1,12 @@
-import classnames from 'classnames'
-import React, {
-  forwardRef,
-  memo,
-  useCallback,
-  useImperativeHandle,
-  useRef,
-  useState,
-} from 'react'
+import cn from 'classnames'
+import React, { forwardRef, useImperativeHandle, useRef, useState } from 'react'
 
-import { EyeClosedIcon } from 'assets/icons/EyeClosedIcon'
-import { EyeIcon } from 'assets/icons/EyeIcon'
-import { inputMask } from 'helpers/inputMask'
-import { InputValidateReturnType, inputValidate } from 'helpers/inputValidate'
+import { EyeClosedIcon } from '@assets/icons/EyeClosedIcon'
+import { EyeIcon } from '@assets/icons/EyeIcon'
+import { inputMask } from '@helpers/inputMask'
+import { InputValidateReturnType, inputValidate } from '@helpers/inputValidate'
 
-import styles from './styles.module.scss'
+import s from './styles.module.scss'
 
 const DEFAULT_MAX_LENGTH = 25
 
@@ -28,50 +21,39 @@ type InputPropsType = {
   onChangeMask?: (value: string) => void
 } & React.InputHTMLAttributes<HTMLInputElement>
 
-export const Input = memo(
-  forwardRef<FormInputRefType, InputPropsType>((props, ref) => {
+export const Input = forwardRef<FormInputRefType, InputPropsType>(
+  (props, ref) => {
     const { validationRules, onChangeMask, ...inputProps } = props
 
     const inputRef = useRef<HTMLInputElement>(null)
 
     const [inputType, setInputType] = useState(inputProps.type)
 
-    const classNameInput = classnames(styles.input, inputProps.className, {
-      [styles.input_password]: inputProps.value,
-    })
-
-    const classNamePlaceholder = classnames(styles.placeholder, {
-      [styles.placeholder_active]: inputProps.value,
-    })
-
-    const handleClickEye = useCallback(() => {
+    const handleClickEye = () => {
       if (inputType === 'password') {
         setInputType('text')
       } else {
         setInputType('password')
       }
-    }, [inputType])
+    }
 
-    const handleChange = useCallback(
-      (event: React.ChangeEvent<HTMLInputElement>) => {
-        if (onChangeMask) {
-          const { value } = event.target
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+      if (onChangeMask) {
+        const { value } = event.target
 
-          if (inputProps.name === 'birthday') {
-            const valueMask = inputMask(value, '__.__.____')
-            onChangeMask(valueMask)
-          }
-
-          if (inputProps.name === 'phone') {
-            const valueMask = inputMask(value, '+7 (___) ___-__-__')
-            onChangeMask(valueMask)
-          }
-        } else if (inputProps.onChange) {
-          inputProps.onChange(event)
+        if (inputProps.name === 'birthday') {
+          const valueMask = inputMask(value, '__.__.____')
+          onChangeMask(valueMask)
         }
-      },
-      [onChangeMask, inputProps],
-    )
+
+        if (inputProps.name === 'phone') {
+          const valueMask = inputMask(value, '+7 (___) ___-__-__')
+          onChangeMask(valueMask)
+        }
+      } else if (inputProps.onChange) {
+        inputProps.onChange(event)
+      }
+    }
 
     useImperativeHandle(ref, () => ({
       validate: ({ name, value }) =>
@@ -83,26 +65,30 @@ export const Input = memo(
     }))
 
     return (
-      <div className={styles.box}>
+      <div className={s.box}>
         <input
           {...inputProps}
           ref={inputRef}
-          className={classNameInput}
+          className={cn(s.input, inputProps.className, {
+            [s.input_password]: inputProps.value,
+          })}
           onChange={handleChange}
           type={inputType}
           maxLength={inputProps.maxLength || DEFAULT_MAX_LENGTH}
         />
-        <span className={classNamePlaceholder}>{inputProps.placeholder}</span>
+        <span
+          className={cn(s.placeholder, {
+            [s.placeholder_active]: inputProps.value,
+          })}
+        >
+          {inputProps.placeholder}
+        </span>
         {inputProps.type === 'password' && (
-          <button
-            className={styles.button}
-            type='button'
-            onClick={handleClickEye}
-          >
+          <button className={s.button} type='button' onClick={handleClickEye}>
             {inputType === 'password' ? <EyeIcon /> : <EyeClosedIcon />}
           </button>
         )}
       </div>
     )
-  }),
+  },
 )

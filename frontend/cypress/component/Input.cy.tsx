@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Input } from 'components/UI/Input'
+import { Input } from '@components/UI/Input'
 
 describe('Input', () => {
   it('Input email', () => {

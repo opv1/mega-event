@@ -1,41 +1,41 @@
-import React, { memo, useMemo } from 'react'
+import React, { useMemo } from 'react'
 
-import { selectAppInfo } from 'state/app/selectors'
-import { useAppSelector } from 'state/hooks'
+import { selectAppInfo } from '@state/app/selectors'
+import { useAppSelector } from '@state/hooks'
 
-import { OPTIONS_VALUES } from 'const'
-import { OPTIONS_TYPE } from 'types'
+import { OPTIONS_VALUES } from '@constants'
+import { OPTIONS_TYPE } from '@types'
 
-import styles from './styles.module.scss'
+import s from './styles.module.scss'
 
-export const Options = memo(() => {
+export const Options = () => {
   const { options } = useAppSelector(selectAppInfo)
 
   const entriesOptions = useMemo(() => Object.entries(options), [options])
 
   return (
-    <div id='options' className={styles.options}>
+    <div id='options' className={s.options}>
       {entriesOptions.map(([key, value]) => {
-        if (value && key === OPTIONS_TYPE.parking) {
+        if (value && key === OPTIONS_TYPE.Parking) {
           return (
-            <span id={key} key={key} className={styles.option}>
-              {OPTIONS_VALUES[OPTIONS_TYPE.parking]}
+            <span id={key} key={key} className={s.option}>
+              {OPTIONS_VALUES[OPTIONS_TYPE.Parking]}
             </span>
           )
         }
 
-        if (value && key === OPTIONS_TYPE.handout) {
+        if (value && key === OPTIONS_TYPE.Handout) {
           return (
-            <span id={key} key={key} className={styles.option}>
-              {OPTIONS_VALUES[OPTIONS_TYPE.handout]}
+            <span id={key} key={key} className={s.option}>
+              {OPTIONS_VALUES[OPTIONS_TYPE.Handout]}
             </span>
           )
         }
 
-        if (value && key === OPTIONS_TYPE.help) {
+        if (value && key === OPTIONS_TYPE.Help) {
           return (
-            <span id={key} key={key} className={styles.option}>
-              {OPTIONS_VALUES[OPTIONS_TYPE.help]}
+            <span id={key} key={key} className={s.option}>
+              {OPTIONS_VALUES[OPTIONS_TYPE.Help]}
             </span>
           )
         }
@@ -44,4 +44,4 @@ export const Options = memo(() => {
       })}
     </div>
   )
-})
+}

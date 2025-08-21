@@ -1,7 +1,6 @@
-import classnames from 'classnames'
+import cn from 'classnames'
 import React, {
   forwardRef,
-  memo,
   useCallback,
   useEffect,
   useImperativeHandle,
@@ -10,11 +9,11 @@ import React, {
   useState,
 } from 'react'
 
-import { CaretIcon } from 'assets/icons/CaretIcon'
-import { getDates } from 'helpers/getDates'
-import { inputValidate } from 'helpers/inputValidate'
+import { CaretIcon } from '@assets/icons/CaretIcon'
+import { getDates } from '@helpers/getDates'
+import { inputValidate } from '@helpers/inputValidate'
 
-import styles from './styles.module.scss'
+import s from './styles.module.scss'
 
 type SelectPropsType = {
   onChange: (date: string) => void
@@ -25,177 +24,161 @@ type SelectPropsType = {
   validationRules: string
 }
 
-export const Select = memo(
-  forwardRef((props: SelectPropsType, ref) => {
-    const { onChange, onFocus, name, value, placeholder, validationRules } =
-      props
+export const Select = forwardRef((props: SelectPropsType, ref) => {
+  const { onChange, onFocus, name, value, placeholder, validationRules } = props
 
-    const selectRef = useRef<HTMLDivElement>(null)
+  const selectRef = useRef<HTMLDivElement>(null)
 
-    const [isShowOptions, setIsShowOptions] = useState(false)
-    const [optionIndex, setOptionIndex] = useState(0)
+  const [isShowOptions, setIsShowOptions] = useState(false)
+  const [optionIndex, setOptionIndex] = useState(0)
 
-    const classNameValue = classnames(styles.value, {
-      [styles.value_focus]: isShowOptions,
-    })
+  const dates = useMemo(() => getDates(), [])
 
-    const classNamePlaceholder = classnames(styles.placeholder, {
-      [styles.placeholder_active]: isShowOptions || value,
-    })
+  const handleToggle = () => {
+    setIsShowOptions((prev) => !prev)
+  }
 
-    const classNameIcon = classnames(styles.icon, {
-      [styles.icon_rotate]: isShowOptions,
-    })
+  const handleBlur = () => {
+    setIsShowOptions(false)
+  }
 
-    const classNameOptions = classnames(styles.options, {
-      [styles.options_display]: isShowOptions,
-    })
+  const handleChange = useCallback(() => {
+    if (dates[optionIndex] === value) {
+      onChange('')
+    } else {
+      onChange(dates[optionIndex])
+    }
+  }, [dates, onChange, optionIndex, value])
 
-    const dates = useMemo(() => getDates(), [])
+  const handleClickValue = (event: React.MouseEvent<HTMLSpanElement>) => {
+    event.stopPropagation()
 
-    const handleToggle = useCallback(() => {
-      setIsShowOptions((prev) => !prev)
-    }, [])
+    onFocus(name)
+    handleToggle()
+  }
 
-    const handleBlur = useCallback(() => {
-      setIsShowOptions(false)
-    }, [])
+  const handleMouseEnter = useCallback((index: number) => {
+    setOptionIndex(index)
+  }, [])
 
-    const handleChange = useCallback(() => {
-      if (dates[optionIndex] === value) {
-        onChange('')
-      } else {
-        onChange(dates[optionIndex])
-      }
-    }, [value, optionIndex, dates, onChange])
+  const handleClickOption = useCallback(
+    (event: React.MouseEvent<HTMLLIElement>) => {
+      event.stopPropagation()
 
-    const handleClickValue = useCallback(
-      (event: React.MouseEvent<HTMLSpanElement>) => {
-        event.stopPropagation()
+      handleChange()
+      handleToggle()
+    },
+    [handleChange],
+  )
 
-        onFocus(name)
-        handleToggle()
-      },
-      [name, onFocus, handleToggle],
-    )
+  const handleKeyupSelect = useCallback(
+    (event: KeyboardEvent) => {
+      const { code } = event
 
-    const handleMouseEnter = useCallback((index: number) => {
-      setOptionIndex(index)
-    }, [])
-
-    const handleClickOption = useCallback(
-      (event: React.MouseEvent<HTMLLIElement>) => {
-        event.stopPropagation()
-
-        handleChange()
-        handleToggle()
-      },
-      [handleChange, handleToggle],
-    )
-
-    const handleKeyupSelect = useCallback(
-      (event: KeyboardEvent) => {
-        const { code } = event
-
-        switch (code) {
-          case 'Tab':
-            if (isShowOptions) {
-              handleToggle()
-            }
-            break
-          case 'Space':
+      switch (code) {
+        case 'Tab':
+          if (isShowOptions) {
             handleToggle()
-            break
-          case 'ArrowUp':
-          case 'ArrowDown':
-            if (isShowOptions) {
-              const newOptionIndex =
-                optionIndex + (code === 'ArrowDown' ? 1 : -1)
+          }
+          break
+        case 'Space':
+          handleToggle()
+          break
+        case 'ArrowUp':
+        case 'ArrowDown':
+          if (isShowOptions) {
+            const newOptionIndex = optionIndex + (code === 'ArrowDown' ? 1 : -1)
 
-              if (newOptionIndex >= 0 && newOptionIndex < dates.length) {
-                setOptionIndex(newOptionIndex)
-              }
+            if (newOptionIndex >= 0 && newOptionIndex < dates.length) {
+              setOptionIndex(newOptionIndex)
             }
-            break
-          case 'Enter':
-            if (isShowOptions) {
-              handleChange()
-              handleToggle()
-            }
-            break
-          default:
-            break
-        }
-      },
-      [isShowOptions, optionIndex, dates, handleChange, handleToggle],
-    )
-
-    const optionNodes = useMemo(
-      () =>
-        dates.map((date, index) => {
-          const classNameOption = classnames(styles.option, {
-            [styles.option_active]: date === value,
-            [styles.option_focus]: index === optionIndex,
-          })
-
-          return (
-            <li
-              key={index}
-              className={classNameOption}
-              onMouseEnter={() => handleMouseEnter(index)}
-              onClick={(event) => handleClickOption(event)}
-            >
-              {date}
-            </li>
-          )
-        }),
-      [dates, value, optionIndex, handleClickOption, handleMouseEnter],
-    )
-
-    useImperativeHandle(ref, () => {
-      return {
-        validate: () => inputValidate({ validationRules, name, value }),
+          }
+          break
+        case 'Enter':
+          if (isShowOptions) {
+            handleChange()
+            handleToggle()
+          }
+          break
+        default:
+          break
       }
-    })
+    },
+    [dates, handleChange, isShowOptions, optionIndex],
+  )
 
-    useEffect(() => {
-      if (!isShowOptions) {
-        setOptionIndex(0)
+  const optionNodes = useMemo(
+    () =>
+      dates.map((date, index) => (
+        <li
+          key={index}
+          className={cn(s.option, {
+            [s.option_active]: date === value,
+            [s.option_focus]: index === optionIndex,
+          })}
+          onMouseEnter={() => handleMouseEnter(index)}
+          onClick={(event) => handleClickOption(event)}
+        >
+          {date}
+        </li>
+      )),
+    [dates, value, optionIndex, handleClickOption, handleMouseEnter],
+  )
+
+  useImperativeHandle(ref, () => {
+    return {
+      validate: () => inputValidate({ validationRules, name, value }),
+    }
+  })
+
+  useEffect(() => {
+    if (!isShowOptions) {
+      setOptionIndex(0)
+    }
+  }, [isShowOptions])
+
+  useEffect(() => {
+    const selectRefCurrent = selectRef.current
+
+    if (selectRefCurrent) {
+      selectRefCurrent.addEventListener('keyup', handleKeyupSelect)
+    }
+
+    return () => {
+      if (selectRefCurrent) {
+        selectRefCurrent.removeEventListener('keyup', handleKeyupSelect)
       }
-    }, [isShowOptions])
+    }
+  }, [handleKeyupSelect])
 
-    useEffect(() => {
-      let selectRefCurrent: HTMLDivElement | null = null
-
-      if (selectRef.current) {
-        selectRefCurrent = selectRef.current
-        selectRefCurrent.addEventListener('keyup', handleKeyupSelect)
-      }
-
-      return () => {
-        if (selectRefCurrent) {
-          selectRefCurrent.removeEventListener('keyup', handleKeyupSelect)
-        }
-      }
-    }, [handleKeyupSelect])
-
-    return (
-      <div
-        ref={selectRef}
-        id='select'
-        className={styles.select}
-        onBlur={handleBlur}
-        tabIndex={0}
+  return (
+    <div
+      ref={selectRef}
+      id='select'
+      className={s.select}
+      onBlur={handleBlur}
+      tabIndex={0}
+    >
+      <span
+        id='date'
+        className={cn(s.value, { [s.value_focus]: isShowOptions })}
+        onClick={handleClickValue}
       >
-        <span id='date' className={classNameValue} onClick={handleClickValue}>
-          {value}
-        </span>
-        <span className={classNamePlaceholder}>{placeholder}</span>
-        <div className={classNameIcon}>
-          <CaretIcon />
-        </div>
-        <ul className={classNameOptions}>{optionNodes}</ul>
+        {value}
+      </span>
+      <span
+        className={cn(s.placeholder, {
+          [s.placeholder_active]: isShowOptions || value,
+        })}
+      >
+        {placeholder}
+      </span>
+      <div className={cn(s.icon, { [s.icon_rotate]: isShowOptions })}>
+        <CaretIcon />
       </div>
-    )
-  }),
-)
+      <ul className={cn(s.options, { [s.options_display]: isShowOptions })}>
+        {optionNodes}
+      </ul>
+    </div>
+  )
+})

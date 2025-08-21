@@ -1,35 +1,35 @@
-import React, { memo, useCallback, useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { Form } from 'components/Form'
-import { Button } from 'components/UI/Button'
-import { Checkbox } from 'components/UI/Checkbox'
-import { Fieldset } from 'components/UI/Fieldset'
-import { FormInputRefType, Input } from 'components/UI/Input'
-import { Label, LABEL_DIRECTION } from 'components/UI/Label'
-import { Select } from 'components/UI/Select'
-import { inputMask } from 'helpers/inputMask'
-import { setAppInfo } from 'state/app'
-import { useAppDispatch } from 'state/hooks'
+import { Form } from '@components/Form'
+import { Button } from '@components/UI/Button'
+import { Checkbox } from '@components/UI/Checkbox'
+import { Fieldset } from '@components/UI/Fieldset'
+import { FormInputRefType, Input } from '@components/UI/Input'
+import { Label, LABEL_DIRECTION } from '@components/UI/Label'
+import { Select } from '@components/UI/Select'
+import { inputMask } from '@helpers/inputMask'
+import { setAppInfo } from '@state/app'
+import { useAppDispatch } from '@state/hooks'
 
-import { INPUT_TYPE, OPTIONS_TYPE, QUESTIONNAIRE_TYPE } from 'types'
+import { INPUT_TYPE, OPTIONS_TYPE, QUESTIONNAIRE_TYPE } from '@types'
 
-import styles from './styles.module.scss'
+import s from './styles.module.scss'
 
 const INPUT_INDEX = {
-  [INPUT_TYPE.name]: 0,
-  [INPUT_TYPE.birthday]: 1,
-  [INPUT_TYPE.phone]: 2,
-  [INPUT_TYPE.date]: 3,
+  [INPUT_TYPE.Name]: 0,
+  [INPUT_TYPE.Birthday]: 1,
+  [INPUT_TYPE.Phone]: 2,
+  [INPUT_TYPE.Date]: 3,
 }
 
 type INPUT_NAME_TYPE =
-  | INPUT_TYPE.name
-  | INPUT_TYPE.birthday
-  | INPUT_TYPE.phone
-  | INPUT_TYPE.date
+  | INPUT_TYPE.Date
+  | INPUT_TYPE.Birthday
+  | INPUT_TYPE.Phone
+  | INPUT_TYPE.Date
 
-export const FormIndividual = memo(() => {
+export const FormIndividual = () => {
   const dispatch = useAppDispatch()
 
   const navigate = useNavigate()
@@ -42,216 +42,199 @@ export const FormIndividual = memo(() => {
   ])
 
   const [values, setValues] = useState({
-    [INPUT_TYPE.name]: '',
-    [INPUT_TYPE.birthday]: '',
-    [INPUT_TYPE.phone]: '',
-    [INPUT_TYPE.date]: '',
+    [INPUT_TYPE.Name]: '',
+    [INPUT_TYPE.Birthday]: '',
+    [INPUT_TYPE.Phone]: '',
+    [INPUT_TYPE.Date]: '',
   })
 
   const [options, setOptions] = useState({
-    [OPTIONS_TYPE.parking]: false,
-    [OPTIONS_TYPE.handout]: false,
-    [OPTIONS_TYPE.help]: false,
+    [OPTIONS_TYPE.Parking]: false,
+    [OPTIONS_TYPE.Handout]: false,
+    [OPTIONS_TYPE.Help]: false,
   })
 
   const [errors, setErrors] = useState({
-    [INPUT_TYPE.name]: '',
-    [INPUT_TYPE.birthday]: '',
-    [INPUT_TYPE.phone]: '',
-    [INPUT_TYPE.date]: '',
+    [INPUT_TYPE.Name]: '',
+    [INPUT_TYPE.Birthday]: '',
+    [INPUT_TYPE.Phone]: '',
+    [INPUT_TYPE.Date]: '',
   })
 
-  const handleChange = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      const { name, value } = event.target
-      setValues((prev) => ({ ...prev, [name]: value }))
-    },
-    [],
-  )
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target
+    setValues((prev) => ({ ...prev, [name]: value }))
+  }
 
-  const handleChangeBirthday = useCallback((value: string) => {
+  const handleChangeBirthday = (value: string) => {
     setValues((prev) => ({ ...prev, birthday: value }))
-  }, [])
+  }
 
-  const handleChangePhone = useCallback((value: string) => {
+  const handleChangePhone = (value: string) => {
     setValues((prev) => ({ ...prev, phone: value }))
-  }, [])
+  }
 
-  const handleChangeCheckbox = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      const { name, checked } = event.target
-      setOptions((prev) => ({ ...prev, [name]: checked }))
-    },
-    [],
-  )
+  const handleChangeCheckbox = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, checked } = event.target
+    setOptions((prev) => ({ ...prev, [name]: checked }))
+  }
 
-  const handleFocus = useCallback(
-    (event: React.FocusEvent<HTMLInputElement>) => {
-      const { type, name, value } = event.target
+  const handleFocus = (event: React.FocusEvent<HTMLInputElement>) => {
+    const { type, name, value } = event.target
 
-      if (type === 'tel' && value === '') {
-        const valueMask = inputMask(value, '+7 (___) ___-__-__')
-        setValues((prev) => ({ ...prev, phone: valueMask }))
-      }
+    if (type === 'tel' && value === '') {
+      const valueMask = inputMask(value, '+7 (___) ___-__-__')
+      setValues((prev) => ({ ...prev, phone: valueMask }))
+    }
 
-      if (errors[name as INPUT_NAME_TYPE] !== '') {
-        setErrors((prev) => ({ ...prev, [name]: '' }))
-      }
-    },
-    [errors],
-  )
+    if (errors[name as INPUT_NAME_TYPE] !== '') {
+      setErrors((prev) => ({ ...prev, [name]: '' }))
+    }
+  }
 
-  const handleBlur = useCallback(
-    (event: React.FocusEvent<HTMLInputElement>) => {
-      const { type, value } = event.target
+  const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
+    const { type, value } = event.target
 
-      if (type === 'tel' && value === '+7') {
-        setValues((prev) => ({ ...prev, phone: '' }))
-      }
-    },
-    [],
-  )
+    if (type === 'tel' && value === '+7') {
+      setValues((prev) => ({ ...prev, phone: '' }))
+    }
+  }
 
-  const handleChangeSelect = useCallback((date: string) => {
+  const handleChangeSelect = (date: string) => {
     setValues((prev) => ({ ...prev, date: date }))
-  }, [])
+  }
 
-  const handleFocusSelect = useCallback(
-    (name: string) => {
-      if (errors[name as INPUT_NAME_TYPE] !== '') {
-        setErrors((prev) => ({ ...prev, [name]: '' }))
+  const handleFocusSelect = (name: string) => {
+    if (errors[name as INPUT_NAME_TYPE] !== '') {
+      setErrors((prev) => ({ ...prev, [name]: '' }))
+    }
+  }
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+
+    let isValid = true
+
+    for (let i = 0; i < inputsRefs.current.length; i++) {
+      const inputData = inputsRefs.current[i].current?.validate({})
+
+      if (!inputData?.isValid) {
+        isValid = false
+
+        setErrors((prev) => ({
+          ...prev,
+          [inputData?.name ?? 'unknown']: inputData?.error,
+        }))
       }
-    },
-    [errors],
-  )
+    }
 
-  const handleSubmit = useCallback(
-    async (event: React.FormEvent<HTMLFormElement>) => {
-      event.preventDefault()
+    if (!isValid) {
+      return
+    }
 
-      let isValid = true
+    dispatch(
+      setAppInfo({
+        type: QUESTIONNAIRE_TYPE.Individual,
+        ...values,
+        options,
+      }),
+    )
 
-      for (let i = 0; i < inputsRefs.current.length; i++) {
-        const inputData = inputsRefs.current[i].current?.validate({})
-
-        if (!inputData?.isValid) {
-          isValid = false
-          setErrors((prev) => ({
-            ...prev,
-            [inputData?.name ?? 'unknown']: inputData?.error,
-          }))
-        }
-      }
-
-      if (!isValid) {
-        return
-      }
-
-      dispatch(
-        setAppInfo({
-          type: QUESTIONNAIRE_TYPE.individual,
-          ...values,
-          options,
-        }),
-      )
-
-      navigate('/success')
-    },
-    [dispatch, navigate, values, options],
-  )
+    navigate('/success')
+  }
 
   return (
     <Form onSubmit={handleSubmit} noValidate>
-      <div className={styles.blocks}>
-        <div className={styles.block}>
-          <h3 className={styles.title}>Личные данные</h3>
-          <Fieldset error={errors[INPUT_TYPE.name]}>
+      <div className={s.blocks}>
+        <div className={s.block}>
+          <h3 className={s.title}>Личные данные</h3>
+          <Fieldset error={errors[INPUT_TYPE.Name]}>
             <Input
-              ref={inputsRefs.current[INPUT_INDEX[INPUT_TYPE.name]]}
+              ref={inputsRefs.current[INPUT_INDEX[INPUT_TYPE.Name]]}
               onChange={handleChange}
               onFocus={handleFocus}
               type='text'
               inputMode='text'
-              name={INPUT_TYPE.name}
-              value={values[INPUT_TYPE.name]}
+              name={INPUT_TYPE.Name}
+              value={values[INPUT_TYPE.Name]}
               maxLength={45}
               placeholder='ФИО'
               validationRules='required|min:2|max:50'
             />
           </Fieldset>
-          <Fieldset error={errors[INPUT_TYPE.birthday]}>
+          <Fieldset error={errors[INPUT_TYPE.Birthday]}>
             <Input
-              ref={inputsRefs.current[INPUT_INDEX[INPUT_TYPE.birthday]]}
+              ref={inputsRefs.current[INPUT_INDEX[INPUT_TYPE.Birthday]]}
               onChangeMask={handleChangeBirthday}
               onFocus={handleFocus}
               type='text'
               inputMode='numeric'
-              name={INPUT_TYPE.birthday}
-              value={values[INPUT_TYPE.birthday]}
+              name={INPUT_TYPE.Birthday}
+              value={values[INPUT_TYPE.Birthday]}
               placeholder='Дата рождения'
               validationRules='required|birthday'
             />
           </Fieldset>
-          <Fieldset error={errors[INPUT_TYPE.phone]}>
+          <Fieldset error={errors[INPUT_TYPE.Phone]}>
             <Input
-              ref={inputsRefs.current[INPUT_INDEX[INPUT_TYPE.phone]]}
+              ref={inputsRefs.current[INPUT_INDEX[INPUT_TYPE.Phone]]}
               onChangeMask={handleChangePhone}
               onFocus={handleFocus}
               onBlur={handleBlur}
               type='tel'
               inputMode='tel'
-              name={INPUT_TYPE.phone}
-              value={values[INPUT_TYPE.phone]}
+              name={INPUT_TYPE.Phone}
+              value={values[INPUT_TYPE.Phone]}
               placeholder='Номер телефона'
               validationRules='required|phone'
             />
           </Fieldset>
         </div>
-        <div className={styles.line} />
-        <div className={styles.block}>
-          <h3 className={styles.title}>Выберите дату мероприятия</h3>
-          <Fieldset error={errors[INPUT_TYPE.date]}>
+        <div className={s.line} />
+        <div className={s.block}>
+          <h3 className={s.title}>Выберите дату мероприятия</h3>
+          <Fieldset error={errors[INPUT_TYPE.Date]}>
             <Select
-              ref={inputsRefs.current[INPUT_INDEX[INPUT_TYPE.date]]}
+              ref={inputsRefs.current[INPUT_INDEX[INPUT_TYPE.Date]]}
               onChange={handleChangeSelect}
               onFocus={handleFocusSelect}
-              name={INPUT_TYPE.date}
-              value={values[INPUT_TYPE.date]}
+              name={INPUT_TYPE.Date}
+              value={values[INPUT_TYPE.Date]}
               placeholder='День мероприятия'
               validationRules='required'
             />
           </Fieldset>
-          <div className={styles.checkboxes}>
+          <div className={s.checkboxes}>
             <Label
-              htmlFor={OPTIONS_TYPE.parking}
-              direction={LABEL_DIRECTION.row}
+              htmlFor={OPTIONS_TYPE.Parking}
+              direction={LABEL_DIRECTION.Row}
             >
               <Checkbox
-                id={OPTIONS_TYPE.parking}
+                id={OPTIONS_TYPE.Parking}
                 onChange={handleChangeCheckbox}
-                name={OPTIONS_TYPE.parking}
-                checked={options[OPTIONS_TYPE.parking]}
+                name={OPTIONS_TYPE.Parking}
+                checked={options[OPTIONS_TYPE.Parking]}
               />
               Нужна парковка
             </Label>
             <Label
-              htmlFor={OPTIONS_TYPE.handout}
-              direction={LABEL_DIRECTION.row}
+              htmlFor={OPTIONS_TYPE.Handout}
+              direction={LABEL_DIRECTION.Row}
             >
               <Checkbox
-                id={OPTIONS_TYPE.handout}
+                id={OPTIONS_TYPE.Handout}
                 onChange={handleChangeCheckbox}
-                name={OPTIONS_TYPE.handout}
-                checked={options[OPTIONS_TYPE.handout]}
+                name={OPTIONS_TYPE.Handout}
+                checked={options[OPTIONS_TYPE.Handout]}
               />
               Хочу получить раздаточный материал
             </Label>
-            <Label htmlFor={OPTIONS_TYPE.help} direction={LABEL_DIRECTION.row}>
+            <Label htmlFor={OPTIONS_TYPE.Help} direction={LABEL_DIRECTION.Row}>
               <Checkbox
-                id={OPTIONS_TYPE.help}
+                id={OPTIONS_TYPE.Help}
                 onChange={handleChangeCheckbox}
-                name={OPTIONS_TYPE.help}
-                checked={options[OPTIONS_TYPE.help]}
+                name={OPTIONS_TYPE.Help}
+                checked={options[OPTIONS_TYPE.Help]}
               />
               Нужна помощь сопровождающего
             </Label>
@@ -261,4 +244,4 @@ export const FormIndividual = memo(() => {
       <Button type='submit'>Отправить заявку</Button>
     </Form>
   )
-})
+}

@@ -1,19 +1,19 @@
-import React, { memo } from 'react'
+import React from 'react'
 
-import styles from './styles.module.scss'
+import s from './styles.module.scss'
 
 type ContainerPropsType = {
   children: React.ReactNode
   title: string
 }
 
-export const Container = memo((props: ContainerPropsType) => {
+export const Container = (props: ContainerPropsType) => {
   const { children, title } = props
 
   return (
-    <div className={styles.container}>
-      <h2 className={styles.title}>{title}</h2>
-      <div className={styles.content}>{children}</div>
+    <div className={s.container}>
+      <h2 className={s.title}>{title}</h2>
+      <div className={s.content}>{children}</div>
     </div>
   )
-})
+}

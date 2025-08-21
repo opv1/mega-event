@@ -3,8 +3,5 @@
     "stylelint-config-idiomatic-order",
     "stylelint-config-standard-scss"
   ],
-  "plugins": [
-    "stylelint-order",
-    "stylelint-scss"
-  ]
+  "plugins": ["stylelint-order", "stylelint-scss"]
 }

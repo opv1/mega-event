@@ -1,17 +1,17 @@
-import React, { memo, useCallback } from 'react'
+import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { Container } from 'components/Container'
-import { Button } from 'components/UI/Button'
+import { Container } from '@components/Container'
+import { Button } from '@components/UI/Button'
 
 import { Complete } from './components/Complete'
 
-export const Success = memo(() => {
+export const Success = () => {
   const navigate = useNavigate()
 
-  const handleClick = useCallback(() => {
+  const handleClick = () => {
     navigate('/')
-  }, [navigate])
+  }
 
   return (
     <Container title='Спасибо за заявку!'>
@@ -19,4 +19,4 @@ export const Success = memo(() => {
       <Button onClick={handleClick}>Вернуться на главную</Button>
     </Container>
   )
-})
+}

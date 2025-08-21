@@ -1,13 +1,13 @@
-import React, { memo } from 'react'
+import React from 'react'
 import { Outlet } from 'react-router-dom'
 
-import styles from './styles.module.scss'
+import s from './styles.module.scss'
 
-export const Layout = memo(() => {
+export const Layout = () => {
   return (
-    <main className={styles.layout}>
-      <h1 className={styles.caption}>Coding Mega Event</h1>
+    <main className={s.layout}>
+      <h1 className={s.caption}>Coding Mega Event</h1>
       <Outlet />
     </main>
   )
-})
+}

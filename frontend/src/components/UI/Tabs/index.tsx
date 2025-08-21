@@ -1,58 +1,54 @@
-import classnames from 'classnames'
-import React, { memo, useCallback } from 'react'
+import cn from 'classnames'
+import React from 'react'
 
-import { Button } from 'components/UI/Button'
-import { setQuestionnaireType } from 'state/app'
-import { selectAppQuestionnaireType } from 'state/app/selectors'
-import { useAppDispatch, useAppSelector } from 'state/hooks'
+import { Button } from '@components/UI/Button'
+import { setQuestionnaireType } from '@state/app'
+import { selectAppQuestionnaireType } from '@state/app/selectors'
+import { useAppDispatch, useAppSelector } from '@state/hooks'
 
-import { MEMBER_VALUES } from 'const'
-import { QUESTIONNAIRE_TYPE } from 'types'
+import { MEMBER_VALUES } from '@constants'
+import { QUESTIONNAIRE_TYPE } from '@types'
 
-import styles from './styles.module.scss'
+import s from './styles.module.scss'
 
-export const Tabs = memo(() => {
+export const Tabs = () => {
   const dispatch = useAppDispatch()
 
   const appQuestionnaireType = useAppSelector(selectAppQuestionnaireType)
 
-  const classNameIndividual = classnames(styles.button, {
-    [styles.button_active]:
-      appQuestionnaireType === QUESTIONNAIRE_TYPE.individual,
-  })
-
-  const classNameEntity = classnames(styles.button, {
-    [styles.button_active]: appQuestionnaireType === QUESTIONNAIRE_TYPE.entity,
-  })
-
-  const handleSetIndividual = useCallback(() => {
-    if (appQuestionnaireType === QUESTIONNAIRE_TYPE.entity) {
-      dispatch(setQuestionnaireType(QUESTIONNAIRE_TYPE.individual))
+  const handleSetIndividual = () => {
+    if (appQuestionnaireType === QUESTIONNAIRE_TYPE.Entity) {
+      dispatch(setQuestionnaireType(QUESTIONNAIRE_TYPE.Individual))
     }
-  }, [dispatch, appQuestionnaireType])
+  }
 
-  const handleSetEntity = useCallback(() => {
-    if (appQuestionnaireType === QUESTIONNAIRE_TYPE.individual) {
-      dispatch(setQuestionnaireType(QUESTIONNAIRE_TYPE.entity))
+  const handleSetEntity = () => {
+    if (appQuestionnaireType === QUESTIONNAIRE_TYPE.Individual) {
+      dispatch(setQuestionnaireType(QUESTIONNAIRE_TYPE.Entity))
     }
-  }, [dispatch, appQuestionnaireType])
+  }
 
   return (
-    <div className={styles.tabs}>
+    <div className={s.tabs}>
       <Button
-        id={QUESTIONNAIRE_TYPE.individual}
-        className={classNameIndividual}
+        id={QUESTIONNAIRE_TYPE.Individual}
+        className={cn(s.button, {
+          [s.button_active]:
+            appQuestionnaireType === QUESTIONNAIRE_TYPE.Individual,
+        })}
         onClick={handleSetIndividual}
       >
-        {MEMBER_VALUES[QUESTIONNAIRE_TYPE.individual]}
+        {MEMBER_VALUES[QUESTIONNAIRE_TYPE.Individual]}
       </Button>
       <Button
-        id={QUESTIONNAIRE_TYPE.entity}
-        className={classNameEntity}
+        id={QUESTIONNAIRE_TYPE.Entity}
+        className={cn(s.button, {
+          [s.button_active]: appQuestionnaireType === QUESTIONNAIRE_TYPE.Entity,
+        })}
         onClick={handleSetEntity}
       >
-        {MEMBER_VALUES[QUESTIONNAIRE_TYPE.entity]}
+        {MEMBER_VALUES[QUESTIONNAIRE_TYPE.Entity]}
       </Button>
     </div>
   )
-})
+}

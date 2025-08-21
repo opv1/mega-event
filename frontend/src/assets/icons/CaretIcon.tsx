@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const CaretIcon: React.FC = () => {
+export const CaretIcon = () => {
   return (
     <svg
       aria-label='caret'

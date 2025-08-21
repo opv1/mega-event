@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import { Routes, Route } from 'react-router-dom'
 
-import { Layout } from 'components/Layout'
-import { RouteProtected } from 'components/Routes'
-import { Login } from 'pages/Login'
-import { NotFound } from 'pages/NotFound'
-import { Questionnaire } from 'pages/Questionnaire'
-import { Success } from 'pages/Success'
+import { Layout } from '@components/Layout'
+import { RouteProtected } from '@components/Routes'
+import { Login } from '@pages/Login'
+import { NotFound } from '@pages/NotFound'
+import { Questionnaire } from '@pages/Questionnaire'
+import { Success } from '@pages/Success'
 
-import { fontsForLoad } from 'const'
+import { fontsForLoad } from '@constants'
 
 enum ROUTE_PATH {
-  main = '/',
-  questionnaire = 'questionnaire',
-  success = 'success',
-  notFound = '*',
+  Main = '/',
+  Questionnaire = 'questionnaire',
+  Success = 'success',
+  NotFound = '*',
 }
 
 export const App = () => {
@@ -32,13 +32,13 @@ export const App = () => {
 
   return isFontsReady ? (
     <Routes>
-      <Route path={ROUTE_PATH.main} element={<Layout />}>
-        <Route path={ROUTE_PATH.main} element={<Login />} />
+      <Route path={ROUTE_PATH.Main} element={<Layout />}>
+        <Route path={ROUTE_PATH.Main} element={<Login />} />
         <Route element={<RouteProtected />}>
-          <Route path={ROUTE_PATH.questionnaire} element={<Questionnaire />} />
-          <Route path={ROUTE_PATH.success} element={<Success />} />
+          <Route path={ROUTE_PATH.Questionnaire} element={<Questionnaire />} />
+          <Route path={ROUTE_PATH.Success} element={<Success />} />
         </Route>
-        <Route path={ROUTE_PATH.notFound} element={<NotFound />} />
+        <Route path={ROUTE_PATH.NotFound} element={<NotFound />} />
       </Route>
     </Routes>
   ) : null

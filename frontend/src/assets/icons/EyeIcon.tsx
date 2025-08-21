@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const EyeIcon: React.FC = () => {
+export const EyeIcon = () => {
   return (
     <svg
       aria-label='eye'

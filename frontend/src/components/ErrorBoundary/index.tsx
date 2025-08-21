@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import styles from './styles.module.scss'
+import s from './styles.module.scss'
 
 interface ErrorBoundaryProps {
   children: React.ReactNode
@@ -28,10 +28,10 @@ export class ErrorBoundary extends Component<
 
     if (error) {
       return (
-        <div className={styles.boundary} data-testid='errorboundary'>
-          <span className={styles.title}>Что то пошло не так... ( ˘︹˘ )</span>
+        <div className={s.boundary} data-testid='errorboundary'>
+          <span className={s.title}>Что то пошло не так... ( ˘︹˘ )</span>
           {error.message && (
-            <span className={styles.error}>Текст ошибки: {error.message}</span>
+            <span className={s.error}>Текст ошибки: {error.message}</span>
           )}
         </div>
       )

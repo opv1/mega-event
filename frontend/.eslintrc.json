@@ -44,7 +44,8 @@
           "order": "asc"
         },
         "groups": [
-          ["builtin", "external"],
+          ["builtin"],
+          ["external"],
           ["internal"],
           ["parent"],
           ["sibling", "index"],
@@ -54,12 +55,12 @@
         "pathGroups": [
           {
             "group": "internal",
-            "pattern": "{assets,components,const,helpers,pages,state}/**",
+            "pattern": "{@assets,@components,@helpers,@pages,@state}/**",
             "position": "after"
           },
           {
             "group": "internal",
-            "pattern": "{const,types}",
+            "pattern": "{@constants,@types}",
             "position": "after"
           }
         ],

@@ -1,27 +1,28 @@
-import classnames from 'classnames'
-import React, { memo } from 'react'
+import cn from 'classnames'
+import React from 'react'
 
-import styles from './styles.module.scss'
+import s from './styles.module.scss'
 
 export enum LABEL_DIRECTION {
-  row = 'row',
-  column = 'column',
+  Row = 'row',
+  Column = 'column',
 }
 
 type LabelPropsType = {
-  direction: LABEL_DIRECTION.row | LABEL_DIRECTION.column
+  direction: LABEL_DIRECTION.Row | LABEL_DIRECTION.Column
 } & React.LabelHTMLAttributes<HTMLLabelElement>
 
-export const Label = memo((props: LabelPropsType) => {
+export const Label = (props: LabelPropsType) => {
   const { children, direction, ...labelProps } = props
 
-  const classNameLabel = classnames(styles.label, {
-    [styles.label_column]: direction === LABEL_DIRECTION.column,
-  })
-
   return (
-    <label {...labelProps} className={classNameLabel}>
+    <label
+      {...labelProps}
+      className={cn(s.label, {
+        [s.label_column]: direction === LABEL_DIRECTION.Column,
+      })}
+    >
       {children}
     </label>
   )
-})
+}

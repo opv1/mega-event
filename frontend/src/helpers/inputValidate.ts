@@ -1,10 +1,10 @@
-import { regexpEmail, regexpBirthday, regexpPhone } from 'const'
+import { regexpEmail, regexpBirthday, regexpPhone } from '@constants'
 
 enum RULE_TYPE {
-  required = 'required',
-  email = 'email',
-  birthday = 'birthday',
-  phone = 'phone',
+  Required = 'required',
+  Email = 'email',
+  Birthday = 'birthday',
+  Phone = 'phone',
 }
 
 type InputValidatePropsType = {
@@ -36,7 +36,7 @@ export const inputValidate: InputValidateType = ({
 
       const stringValue = `${value}`.toLowerCase()
 
-      if (rule === RULE_TYPE.required) {
+      if (rule === RULE_TYPE.Required) {
         if (!value) {
           return {
             isValid: false,
@@ -46,7 +46,7 @@ export const inputValidate: InputValidateType = ({
         }
       }
 
-      if (rule === RULE_TYPE.email) {
+      if (rule === RULE_TYPE.Email) {
         if (!regexpEmail.test(stringValue)) {
           return {
             isValid: false,
@@ -56,7 +56,7 @@ export const inputValidate: InputValidateType = ({
         }
       }
 
-      if (rule === RULE_TYPE.birthday) {
+      if (rule === RULE_TYPE.Birthday) {
         if (!regexpBirthday.test(stringValue)) {
           return {
             isValid: false,
@@ -66,7 +66,7 @@ export const inputValidate: InputValidateType = ({
         }
       }
 
-      if (rule === RULE_TYPE.phone) {
+      if (rule === RULE_TYPE.Phone) {
         if (!regexpPhone.test(stringValue)) {
           return {
             isValid: false,

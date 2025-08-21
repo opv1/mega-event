@@ -1,4 +1,4 @@
-import { OPTIONS_TYPE, QUESTIONNAIRE_TYPE } from '../types'
+import { OPTIONS_TYPE, QUESTIONNAIRE_TYPE } from './types'
 
 export const fontsForLoad = [
   '500 50px Halvar Breit',
@@ -15,12 +15,12 @@ export const regexpBirthday =
 export const regexpPhone = /^((\+7)[- ]?)?(\(?\d{3}\)?[- ]?)?[\d\- ]{10}$/
 
 export const MEMBER_VALUES = {
-  [QUESTIONNAIRE_TYPE.individual]: 'Физ. лицо',
-  [QUESTIONNAIRE_TYPE.entity]: 'Юр. лицо',
+  [QUESTIONNAIRE_TYPE.Individual]: 'Физ. лицо',
+  [QUESTIONNAIRE_TYPE.Entity]: 'Юр. лицо',
 }
 
 export const OPTIONS_VALUES = {
-  [OPTIONS_TYPE.parking]: 'Нужна парковка',
-  [OPTIONS_TYPE.handout]: 'Хочу получить раздаточный материал',
-  [OPTIONS_TYPE.help]: 'Нужна помощь сопровождающего',
+  [OPTIONS_TYPE.Parking]: 'Нужна парковка',
+  [OPTIONS_TYPE.Handout]: 'Хочу получить раздаточный материал',
+  [OPTIONS_TYPE.Help]: 'Нужна помощь сопровождающего',
 }

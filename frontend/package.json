@@ -56,6 +56,6 @@
     "stylelint-order": "7.0.0",
     "stylelint-scss": "6.12.1",
     "typescript": "5.9.2",
-    "vite": "5.4.19"
+    "vite": "5.4.20"
   }
 }
